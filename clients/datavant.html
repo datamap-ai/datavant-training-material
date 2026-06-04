@@ -150,6 +150,21 @@
 </style>
 </head>
 <body>
+<!-- Simple client-side access gate (cosmetic only — see note in repo). -->
+<div id="authGate" style="position:fixed;inset:0;z-index:99999;background:#071018;display:flex;align-items:center;justify-content:center;font-family:Inter,system-ui,sans-serif;">
+  <form id="authForm" style="background:#fff;padding:32px 28px;border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,.4);width:320px;max-width:90vw;">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
+      <div style="width:34px;height:34px;border-radius:8px;background:#00c6d9;color:#071018;font-weight:700;display:flex;align-items:center;justify-content:center;">D</div>
+      <strong style="font-size:18px;color:#071018;">datavant</strong>
+    </div>
+    <label style="display:block;font-size:13px;color:#4A5568;margin-bottom:4px;">Username</label>
+    <input id="authUser" type="text" autocomplete="username" style="width:100%;box-sizing:border-box;padding:10px 12px;margin-bottom:14px;border:1px solid #cbd5e0;border-radius:8px;font-size:14px;">
+    <label style="display:block;font-size:13px;color:#4A5568;margin-bottom:4px;">Password</label>
+    <input id="authPass" type="password" autocomplete="current-password" style="width:100%;box-sizing:border-box;padding:10px 12px;margin-bottom:14px;border:1px solid #cbd5e0;border-radius:8px;font-size:14px;">
+    <div id="authError" style="display:none;color:#c0392b;font-size:13px;margin-bottom:12px;">Incorrect username or password.</div>
+    <button type="submit" style="width:100%;padding:11px;border:0;border-radius:8px;background:#00c6d9;color:#071018;font-weight:600;font-size:14px;cursor:pointer;">Enter</button>
+  </form>
+</div>
 <div class="progress-bar"><div class="progress-bar__fill" id="progressBar"></div></div>
 <nav class="nav">
   <div class="nav__inner">
@@ -702,6 +717,37 @@
   });
 
   document.addEventListener('DOMContentLoaded', initPage);
+</script>
+<script>
+(function () {
+  var GATE_KEY = 'dv_guide_auth';
+  var USER = 'datavant', PASS = 'training';
+  var gate = document.getElementById('authGate');
+  // Already authenticated this session? hide gate, restore scroll.
+  if (sessionStorage.getItem(GATE_KEY) === 'ok') {
+    gate.parentNode.removeChild(gate);
+  } else {
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
+    var form = document.getElementById('authForm');
+    var err = document.getElementById('authError');
+    document.getElementById('authUser').focus();
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var u = document.getElementById('authUser').value.trim();
+      var p = document.getElementById('authPass').value;
+      if (u === USER && p === PASS) {
+        sessionStorage.setItem(GATE_KEY, 'ok');
+        document.documentElement.style.overflow = '';
+        document.body.style.overflow = '';
+        gate.parentNode.removeChild(gate);
+      } else {
+        err.style.display = 'block';
+        document.getElementById('authPass').value = '';
+      }
+    });
+  }
+})();
 </script>
 </body>
 </html>
