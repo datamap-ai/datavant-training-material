@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delegates · Coupa Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+  :root {
+    --navy: #fcfcfc;
+    --navy-2: #00c6d9;
+    --navy-3: #000000;
+
+    --gold: #000000;
+    --gold-bright: #00F2FF;
+    --gold-soft: #E9FEFF;
+    --gold-dark: #000000;
+
+    --ice: #E8FEFF;
+    --ice-2: #CFF7F9;
+    --ice-3: #B7F0F3;
+
+    --paper: #FFFFFF;
+    --text: #071018;
+    --text-muted: #4A5568;
+    --text-soft: #000000;
+    --line: #3b57b4;
+    --line-soft: #F4FEFF;
+    --correct: #1E8A6B;
+    --wrong: #C44A4A;
+
+    --radius-sm: 10px;
+    --radius-md: 18px;
+    --radius-lg: 26px;
+    --shadow-sm: 0 1px 2px rgba(3, 10, 12, 0.04), 0 1px 3px rgba(3, 10, 12, 0.06);
+    --shadow-md: 0 4px 12px rgba(3, 10, 12, 0.07), 0 12px 28px rgba(3, 10, 12, 0.08);
+    --shadow-lg: 0 12px 32px rgba(3, 10, 12, 0.10), 0 28px 64px rgba(3, 10, 12, 0.14);
+    --shadow-gold: 0 8px 24px rgba(0, 0, 0, 0.2);
+
+    --serif: 'Fraunces', serif;
+    --sans: 'Inter', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 96px; }
+  body { font-family: var(--sans); background: #fff; color: var(--text); min-height: 100vh; }
+  .progress-bar { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 1000; background: rgba(0, 198, 217, 0.12); }
+  .progress-bar__fill { width: 0; height: 100%; background: linear-gradient(90deg, var(--gold), var(--gold-bright)); transition: width 0.15s ease; }
+  .nav { position: sticky; top: 0; background: #ffffff; border-bottom: 1px solid var(--line); z-index: 50; }
+  .nav__inner { max-width: 1180px; margin: 0 auto; padding: 16px 32px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .nav__brand { font-weight: 700; letter-spacing: -0.01em; color: #000; display: flex; gap: 12px; align-items: center; }
+  .nav__brand-mark { width: 36px; height: 36px; border-radius: 12px; background: #fff; color: #000; display: grid; place-items: center; font-family: var(--serif); font-size: 18px; font-weight: 700; }
+  .nav__links { display: flex; gap: 10px; flex-wrap: wrap; }
+  .nav__links a { font-size: 13px; font-weight: 600; text-decoration: none; color: #000; padding: 10px 14px; border-radius: 999px; transition: all 0.2s ease; }
+  .nav__links a:hover { color: var(--gold) !important; background: var(--gold-bright); }
+  .nav__links a.active { color: #000 !important; background: var(--gold-soft); }
+  .wrap { max-width: 1060px; margin: 0 auto; padding: 0 32px; }
+  section { padding: 84px 0; position: relative; }
+  .hero { background: #ffffff; color: #000000; padding: 120px 0 80px; }
+  .hero__inner { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: center; }
+  .hero__eyebrow { text-transform: uppercase; letter-spacing: 0.22em; font-size: 12px; margin-bottom: 18px; color: rgba(255,255,255,0.9); }
+  .hero__title { font-family: var(--serif); font-size: clamp(42px, 5vw, 64px); line-height: 1.02; margin-bottom: 24px; }
+  .hero__lead { max-width: 560px; line-height: 1.65; color: rgba(0, 0, 0, 0.9); margin-bottom: 32px; }
+  .hero__cta { background: #000000; color: #00eeff; border: none; border-radius: 999px; padding: 16px 28px; font-size: 15px; font-weight: 700; cursor: pointer; }
+  .hero__meta { display: flex; gap: 36px; margin-top: 32px; flex-wrap: wrap; }
+  .hero__meta-item { display: flex; flex-direction: column; }
+  .hero__meta-num { font-family: var(--serif); font-size: 32px; font-weight: 600; color: #000; line-height: 1; margin-bottom: 6px; }
+  .hero__meta-num em { color: #00eeff; font-style: normal; font-size: 18px; margin-left: 4px; }
+  .hero__meta-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em; color: rgba(0,0,0,0.55); font-weight: 700; }
+  .hero__panel { background: #00eeff; border: 1px solid rgba(255,255,255,0.25); border-radius: 28px; padding: 28px; box-shadow: 0 24px 70px rgba(0,0,0,0.12); }
+  .hero__panel h2 { font-family: var(--serif); font-size: 26px; margin-bottom: 14px; }
+  .hero__panel p { line-height: 1.75; }
+  .section--ice { background: var(--ice); }
+  .section--navy { background: #001f2a; color: #fff; }
+  .section-head { display: grid; grid-template-columns: auto 1fr; gap: 44px; align-items: end; margin-bottom: 42px; }
+  .section-head__num { font-family: var(--serif); font-style: italic; font-size: 64px; font-weight: 300; color: var(--gold); line-height: 0.9; letter-spacing: -0.02em; }
+  .section-head__eyebrow { text-transform: uppercase; letter-spacing: 0.22em; font-size: 11px; color: var(--gold); margin-bottom: 12px; }
+  .section-head__title { font-family: var(--serif); font-size: clamp(32px, 3.7vw, 44px); margin-bottom: 16px; color: inherit; }
+  .section-head__lead { max-width: 720px; color: rgba(0,0,0,0.72); line-height: 1.7; }
+  .section--navy .section-head__lead { color: rgba(255,255,255,0.78); }
+  .content-block { background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 28px 32px; box-shadow: 0 18px 50px rgba(0,0,0,0.05); }
+  .section--navy .content-block { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.14); }
+  .content-block p { line-height: 1.8; margin-top: 14px; color: inherit; }
+  .content-block ul { margin-top: 16px; list-style: disc; padding-left: 20px; color: inherit; line-height: 1.7; }
+  .quiz { margin-top: 42px; background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 32px; }
+  .section--navy .quiz { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.18); }
+  .quiz__head { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 18px; margin-bottom: 24px; }
+  .quiz__label { display: inline-flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: var(--gold); }
+  .quiz__title { font-family: var(--serif); font-size: 24px; line-height: 1.2; color: inherit; }
+  .quiz__score { font-size: 13px; color: var(--text-muted); background: var(--ice); padding: 10px 14px; border-radius: 999px; }
+  .section--navy .quiz__score { background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.9); }
+  .question { margin-bottom: 24px; }
+  .question__num { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+  .question__text { font-family: var(--serif); font-size: 20px; line-height: 1.4; margin-bottom: 16px; color: inherit; }
+  .question__options { display: grid; gap: 12px; }
+  .option { display: flex; align-items: center; gap: 12px; background: #fff; border: 1.5px solid var(--line); border-radius: 16px; padding: 16px 18px; cursor: pointer; transition: all 0.2s ease; color: inherit; }
+  .option:hover:not(:disabled) { border-color: var(--gold); background: var(--ice); }
+  .option__letter { width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid var(--line); display: grid; place-items: center; font-family: var(--mono); font-weight: 700; color: var(--text-muted); }
+  .option.is-correct { background: rgba(30,138,107,0.08); border-color: var(--correct); color: var(--correct); }
+  .option.is-wrong { background: rgba(196,74,74,0.08); border-color: var(--wrong); color: var(--wrong); }
+  .option.is-correct .option__letter, .option.is-wrong .option__letter { background: currentColor; color: inherit; border-color: currentColor; }
+  .option:disabled { cursor: default; opacity: 0.9; }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.75s ease, transform 0.75s ease; will-change: opacity, transform; }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+  .feedback { margin-top: 16px; padding: 16px 18px; border-radius: 14px; display: none; font-size: 14px; line-height: 1.6; }
+  .feedback.is-shown { display: block; }
+  .feedback--correct { background: rgba(30,138,107,0.1); border-left: 4px solid var(--correct); color: var(--correct); }
+  .feedback--wrong { background: rgba(196,74,74,0.1); border-left: 4px solid var(--wrong); color: var(--wrong); }
+  .quiz__restart { width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid var(--line); background: #fff; color: var(--text-muted); cursor: pointer; display: grid; place-items: center; }
+  .quiz__restart:hover { border-color: var(--gold); color: #000; }
+  .final__result { display: none; margin-top: 28px; padding: 28px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.16); background: rgba(255,255,255,0.08); }
+  .final__result.is-shown { display: block; }
+  .final__result-score { font-family: var(--serif); font-size: 60px; color: var(--gold); margin-bottom: 10px; }
+  .final__result-label { text-transform: uppercase; letter-spacing: 0.18em; color: rgba(0, 0, 0, 0.85); font-weight: 700; margin-bottom: 14px; }
+  .final__result-msg { line-height: 1.7; color: rgba(0, 0, 0, 0.9); }
+  .button { border: none; border-radius: 999px; cursor: pointer; padding: 14px 24px; font-weight: 700; transition: all 0.2s ease; }
+  .button--primary { background: var(--gold); color: #000; }
+  .button--secondary { background: #fff; color: #000; border: 1px solid var(--line); }
+  .button--ghost { background: transparent; border: 1px solid rgba(255,255,255,0.38); color: #fff; }
+  .locked-section { position: relative; }
+  .collapsed-section > .wrap > *:not(.section-head) { display: none; }
+  .locked-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 24px; background: rgba(255,255,255,0.96); text-align: center; color: var(--text); z-index: 20; border-radius: 24px; }
+  .section--navy .locked-overlay { background: rgba(0,0,0,0.85); color: #fff; }
+  .locked-overlay__msg { max-width: 640px; line-height: 1.7; font-size: 15px; }
+  .locked-overlay__btn { margin-top: 18px; background: var(--navy-2); color: #000; border: none; padding: 12px 18px; border-radius: 999px; font-weight: 700; cursor: pointer; }
+  .pdf-modal { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.52); display: none; align-items: center; justify-content: center; padding: 20px; z-index: 1100; }
+  .pdf-modal.is-open { display: flex; }
+  .pdf-modal__panel { width: 100%; max-width: 520px; border-radius: 28px; background: #fff; box-shadow: 0 32px 80px rgba(0, 0, 0, 0.18); overflow: hidden; }
+  .pdf-modal__header { padding: 28px 26px 16px; border-bottom: 1px solid var(--line); position: relative; }
+  .pdf-modal__close { position: absolute; top: 18px; right: 18px; width: 36px; height: 36px; border: none; border-radius: 50%; background: var(--ice); color: var(--text); cursor: pointer; display: grid; place-items: center; }
+  .pdf-modal__eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+  .pdf-modal__title { font-family: var(--serif); font-size: 28px; margin-bottom: 8px; }
+  .pdf-modal__lead { color: var(--text-muted); line-height: 1.7; }
+  .pdf-modal__body { padding: 0 26px 24px; }
+  .pdf-modal__label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 10px; }
+  .pdf-modal__input { width: 100%; border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; font-size: 15px; color: var(--text); }
+  .pdf-modal__note { color: var(--text-muted); font-size: 14px; margin-top: 10px; margin-bottom: 18px; line-height: 1.7; }
+  .pdf-modal__action-group { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
+  .pdf-modal__error { color: #b91c1c; font-size: 13px; margin-top: 10px; }
+  .pdf-modal__btn { border: none; border-radius: 999px; cursor: pointer; padding: 14px 24px; font-weight: 700; transition: all 0.2s ease; }
+  .pdf-modal__btn--primary { background: var(--gold); color: #000; }
+  .pdf-modal__btn--secondary { background: #fff; color: #000; border: 1px solid var(--line); }
+  .pdf-modal__btn svg { width: 18px; height: 18px; margin-right: 10px; vertical-align: middle; }
+  .section--navy .pdf-modal__btn--secondary { background: rgba(255,255,255,0.08); color: #fff; border-color: rgba(255,255,255,0.14); }
+  @media (max-width: 920px) { .hero__inner { grid-template-columns: 1fr; } .nav__inner { padding: 16px 20px; } }
+  @media (max-width: 720px) { .wrap { padding: 0 20px; } .section-head { grid-template-columns: 1fr; } .nav__links { display: none; } }
+</style>
+</head>
+<body>
+<div class="progress-bar"><div class="progress-bar__fill" id="progressBar"></div></div>
+<nav class="nav">
+  <div class="nav__inner">
+    <div class="nav__brand"><div class="nav__brand-mark">D</div>datavant</div>
+    <div class="nav__links">
+      <a href="#conceptual" class="nav-link">Overview</a>
+      <a href="#process" class="nav-link">Process</a>
+      <a href="#final" class="nav-link">Assessment</a>
+    </div>
+  </div>
+</nav>
+<section class="hero">
+  <div class="wrap">
+    <div class="hero__inner">
+      <div>
+        <div class="hero__eyebrow">Coupa Delegate Guide</div>
+        <h1 class="hero__title">Assigning delegates in Coupa</h1>
+        <p class="hero__lead">Learn what a delegate is, why you assign one, and how to give another user authority to act on your behalf when you are unavailable.</p>
+        <button class="hero__cta" onclick="document.getElementById('conceptual').scrollIntoView({behavior:'smooth'})">Start learning</button>
+        <div class="hero__meta">
+          <div class="hero__meta-item">
+            <div class="hero__meta-num">3</div>
+            <div class="hero__meta-label">Modules</div>
+          </div>
+          <div class="hero__meta-item">
+            <div class="hero__meta-num">15m</div>
+            <div class="hero__meta-label">Estimated time</div>
+          </div>
+          <div class="hero__meta-item">
+            <div class="hero__meta-num">5</div>
+            <div class="hero__meta-label">Questions</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero__panel">
+        <h2>What you will learn</h2>
+        <p>One conceptual module, one step-by-step module, and a final assessment with credential release after a perfect score.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="conceptual">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-head__num">01</div>
+      <div class="section-head__content">
+        <div class="section-head__eyebrow">Conceptual</div>
+        <h2 class="section-head__title">What is a Coupa delegate?</h2>
+        <p class="section-head__lead">A delegate is a user who is authorized to act in place of another Coupa user, typically for approvals, purchase requests, or task completion during absences.</p>
+      </div>
+    </div>
+    <div class="content-block reveal">
+      <p>In Coupa, delegation makes sure work continues when someone is out of office. A delegate can approve requisitions, submit requests, or take actions on behalf of the original user, depending on the permissions assigned by the primary user or administrator.</p>
+      <ul>
+        <li>Delegation is often used for approvers who will be unavailable for a period of time.</li>
+        <li>Delegates should be trusted users with similar approval authority.</li>
+        <li>The original user can add or remove delegates from their profile settings.</li>
+      </ul>
+    </div>
+    <div class="quiz reveal" data-quiz="q1">
+      <div class="quiz__head">
+        <div>
+          <div class="quiz__label">Quick check · Conceptual</div>
+          <h3 class="quiz__title">Confirm the delegate concept</h3>
+        </div>
+        <div class="quiz__score">Score: <strong><span class="score-val">0</span> / 1</strong></div>
+      </div>
+      <div class="question" data-correct="2">
+        <div class="question__num">Question 01</div>
+        <h4 class="question__text">What does a delegate do in Coupa?</h4>
+        <div class="question__options">
+          <button class="option"><span class="option__letter">A</span>They create supplier invoices for the procurement team.</button>
+          <button class="option"><span class="option__letter">B</span>They act on behalf of another user for approvals and requests when that user is unavailable.</button>
+          <button class="option"><span class="option__letter">C</span>They manage Coupa security groups for all users.</button>
+        </div>
+        <div class="feedback"></div>
+      </div>
+      <button class="quiz__restart" type="button" title="Restart quiz">↻</button>
+    </div>
+  </div>
+</section>
+<section id="process" class="section--ice">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-head__num">02</div>
+      <div class="section-head__content">
+        <div class="section-head__eyebrow">Step-by-step process</div>
+        <h2 class="section-head__title">How to assign a delegate</h2>
+        <p class="section-head__lead">Use the user delegation settings in Coupa to give a colleague the ability to approve or submit transactions on your behalf.</p>
+      </div>
+    </div>
+    <div class="content-block reveal">
+      <p>The process of assigning a delegate in Coupa involves a few simple steps:</p>
+      <ul>
+        <li>Open your Coupa profile and go to the <strong>Delegates</strong> section.</li>
+        <li>Select 'Create'.</li>
+        <li>Fill in all required information.</li>
+        <li>Select 'Save'.</li>
+      </ul>
+    </div>
+    <div class="quiz reveal" data-quiz="q2">
+      <div class="quiz__head">
+        <div>
+          <div class="quiz__label">Quick check · Process</div>
+          <h3 class="quiz__title">Confirm the assignment flow</h3>
+        </div>
+        <div class="quiz__score">Score: <strong><span class="score-val">0</span> / 1</strong></div>
+      </div>
+      <div class="question" data-correct="1">
+        <div class="question__num">Question 01</div>
+        <h4 class="question__text">What is the first step when setting up a delegate?</h4>
+        <div class="question__options">
+          <button class="option"><span class="option__letter">A</span>Open your Coupa profile and go to the delegation settings.</button>
+          <button class="option"><span class="option__letter">B</span>Send an email to the finance team.</button>
+          <button class="option"><span class="option__letter">C</span>Approve a requisition for the delegate.</button>
+        </div>
+        <div class="feedback"></div>
+      </div>
+      <button class="quiz__restart" type="button" title="Restart quiz">↻</button>
+    </div>
+  </div>
+</section>
+<section id="final">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-head__num">03</div>
+      <div class="section-head__content">
+        <div class="section-head__eyebrow">Final assessment</div>
+        <h2 class="section-head__title">Verify your delegate knowledge</h2>
+        <p class="section-head__lead">Answer all three questions correctly to unlock your credential and download your certificate.</p>
+      </div>
+    </div>
+    <div class="quiz reveal" data-quiz="qfinal">
+      <div class="quiz__head">
+        <div>
+          <div class="quiz__label">Final assessment</div>
+          <h3 class="quiz__title">Answer all questions</h3>
+        </div>
+        <div class="quiz__score">Score: <strong><span class="score-val">0</span> / 3</strong></div>
+      </div>
+      <div class="question" data-correct="3">
+        <div class="question__num">Question 01</div>
+        <h4 class="question__text">Once a delegate is assigned, what can they do?</h4>
+        <div class="question__options">
+          <button class="option"><span class="option__letter">A</span>Change your Coupa password for you.</button>
+          <button class="option"><span class="option__letter">B</span>Approve or submit requests on your behalf if permitted.</button>
+          <button class="option"><span class="option__letter">C</span>Delete your user account.</button>
+        </div>
+        <div class="feedback"></div>
+      </div>
+      <div class="question" data-correct="2">
+        <div class="question__num">Question 02</div>
+        <h4 class="question__text">Where do you normally assign a delegate?</h4>
+        <div class="question__options">
+          <button class="option"><span class="option__letter">A</span>In the company supplier portal.</button>
+          <button class="option"><span class="option__letter">B</span>In your Coupa user profile or delegate settings.</button>
+          <button class="option"><span class="option__letter">C</span>On the home page dashboard.</button>
+        </div>
+        <div class="feedback"></div>
+      </div>
+      <div class="question" data-correct="1">
+        <div class="question__num">Question 03</div>
+        <h4 class="question__text">Why should a delegate be assigned before someone goes on leave?</h4>
+        <div class="question__options">
+          <button class="option"><span class="option__letter">A</span>So approvals and purchasing actions can continue without delay.</button>
+          <button class="option"><span class="option__letter">B</span>So the delegate can see all of the original user's passwords.</button>
+          <button class="option"><span class="option__letter">C</span>Because the delegate becomes the new account owner.</button>
+        </div>
+        <div class="feedback"></div>
+      </div>
+      <button class="quiz__restart" type="button" title="Restart quiz">↻</button>
+      <div class="final__result" id="finalResult">
+        <div class="final__result-score" id="finalScoreNum">0 / 3</div>
+        <div class="final__result-label">Final result</div>
+        <p class="final__result-msg" id="finalMessage"></p>
+        <div class="final__result-actions">
+          <button class="button button--secondary" id="reopenCredentialsBtn" type="button">View credential & PDF</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="pdf-modal" id="credentialsModal" role="dialog" aria-modal="true" aria-labelledby="credentialsModalTitle">
+  <div class="pdf-modal__panel">
+    <div class="pdf-modal__header">
+      <button class="pdf-modal__close" id="credentialsModalClose" type="button" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="pdf-modal__eyebrow">Congratulations!</div>
+      <h2 class="pdf-modal__title" id="credentialsModalTitle">Your award credentials are ready</h2>
+      <p class="pdf-modal__lead">Enter your name to personalize your credential award and access the full course guide PDF.</p>
+    </div>
+    <div class="pdf-modal__body">
+      <label class="pdf-modal__label" for="credentialName">Your name</label>
+      <input class="pdf-modal__input" id="credentialName" type="text" placeholder="First Last" autocomplete="name" />
+      <p class="pdf-modal__note">This name will appear on your award certificate and credential PDF.</p>
+      <div class="pdf-modal__action-group">
+        <button class="pdf-modal__btn pdf-modal__btn--secondary" id="credentialDownload" type="button">Download award certificate</button>
+        <button class="pdf-modal__btn pdf-modal__btn--secondary" id="downloadGuidePdf" type="button">Download full course guide</button>
+      </div>
+      <div class="pdf-modal__error" id="credentialError"></div>
+    </div>
+  </div>
+</div>
+<script>
+  const progressFill = document.getElementById('progressBar');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const orderedSections = ['conceptual', 'process', 'final'];
+  const quizPass = {};
+  let finalQuizPassed = false;
+
+  function updateProgressBar() {
+    const scrolled = window.scrollY;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = max > 0 ? (scrolled / max) * 100 : 0;
+    progressFill.style.width = Math.min(pct, 100) + '%';
+  }
+
+  function highlightNav() {
+    let current = orderedSections[0];
+    orderedSections.forEach((id) => {
+      const sec = document.getElementById(id);
+      if (!sec) return;
+      if (window.scrollY >= sec.offsetTop - 120) current = id;
+    });
+    navLinks.forEach((link) => {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+    });
+  }
+
+  function createOverlayForSection(section, prevId) {
+    if (section.classList.contains('locked-section')) return;
+    section.classList.add('locked-section', 'collapsed-section');
+    const overlay = document.createElement('div');
+    overlay.className = 'locked-overlay';
+    overlay.innerHTML = `
+      <div>
+        <p class="locked-overlay__msg">This module is locked until you pass the previous Quick Check. Finish the prior quiz to unlock it.</p>
+        <button class="locked-overlay__btn" type="button">Go to previous module</button>
+      </div>
+    `;
+    overlay.querySelector('button').addEventListener('click', () => {
+      document.getElementById(prevId).scrollIntoView({ behavior: 'smooth' });
+    });
+    section.appendChild(overlay);
+  }
+
+  function removeOverlayFromSection(section) {
+    section.classList.remove('locked-section', 'collapsed-section');
+    const overlay = section.querySelector('.locked-overlay');
+    if (overlay) overlay.remove();
+  }
+
+  function updateLocks() {
+    orderedSections.forEach((id, idx) => {
+      if (idx === 0) return;
+      const section = document.getElementById(id);
+      if (!section) return;
+      const prevId = orderedSections[idx - 1];
+      if (quizPass[prevId]) {
+        removeOverlayFromSection(section);
+      } else {
+        createOverlayForSection(section, prevId);
+      }
+    });
+  }
+
+  function markQuizPassed(sectionId) {
+    quizPass[sectionId] = true;
+    updateLocks();
+  }
+
+  function initQuiz(quiz) {
+    if (quiz.dataset.initialized === 'true') return;
+    quiz.dataset.initialized = 'true';
+
+    const questions = quiz.querySelectorAll('.question');
+    const scoreEl = quiz.querySelector('.score-val');
+    const restart = quiz.querySelector('.quiz__restart');
+    const state = { answered: new Set(), score: 0, total: questions.length };
+
+    function resetQuiz() {
+      state.answered.clear();
+      state.score = 0;
+      if (scoreEl) scoreEl.textContent = '0';
+      questions.forEach((q) => {
+        q.querySelectorAll('.option').forEach((opt) => {
+          opt.disabled = false;
+          opt.classList.remove('is-correct', 'is-wrong');
+        });
+        const feedback = q.querySelector('.feedback');
+        if (feedback) {
+          feedback.className = 'feedback';
+          feedback.innerHTML = '';
+        }
+      });
+      const section = quiz.closest('section');
+      if (section && section.id) {
+        quizPass[section.id] = false;
+        section.classList.remove('quiz-passed');
+        updateLocks();
+      }
+      const finalResult = document.getElementById('finalResult');
+      if (finalResult) finalResult.classList.remove('is-shown');
+    }
+
+    questions.forEach((q, qIdx) => {
+      const correctAnswer = Number(q.dataset.correct);
+      const options = q.querySelectorAll('.option');
+      const feedback = q.querySelector('.feedback');
+
+      options.forEach((opt, oIdx) => {
+        opt.addEventListener('click', () => {
+          if (state.answered.has(qIdx)) return;
+          state.answered.add(qIdx);
+          const chosen = oIdx + 1;
+          const isCorrect = chosen === correctAnswer;
+
+          if (isCorrect) {
+            state.score += 1;
+            scoreEl.textContent = state.score;
+            opt.classList.add('is-correct');
+            if (feedback) {
+              feedback.className = 'feedback feedback--correct is-shown';
+              feedback.innerHTML = '<strong>Correct.</strong> That is the right answer.';
+            }
+          } else {
+            opt.classList.add('is-wrong');
+            if (options[correctAnswer - 1]) options[correctAnswer - 1].classList.add('is-correct');
+            if (feedback) {
+              feedback.className = 'feedback feedback--wrong is-shown';
+              feedback.innerHTML = '<strong>Not quite.</strong> The correct answer is highlighted in green.';
+            }
+          }
+
+          options.forEach((o) => o.disabled = true);
+
+          if (state.answered.size === state.total) {
+            const section = quiz.closest('section');
+            if (section && section.id) {
+              if (state.score === state.total) {
+                markQuizPassed(section.id);
+              } else {
+                quizPass[section.id] = false;
+                section.classList.remove('quiz-passed');
+              }
+            }
+            if (quiz.dataset.quiz === 'qfinal') {
+              showFinalResult(state.score, state.total);
+            }
+          }
+        });
+      });
+    });
+
+    if (restart) {
+      restart.addEventListener('click', resetQuiz);
+    }
+  }
+
+  function showFinalResult(score, total) {
+    const result = document.getElementById('finalResult');
+    const numEl = document.getElementById('finalScoreNum');
+    const msgEl = document.getElementById('finalMessage');
+    if (!result || !numEl || !msgEl) return;
+    numEl.textContent = `${score} / ${total}`;
+    if (score === total) {
+      msgEl.textContent = 'Excellent work! You passed the final assessment and can now claim your credential.';
+      result.classList.add('is-shown');
+      onFinalAssessmentPassed();
+    } else if (score >= total * 0.75) {
+      msgEl.textContent = 'Good job. Review the earlier sections and try again to earn your credential.';
+      result.classList.add('is-shown');
+    } else {
+      msgEl.textContent = 'A refresher is recommended. Review the guide and retake the final assessment.';
+      result.classList.add('is-shown');
+    }
+  }
+
+  function onFinalAssessmentPassed() {
+    if (finalQuizPassed) return;
+    finalQuizPassed = true;
+    openCredentialsModal();
+  }
+
+  const credentialsModal = document.getElementById('credentialsModal');
+  const credentialNameInput = document.getElementById('credentialName');
+  const credentialError = document.getElementById('credentialError');
+  const credentialClose = document.getElementById('credentialsModalClose');
+  const credentialDownload = document.getElementById('credentialDownload');
+
+  function openCredentialsModal() {
+    if (!credentialsModal) return;
+    credentialsModal.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    credentialError.textContent = '';
+    credentialNameInput.value = '';
+    credentialNameInput.focus();
+  }
+
+  function closeCredentialsModal() {
+    if (!credentialsModal) return;
+    credentialsModal.classList.remove('is-open');
+    document.body.style.overflow = '';
+    credentialError.textContent = '';
+  }
+
+  if (credentialClose) credentialClose.addEventListener('click', closeCredentialsModal);
+  if (credentialsModal) {
+    credentialsModal.addEventListener('click', (event) => {
+      if (event.target === credentialsModal) closeCredentialsModal();
+    });
+  }
+
+  function sanitizeFileName(value) {
+    return value.replace(/[^\x00-\x7F]/g, '').replace(/[^a-zA-Z0-9\- ]/g, '').trim().replace(/\s+/g, '_') || 'Delegate_Credential';
+  }
+
+  function createCredentialPdf(name) {
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF({ orientation: 'landscape', unit: 'pt', format: 'a4' });
+    const width = pdf.internal.pageSize.getWidth();
+    const height = pdf.internal.pageSize.getHeight();
+    pdf.setFillColor(5, 16, 40);
+    pdf.rect(0, 0, width, height, 'F');
+    pdf.setFont('helvetica', 'bold');
+    pdf.setFontSize(22);
+    pdf.setTextColor(13, 217, 184);
+    pdf.text('Coupa Delegate Credential', width / 2, 120, { align: 'center' });
+    pdf.setFont('times', 'italic');
+    pdf.setFontSize(46);
+    pdf.setTextColor(255, 255, 255);
+    pdf.text(name, width / 2, 210, { align: 'center' });
+    pdf.setFont('helvetica', 'normal');
+    pdf.setFontSize(14);
+    pdf.setTextColor(255, 255, 255);
+    pdf.text('Has successfully completed the final delegate assessment and is ready to act as an authorized Coupa delegate.', width / 2, 270, { align: 'center', maxWidth: width - 120 });
+    pdf.setFontSize(11);
+    pdf.setTextColor(200, 210, 230);
+    pdf.text(`Issued ${new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}`, width / 2, height - 72, { align: 'center' });
+    pdf.save(`Coupa_Delegate_Credential_${sanitizeFileName(name)}.pdf`);
+  }
+
+  const downloadGuidePdf = document.getElementById('downloadGuidePdf');
+
+  if (downloadGuidePdf) {
+    downloadGuidePdf.addEventListener('click', () => {
+      createGuidePdf();
+      closeCredentialsModal();
+    });
+  }
+
+  if (credentialDownload) {
+    credentialDownload.addEventListener('click', () => {
+      const name = credentialNameInput.value.trim();
+      if (!name) {
+        credentialError.textContent = 'Please enter your full name to generate the credential.';
+        return;
+      }
+      credentialError.textContent = '';
+      createCredentialPdf(name);
+      closeCredentialsModal();
+    });
+  }
+
+  const reopenCredentialsBtn = document.getElementById('reopenCredentialsBtn');
+  if (reopenCredentialsBtn) {
+    reopenCredentialsBtn.addEventListener('click', openCredentialsModal);
+  }
+
+  function createGuidePdf() {
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF({ unit: 'pt', format: 'a4' });
+    const margin = 40;
+    const maxWidth = pdf.internal.pageSize.getWidth() - margin * 2;
+    let y = 60;
+
+    pdf.setFont('helvetica', 'bold');
+    pdf.setFontSize(22);
+    pdf.text('Coupa Delegate Guide', margin, y);
+    y += 32;
+    pdf.setFont('helvetica', 'normal');
+    pdf.setFontSize(12);
+
+    orderedSections.forEach((sectionId) => {
+      const section = document.getElementById(sectionId);
+      if (!section) return;
+
+      const eyebrow = section.querySelector('.section-head__eyebrow')?.innerText.trim();
+      const title = section.querySelector('.section-head__title')?.innerText.trim();
+      const lead = section.querySelector('.section-head__lead')?.innerText.trim();
+      const paragraphs = Array.from(section.querySelectorAll('.section-copy p, .question__text, .option'))
+        .map((element) => element.innerText.trim())
+        .filter(Boolean);
+
+      const sectionLines = [];
+      if (eyebrow) sectionLines.push(eyebrow.toUpperCase());
+      if (title) sectionLines.push(title);
+      if (lead) sectionLines.push(lead);
+      sectionLines.push(...paragraphs);
+
+      sectionLines.forEach((line) => {
+        const wrapped = pdf.splitTextToSize(line, maxWidth);
+        if (y + wrapped.length * 16 > pdf.internal.pageSize.getHeight() - margin) {
+          pdf.addPage();
+          y = margin;
+        }
+        pdf.text(wrapped, margin, y);
+        y += wrapped.length * 16 + 8;
+      });
+      y += 10;
+    });
+
+    pdf.save('Coupa_Delegate_Guide.pdf');
+  }
+
+  function initRevealAnimations() {
+    const revealElements = document.querySelectorAll('.reveal');
+    if (!revealElements.length) return;
+
+    const observer = new IntersectionObserver((entries, observerRef) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observerRef.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.18,
+      rootMargin: '0px 0px -90px 0px',
+    });
+
+    revealElements.forEach((element) => observer.observe(element));
+  }
+
+  function initPage() {
+    orderedSections.forEach((id) => {
+      const quizSection = document.querySelector(`#${id} .quiz`);
+      if (quizSection) initQuiz(quizSection);
+    });
+    updateLocks();
+    initRevealAnimations();
+    highlightNav();
+    updateProgressBar();
+  }
+
+  window.addEventListener('scroll', () => {
+    updateProgressBar();
+    highlightNav();
+  });
+
+  document.addEventListener('DOMContentLoaded', initPage);
+</script>
+</body>
+</html>
+
+
