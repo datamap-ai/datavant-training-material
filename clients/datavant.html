@@ -53,6 +53,7 @@
   .nav__inner { max-width: 1180px; margin: 0 auto; padding: 16px 32px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
   .nav__brand { font-weight: 700; letter-spacing: -0.01em; color: #000; display: flex; gap: 12px; align-items: center; }
   .nav__brand-mark { width: 36px; height: 36px; border-radius: 12px; background: #fff; color: #000; display: grid; place-items: center; font-family: var(--serif); font-size: 18px; font-weight: 700; }
+  .nav__logo { height: 26px; width: auto; display: block; }
   .nav__links { display: flex; gap: 10px; flex-wrap: wrap; }
   .nav__links a { font-size: 13px; font-weight: 600; text-decoration: none; color: #000; padding: 10px 14px; border-radius: 999px; transition: all 0.2s ease; }
   .nav__links a:hover { color: var(--gold) !important; background: var(--gold-bright); }
@@ -153,9 +154,8 @@
 <!-- Simple client-side access gate (cosmetic only — see note in repo). -->
 <div id="authGate" style="position:fixed;inset:0;z-index:99999;background:#071018;display:flex;align-items:center;justify-content:center;font-family:Inter,system-ui,sans-serif;">
   <form id="authForm" style="background:#fff;padding:32px 28px;border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,.4);width:320px;max-width:90vw;">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
-      <div style="width:34px;height:34px;border-radius:8px;background:#00c6d9;color:#071018;font-weight:700;display:flex;align-items:center;justify-content:center;">D</div>
-      <strong style="font-size:18px;color:#071018;">datavant</strong>
+    <div style="margin-bottom:22px;text-align:center;">
+      <img src="logo-datavant.svg" alt="Datavant" style="height:30px;width:auto;display:inline-block;">
     </div>
     <label style="display:block;font-size:13px;color:#4A5568;margin-bottom:4px;">Username</label>
     <input id="authUser" type="text" autocomplete="username" style="width:100%;box-sizing:border-box;padding:10px 12px;margin-bottom:14px;border:1px solid #cbd5e0;border-radius:8px;font-size:14px;">
@@ -168,7 +168,7 @@
 <div class="progress-bar"><div class="progress-bar__fill" id="progressBar"></div></div>
 <nav class="nav">
   <div class="nav__inner">
-    <div class="nav__brand"><div class="nav__brand-mark">D</div>datavant</div>
+    <div class="nav__brand"><img src="logo-datavant.svg" alt="Datavant" class="nav__logo"></div>
     <div class="nav__links">
       <a href="#conceptual" class="nav-link">Overview</a>
       <a href="#process" class="nav-link">Process</a>
