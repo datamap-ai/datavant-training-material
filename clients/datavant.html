@@ -49,7 +49,7 @@
   body { font-family: var(--sans); background: #fff; color: var(--text); min-height: 100vh; }
   .progress-bar { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 1000; background: rgba(0, 198, 217, 0.12); }
   .progress-bar__fill { width: 0; height: 100%; background: linear-gradient(90deg, var(--gold), var(--gold-bright)); transition: width 0.15s ease; }
-  .nav { position: sticky; top: 0; background: #ffffff; border-bottom: 1px solid var(--line); z-index: 50; }
+  .nav { position: sticky; top: 0; background: #ffffff; z-index: 50; }
   .nav__inner { max-width: 1180px; margin: 0 auto; padding: 16px 32px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
   .nav__brand { font-weight: 700; letter-spacing: -0.01em; color: #000; display: flex; gap: 12px; align-items: center; }
   .nav__brand-mark { width: 36px; height: 36px; border-radius: 12px; background: #fff; color: #000; display: grid; place-items: center; font-family: var(--serif); font-size: 18px; font-weight: 700; }
@@ -153,17 +153,48 @@
 <body>
 <!-- Simple client-side access gate (cosmetic only — see note in repo). -->
 <div id="authGate" style="position:fixed;inset:0;z-index:99999;background:#071018;display:flex;align-items:center;justify-content:center;font-family:Inter,system-ui,sans-serif;">
-  <form id="authForm" style="background:#fff;padding:32px 28px;border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,.4);width:320px;max-width:90vw;">
-    <div style="margin-bottom:22px;text-align:center;">
-      <img src="logo-datavant.svg" alt="Datavant" style="height:30px;width:auto;display:inline-block;">
+
+  <!-- Card wrapper -->
+  <div style="display:flex;width:min(900px,92vw);height:min(540px,88vh);border-radius:18px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.6);">
+
+    <!-- Left panel: form -->
+    <div style="flex:0 0 50%;display:flex;flex-direction:column;justify-content:center;padding:52px 56px;box-sizing:border-box;background:#fff;">
+      <div style="margin-bottom:36px;">
+        <img src="logo-datavant.svg" alt="Datavant" style="height:30px;width:auto;display:inline-block;">
+      </div>
+      <h1 style="margin:0 0 8px;font-size:clamp(24px,2.6vw,38px);font-weight:700;line-height:1.2;color:#00c6d9;letter-spacing:-0.5px;text-shadow:0 2px 12px rgba(0,198,217,0.35);">
+        Welcome to your<br>Course Deck
+      </h1>
+      <p style="margin:0 0 28px;font-size:15px;font-weight:500;color:#071018;">Achieve your boldest ambitions</p>
+
+      <form id="authForm" style="width:100%;">
+        <label style="display:block;font-size:13px;font-weight:500;color:#4A5568;margin-bottom:5px;">Username</label>
+        <input id="authUser" type="text" autocomplete="username"
+          style="width:100%;box-sizing:border-box;padding:11px 14px;margin-bottom:16px;border:1px solid #cbd5e0;border-radius:8px;font-size:14px;outline:none;transition:border-color .2s;"
+          onfocus="this.style.borderColor='#00c6d9'" onblur="this.style.borderColor='#cbd5e0'">
+        <label style="display:block;font-size:13px;font-weight:500;color:#4A5568;margin-bottom:5px;">Password</label>
+        <input id="authPass" type="password" autocomplete="current-password"
+          style="width:100%;box-sizing:border-box;padding:11px 14px;margin-bottom:16px;border:1px solid #cbd5e0;border-radius:8px;font-size:14px;outline:none;transition:border-color .2s;"
+          onfocus="this.style.borderColor='#00c6d9'" onblur="this.style.borderColor='#cbd5e0'">
+        <div id="authError" style="display:none;color:#c0392b;font-size:13px;margin-bottom:14px;">Incorrect username or password.</div>
+        <button type="submit"
+          style="display:inline-flex;align-items:center;justify-content:center;padding:12px 32px;border:0;border-radius:50px;background:#071018;color:#fff;font-weight:600;font-size:14px;cursor:pointer;letter-spacing:0.2px;transition:background .2s;"
+          onmouseover="this.style.background='#00c6d9';this.style.color='#071018'"
+          onmouseout="this.style.background='#071018';this.style.color='#fff'">
+          Sign In
+        </button>
+      </form>
     </div>
-    <label style="display:block;font-size:13px;color:#4A5568;margin-bottom:4px;">Username</label>
-    <input id="authUser" type="text" autocomplete="username" style="width:100%;box-sizing:border-box;padding:10px 12px;margin-bottom:14px;border:1px solid #cbd5e0;border-radius:8px;font-size:14px;">
-    <label style="display:block;font-size:13px;color:#4A5568;margin-bottom:4px;">Password</label>
-    <input id="authPass" type="password" autocomplete="current-password" style="width:100%;box-sizing:border-box;padding:10px 12px;margin-bottom:14px;border:1px solid #cbd5e0;border-radius:8px;font-size:14px;">
-    <div id="authError" style="display:none;color:#c0392b;font-size:13px;margin-bottom:12px;">Incorrect username or password.</div>
-    <button type="submit" style="width:100%;padding:11px;border:0;border-radius:8px;background:#00c6d9;color:#071018;font-weight:600;font-size:14px;cursor:pointer;">Enter</button>
-  </form>
+
+    <!-- Right panel: video -->
+    <div style="flex:1;background:#071018;overflow:hidden;display:flex;align-items:center;justify-content:center;">
+      <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;">
+        <source src="https://www.datavant.com/wp-content/uploads/2025/12/Datavant-circles-animation-white-transcode.mp4" type="video/mp4">
+      </video>
+    </div>
+
+  </div><!-- /card wrapper -->
+
 </div>
 <div class="progress-bar"><div class="progress-bar__fill" id="progressBar"></div></div>
 <nav class="nav">
@@ -176,6 +207,7 @@
     </div>
   </div>
 </nav>
+<img src="https://www.datavant.com/wp-content/themes/datavant/zen-blocks/platform-diagram/footer_line.png" alt="" style="width:100%;display:block;transform:scaleY(0.75);transform-origin:top center;">
 <section class="hero">
   <div class="wrap">
     <div class="hero__inner">
@@ -751,5 +783,3 @@
 </script>
 </body>
 </html>
-
-
