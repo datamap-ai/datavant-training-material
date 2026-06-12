@@ -86,6 +86,12 @@
   .section--navy .content-block { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.14); }
   .content-block p { line-height: 1.8; margin-top: 14px; color: inherit; }
   .content-block ul { margin-top: 16px; list-style: disc; padding-left: 20px; color: inherit; line-height: 1.7; }
+  .content-block--media { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 28px; align-items: start; }
+  .content-block--media .media-copy { display: flex; flex-direction: column; gap: 20px; }
+  .content-block--media .media-copy p { margin-top: 0; }
+  .video-embed { border-radius: 22px; overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,0.10); }
+  .video-embed iframe { width: 100%; height: 100%; display: block; border: 0; }
+  @media (max-width: 920px) { .content-block--media { grid-template-columns: 1fr; } }
   .quiz { margin-top: 42px; background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 32px; }
   .section--navy .quiz { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.18); }
   .quiz__head { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 18px; margin-bottom: 24px; }
@@ -289,13 +295,22 @@
       </div>
     </div>
     <div class="content-block reveal">
-      <p>The process of assigning a delegate in Coupa involves a few simple steps:</p>
-      <ul>
-        <li>Open your Coupa profile and go to the <strong>Delegates</strong> section.</li>
-        <li>Select 'Create'.</li>
-        <li>Fill in all required information.</li>
-        <li>Select 'Save'.</li>
-      </ul>
+      <div class="content-block--media">
+        <div class="media-copy">
+          <p>The process of assigning a delegate in Coupa involves a few simple steps. Follow the short video for a guided walkthrough, then use the checklist to complete your setup.</p>
+          <ul>
+            <li>Open your Coupa profile and go to the <strong>Delegates</strong> section.</li>
+            <li>Select 'Create'.</li>
+            <li>Fill in all required information.</li>
+            <li>Select 'Save'.</li>
+          </ul>
+        </div>
+        <div class="video-embed">
+          <div style="position: relative; padding-bottom: 56.25%; height: 0;">
+            <iframe src="https://www.loom.com/embed/c649fb3eabeb4878acd4b0800b824079" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="quiz reveal" data-quiz="q2">
       <div class="quiz__head">
