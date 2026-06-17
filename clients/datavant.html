@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Delegates · Coupa Guide</title>
+<title>Coupa 101 · Datavant</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -86,12 +86,13 @@
   .section--navy .content-block { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.14); }
   .content-block p { line-height: 1.8; margin-top: 14px; color: inherit; }
   .content-block ul { margin-top: 16px; list-style: disc; padding-left: 20px; color: inherit; line-height: 1.7; }
-  .content-block--media { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 28px; align-items: start; }
+  .content-block--media { display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: start; }
   .content-block--media .media-copy { display: flex; flex-direction: column; gap: 20px; }
   .content-block--media .media-copy p { margin-top: 0; }
-  .video-embed { border-radius: 22px; overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,0.10); }
+  .video-embed { border-radius: 22px; overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,0.10); width: 360px; max-width: 100%; justify-self: end; }
   .video-embed iframe { width: 100%; height: 100%; display: block; border: 0; }
-  @media (max-width: 920px) { .content-block--media { grid-template-columns: 1fr; } }
+  .image-embed { width: 100%; height: 100%; display: inside; border: 0; }
+  @media (max-width: 920px) { .content-block--media { grid-template-columns: 1fr; } .video-embed { width: 100%; justify-self: stretch; } }
   .quiz { margin-top: 42px; background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 32px; }
   .section--navy .quiz { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.18); }
   .quiz__head { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 18px; margin-bottom: 24px; }
@@ -205,10 +206,12 @@
 <div class="progress-bar"><div class="progress-bar__fill" id="progressBar"></div></div>
 <nav class="nav">
   <div class="nav__inner">
-    <div class="nav__brand"><img src="logo-datavant.svg" alt="Datavant" class="nav__logo"></div>
+    <div class="nav__brand"><img src="logo-datavant.svg" alt="Datavant - Coupa 101" class="nav__logo"></div>
     <div class="nav__links">
-      <a href="#conceptual" class="nav-link">Overview</a>
-      <a href="#process" class="nav-link">Process</a>
+      <a href="#homepage" class="nav-link">Homepage</a>
+      <a href="#profile" class="nav-link">Profile</a>
+      <a href="#delegates" class="nav-link">Delegates</a>
+      <a href="#guided-buying" class="nav-link">Guided Buying</a>
       <a href="#final" class="nav-link">Assessment</a>
     </div>
   </div>
@@ -218,129 +221,146 @@
   <div class="wrap">
     <div class="hero__inner">
       <div>
-        <div class="hero__eyebrow">Coupa Delegate Guide</div>
-        <h1 class="hero__title">Assigning delegates in Coupa</h1>
-        <p class="hero__lead">Learn what a delegate is, why you assign one, and how to give another user authority to act on your behalf when you are unavailable.</p>
-        <button class="hero__cta" onclick="document.getElementById('conceptual').scrollIntoView({behavior:'smooth'})">Start learning</button>
+        <div class="hero__eyebrow">Coupa 101</div>
+        <h1 class="hero__title">An introduction to your Coupa Instance</h1>
+        <p class="hero__lead">Familiarize yourself with the core aspects of Coupa.</p>
+        <button class="hero__cta" onclick="document.getElementById('homepage').scrollIntoView({behavior:'smooth'})">Start learning</button>
         <div class="hero__meta">
           <div class="hero__meta-item">
-            <div class="hero__meta-num">3</div>
-            <div class="hero__meta-label">Modules</div>
+            <div class="hero__meta-num">4</div>
+            <div class="hero__meta-label">Sections</div>
           </div>
           <div class="hero__meta-item">
             <div class="hero__meta-num">15m</div>
             <div class="hero__meta-label">Estimated time</div>
           </div>
           <div class="hero__meta-item">
-            <div class="hero__meta-num">5</div>
+            <div class="hero__meta-num">3</div>
             <div class="hero__meta-label">Questions</div>
           </div>
         </div>
       </div>
       <div class="hero__panel">
         <h2>What you will learn</h2>
-        <p>One conceptual module, one step-by-step module, and a final assessment with credential release after a perfect score.</p>
+        <p>How to navigate the homepage, access profile settings, assign delegates, and access guided buying features.</p>
       </div>
     </div>
   </div>
 </section>
-<section id="conceptual">
+<section id="homepage">
   <div class="wrap">
     <div class="section-head">
       <div class="section-head__num">01</div>
       <div class="section-head__content">
-        <div class="section-head__eyebrow">Conceptual</div>
-        <h2 class="section-head__title">What is a Coupa delegate?</h2>
-        <p class="section-head__lead">A delegate is a user who is authorized to act in place of another Coupa user, typically for approvals, purchase requests, or task completion during absences.</p>
+        <div class="section-head__eyebrow">Homepage</div>
+        <h2 class="section-head__title">Navigation and understanding of your Hompage</h2>
+        <p class="section-head__lead">The Coupa homepage is your central hub for accessing all features and information within the platform.</p>
       </div>
     </div>
-    <div class="content-block reveal">
-      <p>In Coupa, delegation makes sure work continues when someone is out of office. A delegate can approve requisitions, submit requests, or take actions on behalf of the original user, depending on the permissions assigned by the primary user or administrator.</p>
-      <ul>
-        <li>Delegation is often used for approvers who will be unavailable for a period of time.</li>
-        <li>Delegates should be trusted users with similar approval authority.</li>
-        <li>The original user can add or remove delegates from their profile settings.</li>
-      </ul>
-    </div>
-    <div class="quiz reveal" data-quiz="q1">
-      <div class="quiz__head">
-        <div>
-          <div class="quiz__label">Quick check · Conceptual</div>
-          <h3 class="quiz__title">Confirm the delegate concept</h3>
-        </div>
-        <div class="quiz__score">Score: <strong><span class="score-val">0</span> / 1</strong></div>
+    <div class="content-block content-block--media reveal">
+      <div class="media-copy">
+        <p>The Coupa homepage is used for accessing all the features and information within the platform. It serves as your main dashboard for navigating your Coupa experience.</p>
+        <ul>
+          <li>Showcases custom dropdown menus, shortcuts, punchouts, announcements, activity, and more!</li>
+          <li>Familiarize yourself with the layout and key features of the homepage.</li>
+          <li>Explore the different ways to initiate guided buying.</li>
+        </ul>
       </div>
-      <div class="question" data-correct="2">
-        <div class="question__num">Question 01</div>
-        <h4 class="question__text">What does a delegate do in Coupa?</h4>
-        <div class="question__options">
-          <button class="option"><span class="option__letter">A</span>They create supplier invoices for the procurement team.</button>
-          <button class="option"><span class="option__letter">B</span>They act on behalf of another user for approvals and requests when that user is unavailable.</button>
-          <button class="option"><span class="option__letter">C</span>They manage Coupa security groups for all users.</button>
+      <div class="video-embed">
+        <div style="position: relative; padding-bottom: 56.25%; height: 0;">
+          <iframe src="https://www.loom.com/embed/0eb2cd58b5c24a23b1d12919baf95b2f" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
         </div>
-        <div class="feedback"></div>
       </div>
-      <button class="quiz__restart" type="button" title="Restart quiz">↻</button>
     </div>
   </div>
 </section>
-<section id="process" class="section--ice">
+<section id="profile" class="section--ice">
   <div class="wrap">
     <div class="section-head">
       <div class="section-head__num">02</div>
       <div class="section-head__content">
-        <div class="section-head__eyebrow">Step-by-step process</div>
-        <h2 class="section-head__title">How to assign a delegate</h2>
-        <p class="section-head__lead">Use the user delegation settings in Coupa to give a colleague the ability to approve or submit transactions on your behalf.</p>
+        <div class="section-head__eyebrow">Profile</div>
+        <h2 class="section-head__title">All things profile!</h2>
+        <p class="section-head__lead">Navigate & configure your profile settings to manage your Coupa experience.</p>
+      </div>
+    </div>
+    <div class="content-block content-block--media reveal">
+      <div class="media-copy">
+        <p>Accessing the profile options is straightforward. Follow these steps to learn how navigate and configure your profile:</p>
+        <ul>
+          <li>Select your initials in the top right.</li>
+             <div class="image-embed">
+              <img src="dv_image_profile_settings_general.png"  style="float: right" width="50%" />
+            </div>
+          <li>Select "Settings".</li>
+          <li>That's it!
+            <div class="image-embed">
+              <img src="dv_image_coupa101_homepage_profile.png"  style= "float: top" width="25%"/>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="delegates" class="section--ice">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-head__num">03</div>
+      <div class="section-head__content">
+        <div class="section-head__eyebrow">Delegates</div>
+        <h2 class="section-head__title">Creating delegates in Coupa</h2>
+        <p class="section-head__lead">Understand how to create a delegate and the requirements to do so.</p>
+      </div>
+    </div>
+    <div class="content-block content-block--media reveal">
+      <div class="media-copy">
+        <p>Delegates allow trusted colleagues to act on your behalf when you are unavailable. This ensures approvals and purchasing actions continue without interruption.</p>
+        <ul>
+          <li>Delegates should have the right level of authority for the tasks they will perform.</li>
+          <li>Type settings determine the scope of actions a delegate can perform.</li>
+          <li>Delegation stays in place until the specified end date or until the primary user removes it.</li>
+        </ul>
+      </div>
+      <div class="video-embed">
+        <div style="position: relative; padding-bottom: 56.25%; height: 0;">
+          <iframe src="https://www.loom.com/embed/c649fb3eabeb4878acd4b0800b824079" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="guided-buying">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-head__num">04</div>
+      <div class="section-head__content">
+        <div class="section-head__eyebrow">Guided Buying</div>
+        <h2 class="section-head__title">Navigate guided buying in Coupa</h2>
+        <p class="section-head__lead">Learn how guided buying helps users in a variety of form submissions!</p>
       </div>
     </div>
     <div class="content-block reveal">
-      <div class="content-block--media">
-        <div class="media-copy">
-          <p>The process of assigning a delegate in Coupa involves a few simple steps. Follow the short video for a guided walkthrough, then use the checklist to complete your setup.</p>
-          <ul>
-            <li>Open your Coupa profile and go to the <strong>Delegates</strong> section.</li>
-            <li>Select 'Create'.</li>
-            <li>Fill in all required information.</li>
-            <li>Select 'Save'.</li>
-          </ul>
-        </div>
-        <div class="video-embed">
-          <div style="position: relative; padding-bottom: 56.25%; height: 0;">
-            <iframe src="https://www.loom.com/embed/c649fb3eabeb4878acd4b0800b824079" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="quiz reveal" data-quiz="q2">
-      <div class="quiz__head">
-        <div>
-          <div class="quiz__label">Quick check · Process</div>
-          <h3 class="quiz__title">Confirm the assignment flow</h3>
-        </div>
-        <div class="quiz__score">Score: <strong><span class="score-val">0</span> / 1</strong></div>
-      </div>
-      <div class="question" data-correct="1">
-        <div class="question__num">Question 01</div>
-        <h4 class="question__text">What is the first step when setting up a delegate?</h4>
-        <div class="question__options">
-          <button class="option"><span class="option__letter">A</span>Open your Coupa profile and go to the delegation settings.</button>
-          <button class="option"><span class="option__letter">B</span>Send an email to the finance team.</button>
-          <button class="option"><span class="option__letter">C</span>Approve a requisition for the delegate.</button>
-        </div>
-        <div class="feedback"></div>
-      </div>
-      <button class="quiz__restart" type="button" title="Restart quiz">↻</button>
+      <p>Guided buying in Coupa gives users a curated experience. See below for more information on datavant's guided options:</p>
+      <ul>
+        <li>Request an NDA (For supplier evaluation) / Datavant Contract Templates</li>
+        <li>New Sourcing Request</li>
+        <li>Datavant Contract Templates / Initiate Contract Request (NDA/MSA/SOW/BAA/DPA/Amendment, etc.)</li>
+        <li>Submit a Purchase Requisition</li>
+        <li>Submit a PO Change Request</li>
+        <li>Invoice / Payments</li>
+        <li>FAQs & Training Materials</li>
+      </ul>
     </div>
   </div>
 </section>
 <section id="final">
   <div class="wrap">
     <div class="section-head">
-      <div class="section-head__num">03</div>
+      <div class="section-head__num">05</div>
       <div class="section-head__content">
         <div class="section-head__eyebrow">Final assessment</div>
-        <h2 class="section-head__title">Verify your delegate knowledge</h2>
+        <h2 class="section-head__title">Verify your knowledge</h2>
         <p class="section-head__lead">Answer all three questions correctly to unlock your credential and download your certificate.</p>
       </div>
     </div>
@@ -352,23 +372,23 @@
         </div>
         <div class="quiz__score">Score: <strong><span class="score-val">0</span> / 3</strong></div>
       </div>
-      <div class="question" data-correct="2">
+      <div class="question" data-correct="1">
         <div class="question__num">Question 01</div>
-        <h4 class="question__text">Once a delegate is assigned, what can they do?</h4>
+        <h4 class="question__text">How would a user access their profile settings?</h4>
         <div class="question__options">
-          <button class="option"><span class="option__letter">A</span>Change your Coupa password for you.</button>
-          <button class="option"><span class="option__letter">B</span>Approve or submit requests on your behalf if permitted.</button>
-          <button class="option"><span class="option__letter">C</span>Delete your user account.</button>
+          <button class="option"><span class="option__letter">A</span>By selecting their profile icon in the top-right corner of the screen.</button>
+          <button class="option"><span class="option__letter">B</span>By selecting the "?" icon in the top-right corner of the screen.</button>
+          <button class="option"><span class="option__letter">C</span>By selecting "datavant" in the top-left corner of the screen.</button>
         </div>
         <div class="feedback"></div>
       </div>
-      <div class="question" data-correct="2">
+      <div class="question" data-correct="3">
         <div class="question__num">Question 02</div>
-        <h4 class="question__text">Where do you normally assign a delegate?</h4>
+        <h4 class="question__text">How can the guided buying options be accessed in Coupa out side of the "Let us guide you"?</h4>
         <div class="question__options">
-          <button class="option"><span class="option__letter">A</span>In the company supplier portal.</button>
-          <button class="option"><span class="option__letter">B</span>In your Coupa user profile or delegate settings.</button>
-          <button class="option"><span class="option__letter">C</span>On the home page dashboard.</button>
+          <button class="option"><span class="option__letter">A</span>Within the user profile settings.</button>
+          <button class="option"><span class="option__letter">B</span>By searching for it in the search bar.</button>
+          <button class="option"><span class="option__letter">C</span>Via the Homepage dropdown</button>
         </div>
         <div class="feedback"></div>
       </div>
@@ -378,7 +398,7 @@
         <div class="question__options">
           <button class="option"><span class="option__letter">A</span>So approvals and purchasing actions can continue without delay.</button>
           <button class="option"><span class="option__letter">B</span>So the delegate can see all of the original user's passwords.</button>
-          <button class="option"><span class="option__letter">C</span>Because the delegate becomes the new account owner.</button>
+          <button class="option"><span class="option__letter">C</span>To ensure the delegate temporarily has all of the permissions as the assigner within the system.</button>
         </div>
         <div class="feedback"></div>
       </div>
@@ -419,8 +439,7 @@
 <script>
   const progressFill = document.getElementById('progressBar');
   const navLinks = document.querySelectorAll('.nav-link');
-  const orderedSections = ['conceptual', 'process', 'final'];
-  const quizPass = {};
+  const orderedSections = ['conceptual', 'process', 'delegates', 'guided-buying', 'final'];
   let finalQuizPassed = false;
 
   function updateProgressBar() {
@@ -440,48 +459,6 @@
     navLinks.forEach((link) => {
       link.classList.toggle('active', link.getAttribute('href') === '#' + current);
     });
-  }
-
-  function createOverlayForSection(section, prevId) {
-    if (section.classList.contains('locked-section')) return;
-    section.classList.add('locked-section', 'collapsed-section');
-    const overlay = document.createElement('div');
-    overlay.className = 'locked-overlay';
-    overlay.innerHTML = `
-      <div>
-        <p class="locked-overlay__msg">This module is locked until you pass the previous Quick Check. Finish the prior quiz to unlock it.</p>
-        <button class="locked-overlay__btn" type="button">Go to previous module</button>
-      </div>
-    `;
-    overlay.querySelector('button').addEventListener('click', () => {
-      document.getElementById(prevId).scrollIntoView({ behavior: 'smooth' });
-    });
-    section.appendChild(overlay);
-  }
-
-  function removeOverlayFromSection(section) {
-    section.classList.remove('locked-section', 'collapsed-section');
-    const overlay = section.querySelector('.locked-overlay');
-    if (overlay) overlay.remove();
-  }
-
-  function updateLocks() {
-    orderedSections.forEach((id, idx) => {
-      if (idx === 0) return;
-      const section = document.getElementById(id);
-      if (!section) return;
-      const prevId = orderedSections[idx - 1];
-      if (quizPass[prevId]) {
-        removeOverlayFromSection(section);
-      } else {
-        createOverlayForSection(section, prevId);
-      }
-    });
-  }
-
-  function markQuizPassed(sectionId) {
-    quizPass[sectionId] = true;
-    updateLocks();
   }
 
   function initQuiz(quiz) {
@@ -508,12 +485,6 @@
           feedback.innerHTML = '';
         }
       });
-      const section = quiz.closest('section');
-      if (section && section.id) {
-        quizPass[section.id] = false;
-        section.classList.remove('quiz-passed');
-        updateLocks();
-      }
       const finalResult = document.getElementById('finalResult');
       if (finalResult) finalResult.classList.remove('is-shown');
     }
@@ -550,15 +521,6 @@
           options.forEach((o) => o.disabled = true);
 
           if (state.answered.size === state.total) {
-            const section = quiz.closest('section');
-            if (section && section.id) {
-              if (state.score === state.total) {
-                markQuizPassed(section.id);
-              } else {
-                quizPass[section.id] = false;
-                section.classList.remove('quiz-passed');
-              }
-            }
             if (quiz.dataset.quiz === 'qfinal') {
               showFinalResult(state.score, state.total);
             }
@@ -682,51 +644,57 @@
     reopenCredentialsBtn.addEventListener('click', openCredentialsModal);
   }
 
-  function createGuidePdf() {
-    const { jsPDF } = window.jspdf;
-    const pdf = new jsPDF({ unit: 'pt', format: 'a4' });
-    const margin = 40;
-    const maxWidth = pdf.internal.pageSize.getWidth() - margin * 2;
-    let y = 60;
+function createGuidePdf() {
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF({ unit: 'pt', format: 'a4' });
+  const margin = 50;
+  const maxWidth = pdf.internal.pageSize.getWidth() - margin * 2;
+  let y = 60;
 
-    pdf.setFont('helvetica', 'bold');
-    pdf.setFontSize(22);
-    pdf.text('Coupa Delegate Guide', margin, y);
-    y += 32;
-    pdf.setFont('helvetica', 'normal');
-    pdf.setFontSize(12);
+  // Helper to add styled text
+  const addText = (text, fontSize, isBold = false, color = [0, 0, 0]) => {
+    pdf.setFont('helvetica', isBold ? 'bold' : 'normal');
+    pdf.setFontSize(fontSize);
+    pdf.setTextColor(...color);
+    const lines = pdf.splitTextToSize(text, maxWidth);
+    
+    // Check for page break
+    if (y + (lines.length * (fontSize * 1.5)) > pdf.internal.pageSize.getHeight() - margin) {
+      pdf.addPage();
+      y = margin;
+    }
+    
+    pdf.text(lines, margin, y);
+    y += lines.length * (fontSize * 1.5);
+  };
 
-    orderedSections.forEach((sectionId) => {
-      const section = document.getElementById(sectionId);
-      if (!section) return;
+  // Title
+  addText('Coupa 101: Course Guide', 24, true);
+  y += 20;
 
-      const eyebrow = section.querySelector('.section-head__eyebrow')?.innerText.trim();
-      const title = section.querySelector('.section-head__title')?.innerText.trim();
-      const lead = section.querySelector('.section-head__lead')?.innerText.trim();
-      const paragraphs = Array.from(section.querySelectorAll('.section-copy p, .question__text, .option'))
-        .map((element) => element.innerText.trim())
-        .filter(Boolean);
+  // Iterate sections
+  const sections = document.querySelectorAll('section:not(.hero)');
+  sections.forEach((section) => {
+    const eyebrow = section.querySelector('.section-head__eyebrow')?.innerText.trim();
+    const title = section.querySelector('.section-head__title')?.innerText.trim();
+    const lead = section.querySelector('.section-head__lead')?.innerText.trim();
+    const content = section.querySelectorAll('.content-block p, .content-block li');
 
-      const sectionLines = [];
-      if (eyebrow) sectionLines.push(eyebrow.toUpperCase());
-      if (title) sectionLines.push(title);
-      if (lead) sectionLines.push(lead);
-      sectionLines.push(...paragraphs);
+    if (eyebrow) addText(eyebrow.toUpperCase(), 10, true, [0, 198, 217]);
+    if (title) addText(title, 20, true);
+    if (lead) { addText(lead, 12); y += 10; }
 
-      sectionLines.forEach((line) => {
-        const wrapped = pdf.splitTextToSize(line, maxWidth);
-        if (y + wrapped.length * 16 > pdf.internal.pageSize.getHeight() - margin) {
-          pdf.addPage();
-          y = margin;
-        }
-        pdf.text(wrapped, margin, y);
-        y += wrapped.length * 16 + 8;
-      });
-      y += 10;
+    content.forEach(el => {
+      const text = el.innerText.trim();
+      if (el.tagName === 'LI') addText('• ' + text, 11);
+      else addText(text, 12);
     });
+    
+    y += 20; // Section spacing
+  });
 
-    pdf.save('Coupa_Delegate_Guide.pdf');
-  }
+  pdf.save('Datavant_Coupa_101_Guide.pdf');
+}
 
   function initRevealAnimations() {
     const revealElements = document.querySelectorAll('.reveal');
@@ -752,7 +720,6 @@
       const quizSection = document.querySelector(`#${id} .quiz`);
       if (quizSection) initQuiz(quizSection);
     });
-    updateLocks();
     initRevealAnimations();
     highlightNav();
     updateProgressBar();
