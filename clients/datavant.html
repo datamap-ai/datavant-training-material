@@ -49,215 +49,271 @@
   body { font-family: var(--sans); background: #fff; color: var(--text); min-height: 100vh; }
   .progress-bar { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 1000; background: rgba(0, 198, 217, 0.12); }
   .progress-bar__fill { width: 0; height: 100%; background: linear-gradient(90deg, var(--gold), var(--gold-bright)); transition: width 0.15s ease; }
-  .nav { position: sticky; top: 0; background: #ffffff; z-index: 50; }
+  
+  /* Navigation with micro-shadow transition */
+  .nav { position: sticky; top: 0; background: #ffffff; z-index: 50; transition: box-shadow 0.3s ease; }
   .nav__inner { max-width: 1180px; margin: 0 auto; padding: 16px 32px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
   .nav__brand { font-weight: 700; letter-spacing: -0.01em; color: #000; display: flex; gap: 12px; align-items: center; }
-  .nav__brand-mark { width: 36px; height: 36px; border-radius: 12px; background: #fff; color: #000; display: grid; place-items: center; font-family: var(--serif); font-size: 18px; font-weight: 700; }
   .nav__logo { height: 26px; width: auto; display: block; }
   .nav__links { display: flex; gap: 10px; flex-wrap: wrap; }
-  .nav__links a { font-size: 13px; font-weight: 600; text-decoration: none; color: #000; padding: 10px 14px; border-radius: 999px; transition: all 0.2s ease; }
-  .nav__links a:hover { color: var(--gold) !important; background: var(--gold-bright); }
-  .nav__links a.active { color: #000 !important; background: var(--gold-soft); }
+  .nav__links a { font-size: 13px; font-weight: 600; text-decoration: none; color: #000; padding: 10px 14px; border-radius: 999px; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+  .nav__links a:hover { color: var(--gold) !important; background: var(--gold-bright); transform: translateY(-1px); }
+  .nav__links a.active { color: #000 !important; background: var(--gold-soft); box-shadow: inset 0 1px 2px rgba(0,0,0,0.05); }
+  
   .wrap { max-width: 1060px; margin: 0 auto; padding: 0 32px; }
   section { padding: 84px 0; position: relative; }
+  
+  /* Hero section items */
   .hero { background: #ffffff; color: #000000; padding: 120px 0 80px; }
   .hero__inner { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: center; }
-  .hero__eyebrow { text-transform: uppercase; letter-spacing: 0.22em; font-size: 12px; margin-bottom: 18px; color: rgba(255,255,255,0.9); }
+  .hero__eyebrow { text-transform: uppercase; letter-spacing: 0.22em; font-size: 12px; margin-bottom: 18px; color: rgba(0,0,0,0.6); font-weight: 700; }
   .hero__title { font-family: var(--serif); font-size: clamp(42px, 5vw, 64px); line-height: 1.02; margin-bottom: 24px; }
   .hero__lead { max-width: 560px; line-height: 1.65; color: rgba(0, 0, 0, 0.9); margin-bottom: 32px; }
-  .hero__cta { background: #000000; color: #00eeff; border: none; border-radius: 999px; padding: 16px 28px; font-size: 15px; font-weight: 700; cursor: pointer; }
+  
+  /* Dynamic CTA Button with continuous soft glow pulse */
+  .hero__cta { 
+    background: #000000; 
+    color: #00eeff; 
+    border: none; 
+    border-radius: 999px; 
+    padding: 16px 28px; 
+    font-size: 15px; 
+    font-weight: 700; 
+    cursor: pointer; 
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    animation: ctaPulse 2s infinite ease-in-out;
+  }
+  .hero__cta:hover { transform: scale(1.03); background: #111; }
+  
   .hero__meta { display: flex; gap: 36px; margin-top: 32px; flex-wrap: wrap; }
   .hero__meta-item { display: flex; flex-direction: column; }
   .hero__meta-num { font-family: var(--serif); font-size: 32px; font-weight: 600; color: #000; line-height: 1; margin-bottom: 6px; }
-  .hero__meta-num em { color: #00eeff; font-style: normal; font-size: 18px; margin-left: 4px; }
   .hero__meta-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em; color: rgba(0,0,0,0.55); font-weight: 700; }
-  .hero__panel { background: #00eeff; border: 1px solid rgba(255,255,255,0.25); border-radius: 28px; padding: 28px; box-shadow: 0 24px 70px rgba(0,0,0,0.12); }
+  
+  .hero__panel { background: #00eeff; border: 1px solid rgba(255,255,255,0.25); border-radius: 28px; padding: 28px; box-shadow: var(--shadow-md); transition: transform 0.3s ease; }
+  .hero__panel:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
   .hero__panel h2 { font-family: var(--serif); font-size: 26px; margin-bottom: 14px; }
   .hero__panel p { line-height: 1.75; }
+  
   .section--ice { background: var(--ice); }
-  .section--navy { background: #001f2a; color: #fff; }
   .section-head { display: grid; grid-template-columns: auto 1fr; gap: 44px; align-items: end; margin-bottom: 42px; }
-  .section-head__num { font-family: var(--serif); font-style: italic; font-size: 64px; font-weight: 300; color: var(--gold); line-height: 0.9; letter-spacing: -0.02em; }
-  .section-head__eyebrow { text-transform: uppercase; letter-spacing: 0.22em; font-size: 11px; color: var(--gold); margin-bottom: 12px; }
+  .section-head__num { font-family: var(--serif); font-style: italic; font-size: 64px; font-weight: 300; color: var(--navy-2); line-height: 0.9; letter-spacing: -0.02em; }
+  .section-head__eyebrow { text-transform: uppercase; letter-spacing: 0.22em; font-size: 11px; color: var(--text-muted); margin-bottom: 12px; font-weight: 700; }
   .section-head__title { font-family: var(--serif); font-size: clamp(32px, 3.7vw, 44px); margin-bottom: 16px; color: inherit; }
   .section-head__lead { max-width: 720px; color: rgba(0,0,0,0.72); line-height: 1.7; }
-  .section--navy .section-head__lead { color: rgba(255,255,255,0.78); }
-  .content-block { background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 28px 32px; box-shadow: 0 18px 50px rgba(0,0,0,0.05); }
-  .section--navy .content-block { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.14); }
+  
+  /* Content Blocks with interactive hover elevations */
+  .content-block { background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 28px 32px; box-shadow: 0 10px 30px rgba(0,0,0,0.02); transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease; }
+  .content-block:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
   .content-block p { line-height: 1.8; margin-top: 14px; color: inherit; }
-  .content-block ul { margin-top: 16px; list-style: disc; padding-left: 20px; color: inherit; line-height: 1.7; }
+  .content-block ul { margin-top: 16px; list-style: none; padding-left: 4px; color: inherit; line-height: 1.7; }
+  .content-block li { position: relative; padding-left: 24px; margin-bottom: 8px; }
+  .content-block li::before { content: "🔹"; position: absolute; left: 0; top: 1px; font-size: 12px; }
+  
   .content-block--media { display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: start; }
-  .content-block--media .media-copy { display: flex; flex-direction: column; gap: 20px; }
+  .content-block--media .media-copy { display: flex; flex-direction: column; gap: 4px; }
   .content-block--media .media-copy p { margin-top: 0; }
-  .video-embed { border-radius: 22px; overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,0.10); width: 360px; max-width: 100%; justify-self: end; }
+  
+  /* Media Elements with smooth scaling overrides */
+  .video-embed { border-radius: 22px; overflow: hidden; box-shadow: var(--shadow-md); width: 360px; max-width: 100%; justify-self: end; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+  .video-embed:hover { transform: scale(1.02); box-shadow: var(--shadow-lg); }
   .video-embed iframe { width: 100%; height: 100%; display: block; border: 0; }
-  .image-embed { width: 100%; height: 100%; display: inside; border: 0; }
+  .image-embed { width: 100%; height: 100%; display: inline-block; border: 0; transition: transform 0.3s ease; }
+  .image-embed img:hover { transform: scale(1.04); }
+  
   @media (max-width: 920px) { .content-block--media { grid-template-columns: 1fr; } .video-embed { width: 100%; justify-self: stretch; } }
-  .quiz { margin-top: 42px; background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 32px; }
-  .section--navy .quiz { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.18); }
+  
+  .quiz { margin-top: 42px; background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-sm); }
   .quiz__head { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 18px; margin-bottom: 24px; }
-  .quiz__label { display: inline-flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: var(--gold); }
+  .quiz__label { display: inline-flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: var(--text-muted); }
   .quiz__title { font-family: var(--serif); font-size: 24px; line-height: 1.2; color: inherit; }
-  .quiz__score { font-size: 13px; color: var(--text-muted); background: var(--ice); padding: 10px 14px; border-radius: 999px; }
-  .section--navy .quiz__score { background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.9); }
+  
   .question { margin-bottom: 24px; }
-  .question__num { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+  .question__num { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy-2); margin-bottom: 10px; font-weight: 700; }
   .question__text { font-family: var(--serif); font-size: 20px; line-height: 1.4; margin-bottom: 16px; color: inherit; }
   .question__options { display: grid; gap: 12px; }
-  .option { display: flex; align-items: center; gap: 12px; background: #fff; border: 1.5px solid var(--line); border-radius: 16px; padding: 16px 18px; cursor: pointer; transition: all 0.2s ease; color: inherit; }
-  .option:hover:not(:disabled) { border-color: var(--gold); background: var(--ice); }
-  .option__letter { width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid var(--line); display: grid; place-items: center; font-family: var(--mono); font-weight: 700; color: var(--text-muted); }
-  .option.is-correct { background: rgba(30,138,107,0.08); border-color: var(--correct); color: var(--correct); }
+  
+  /* Quiz options horizontal shift micro-interaction */
+  .option { display: flex; align-items: center; gap: 12px; background: #fff; border: 1.5px solid var(--line); border-radius: 16px; padding: 16px 18px; cursor: pointer; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); color: inherit; width: 100%; text-align: left; }
+  .option:hover:not(:disabled) { border-color: var(--gold); background: var(--ice); transform: translateX(6px); }
+  .option__letter { width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid var(--line); display: grid; place-items: center; font-family: var(--mono); font-weight: 700; color: var(--text-muted); flex-shrink: 0; transition: transform 0.2s ease; }
+  .option:hover:not(:disabled) .option__letter { transform: scale(1.1); background-color: #fff; }
+  
+  .option.is-correct { background: rgba(30,138,107,0.08); border-color: var(--correct); color: var(--correct); font-weight: 600; }
   .option.is-wrong { background: rgba(196,74,74,0.08); border-color: var(--wrong); color: var(--wrong); }
   .option.is-correct .option__letter, .option.is-wrong .option__letter { background: currentColor; color: inherit; border-color: currentColor; }
   .option:disabled { cursor: default; opacity: 0.9; }
-  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.75s ease, transform 0.75s ease; will-change: opacity, transform; }
-  .reveal.is-visible { opacity: 1; transform: translateY(0); }
-  .feedback { margin-top: 16px; padding: 16px 18px; border-radius: 14px; display: none; font-size: 14px; line-height: 1.6; }
+  
+  /* Fluid Intersection-Observer driven scroll animations */
+  .reveal { 
+    opacity: 0; 
+    transform: translateY(35px); 
+    transition: opacity 0.95s cubic-bezier(0.215, 0.610, 0.355, 1), transform 0.95s cubic-bezier(0.215, 0.610, 0.355, 1); 
+    will-change: opacity, transform; 
+  }
+  .reveal.is-visible { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+  
+  .feedback { margin-top: 16px; padding: 16px 18px; border-radius: 14px; display: none; font-size: 14px; line-height: 1.6; animation: slideDown 0.3s ease-out; }
   .feedback.is-shown { display: block; }
   .feedback--correct { background: rgba(30,138,107,0.1); border-left: 4px solid var(--correct); color: var(--correct); }
   .feedback--wrong { background: rgba(196,74,74,0.1); border-left: 4px solid var(--wrong); color: var(--wrong); }
-  .quiz__restart { width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid var(--line); background: #fff; color: var(--text-muted); cursor: pointer; display: grid; place-items: center; }
-  .quiz__restart:hover { border-color: var(--gold); color: #000; }
+  
+  .quiz__restart { width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid var(--line); background: #fff; color: var(--text-muted); cursor: pointer; display: grid; place-items: center; transition: transform 0.3s ease, border-color 0.2s ease; }
+  .quiz__restart:hover { border-color: var(--gold); color: #000; transform: rotate(180deg); }
+  
   .final__result { display: none; margin-top: 28px; padding: 28px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.16); background: rgba(255,255,255,0.08); }
   .final__result.is-shown { display: block; }
   .final__result-score { font-family: var(--serif); font-size: 60px; color: var(--gold); margin-bottom: 10px; }
   .final__result-label { text-transform: uppercase; letter-spacing: 0.18em; color: rgba(0, 0, 0, 0.85); font-weight: 700; margin-bottom: 14px; }
-  .final__result-msg { line-height: 1.7; color: rgba(0, 0, 0, 0.9); }
+  .final__result-msg { line-height: 1.7; color: rgba(0, 0, 0, 0.9); margin-bottom: 18px; }
+  
   .button { border: none; border-radius: 999px; cursor: pointer; padding: 14px 24px; font-weight: 700; transition: all 0.2s ease; }
-  .button--primary { background: var(--gold); color: #000; }
   .button--secondary { background: #fff; color: #000; border: 1px solid var(--line); }
-  .button--ghost { background: transparent; border: 1px solid rgba(255,255,255,0.38); color: #fff; }
-  .locked-section { position: relative; }
-  .collapsed-section > .wrap > *:not(.section-head) { display: none; }
-  .locked-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 24px; background: rgba(255,255,255,0.96); text-align: center; color: var(--text); z-index: 20; border-radius: 24px; }
-  .section--navy .locked-overlay { background: rgba(0,0,0,0.85); color: #fff; }
-  .locked-overlay__msg { max-width: 640px; line-height: 1.7; font-size: 15px; }
-  .locked-overlay__btn { margin-top: 18px; background: var(--navy-2); color: #000; border: none; padding: 12px 18px; border-radius: 999px; font-weight: 700; cursor: pointer; }
-  .pdf-modal { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.52); display: none; align-items: center; justify-content: center; padding: 20px; z-index: 1100; }
-  .pdf-modal.is-open { display: flex; }
-  .pdf-modal__panel { width: 100%; max-width: 520px; border-radius: 28px; background: #fff; box-shadow: 0 32px 80px rgba(0, 0, 0, 0.18); overflow: hidden; }
+  .button--secondary:hover { background: #f7f9fa; transform: translateY(-1px); }
+  
+  /* Locking and Blur states */
+  .locked-section { position: relative; min-height: 380px; pointer-events: none; }
+  .locked-section > .wrap { opacity: 0.12; filter: blur(4px); transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+  .locked-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 24px; background: rgba(255,255,255,0.88); text-align: center; color: var(--text); z-index: 20; pointer-events: auto; animation: fadeIn 0.4s ease; }
+  .section--ice .locked-overlay { background: rgba(232,254,255,0.92); }
+  
+  /* Floating lock message card animation */
+  .locked-overlay__msg { max-width: 500px; background: #fff; padding: 36px; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); border: 1px solid var(--line); animation: floatCard 4s infinite ease-in-out; }
+  .locked-overlay__msg h3 { font-family: var(--serif); font-size: 22px; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .locked-overlay__msg p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+  
+  /* Award Modal Structural Elements */
+  .pdf-modal { position: fixed; inset: 0; background: rgba(7, 16, 24, 0.6); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; padding: 20px; z-index: 1100; opacity: 0; transition: opacity 0.3s ease; }
+  .pdf-modal.is-open { display: flex; opacity: 1; }
+  .pdf-modal__panel { width: 100%; max-width: 520px; border-radius: 28px; background: #fff; box-shadow: var(--shadow-lg); overflow: hidden; transform: scale(0.92); transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+  .pdf-modal.is-open .pdf-modal__panel { transform: scale(1); }
   .pdf-modal__header { padding: 28px 26px 16px; border-bottom: 1px solid var(--line); position: relative; }
-  .pdf-modal__close { position: absolute; top: 18px; right: 18px; width: 36px; height: 36px; border: none; border-radius: 50%; background: var(--ice); color: var(--text); cursor: pointer; display: grid; place-items: center; }
-  .pdf-modal__eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+  .pdf-modal__close { position: absolute; top: 18px; right: 18px; width: 36px; height: 36px; border: none; border-radius: 50%; background: var(--ice); color: var(--text); cursor: pointer; display: grid; place-items: center; transition: background-color 0.2s; }
+  .pdf-modal__close:hover { background-color: var(--ice-2); }
+  .pdf-modal__eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--navy-2); margin-bottom: 12px; }
   .pdf-modal__title { font-family: var(--serif); font-size: 28px; margin-bottom: 8px; }
   .pdf-modal__lead { color: var(--text-muted); line-height: 1.7; }
-  .pdf-modal__body { padding: 0 26px 24px; }
+  .pdf-modal__body { padding: 26px; }
   .pdf-modal__label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 10px; }
-  .pdf-modal__input { width: 100%; border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; font-size: 15px; color: var(--text); }
-  .pdf-modal__note { color: var(--text-muted); font-size: 14px; margin-top: 10px; margin-bottom: 18px; line-height: 1.7; }
-  .pdf-modal__action-group { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
-  .pdf-modal__error { color: #b91c1c; font-size: 13px; margin-top: 10px; }
-  .pdf-modal__btn { border: none; border-radius: 999px; cursor: pointer; padding: 14px 24px; font-weight: 700; transition: all 0.2s ease; }
-  .pdf-modal__btn--primary { background: var(--gold); color: #000; }
-  .pdf-modal__btn--secondary { background: #fff; color: #000; border: 1px solid var(--line); }
-  .pdf-modal__btn svg { width: 18px; height: 18px; margin-right: 10px; vertical-align: middle; }
-  .section--navy .pdf-modal__btn--secondary { background: rgba(255,255,255,0.08); color: #fff; border-color: rgba(255,255,255,0.14); }
+  .pdf-modal__input { width: 100%; border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; font-size: 15px; color: var(--text); outline: none; transition: border-color 0.2s; }
+  .pdf-modal__input:focus { border-color: var(--navy-2); }
+  .pdf-modal__note { color: var(--text-muted); font-size: 13px; margin-top: 10px; margin-bottom: 20px; line-height: 1.7; }
+  .pdf-modal__action-group { display: flex; flex-wrap: wrap; gap: 12px; }
+  .pdf-modal__btn { border: none; border-radius: 999px; cursor: pointer; padding: 14px 22px; font-weight: 700; transition: all 0.2s ease; font-size: 14px; }
+  .pdf-modal__btn--primary { background: #071018; color: #fff; }
+  .pdf-modal__btn--primary:hover { background: #1b2631; transform: translateY(-1px); }
+  .pdf-modal__btn--secondary { background: var(--ice); color: #071018; border: 1px solid var(--line); }
+  .pdf-modal__btn--secondary:hover { background: var(--ice-2); transform: translateY(-1px); }
+  .pdf-modal__error { color: #b91c1c; font-size: 13px; margin-top: 10px; font-weight: 500; }
+
+  /* Professional Core CSS Keyframes Animations */
+  @keyframes ctaPulse {
+    0% { box-shadow: 0 0 0 0 rgba(0, 242, 255, 0.5); }
+    70% { box-shadow: 0 0 0 12px rgba(0, 242, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 242, 255, 0); }
+  }
+  @keyframes floatCard {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
   @media (max-width: 920px) { .hero__inner { grid-template-columns: 1fr; } .nav__inner { padding: 16px 20px; } }
-  @media (max-width: 720px) { .wrap { padding: 0 20px; } .section-head { grid-template-columns: 1fr; } .nav__links { display: none; } }
+  @media (max-width: 720px) { .wrap { padding: 0 20px; } .section-head { grid-template-columns: 1fr; gap: 12px; } .nav__links { display: none; } }
 </style>
 </head>
 <body>
-<!-- Simple client-side access gate (cosmetic only — see note in repo). -->
 <div id="authGate" style="position:fixed;inset:0;z-index:99999;background:#071018;display:flex;align-items:center;justify-content:center;font-family:Inter,system-ui,sans-serif;">
-
-  <!-- Card wrapper -->
   <div style="display:flex;width:min(900px,92vw);height:min(540px,88vh);border-radius:18px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.6);">
-
-    <!-- Left panel: form -->
     <div style="flex:0 0 50%;display:flex;flex-direction:column;justify-content:center;padding:52px 56px;box-sizing:border-box;background:#fff;">
-      <div style="margin-bottom:36px;">
-        <img src="logo-datavant.svg" alt="Datavant" style="height:30px;width:auto;display:inline-block;">
-      </div>
-      <h1 style="margin:0 0 8px;font-size:clamp(24px,2.6vw,38px);font-weight:700;line-height:1.2;color:#00c6d9;letter-spacing:-0.5px;text-shadow:0 2px 12px rgba(0,198,217,0.35);">
-        Welcome to your<br>Course Deck
-      </h1>
+      <div style="margin-bottom:36px;"><img src="logo-datavant.svg" alt="Datavant" style="height:30px;width:auto;display:inline-block;"></div>
+      <h1 style="margin:0 0 8px;font-size:clamp(24px,2.6vw,38px);font-weight:700;line-height:1.2;color:#00c6d9;letter-spacing:-0.5px;text-shadow:0 2px 12px rgba(0,198,217,0.35);">Welcome to your<br>Course Deck</h1>
       <p style="margin:0 0 28px;font-size:15px;font-weight:500;color:#071018;">Achieve your boldest ambitions</p>
-
       <form id="authForm" style="width:100%;">
         <label style="display:block;font-size:13px;font-weight:500;color:#4A5568;margin-bottom:5px;">Username</label>
-        <input id="authUser" type="text" autocomplete="username"
-          style="width:100%;box-sizing:border-box;padding:11px 14px;margin-bottom:16px;border:1px solid #cbd5e0;border-radius:8px;font-size:14px;outline:none;transition:border-color .2s;"
-          onfocus="this.style.borderColor='#00c6d9'" onblur="this.style.borderColor='#cbd5e0'">
+        <input id="authUser" type="text" autocomplete="username" style="width:100%;box-sizing:border-box;padding:11px 14px;margin-bottom:16px;border:1px solid #cbd5e0;border-radius:8px;font-size:14px;outline:none;transition:border-color .2s;" onfocus="this.style.borderColor='#00c6d9'" onblur="this.style.borderColor='#cbd5e0'">
         <label style="display:block;font-size:13px;font-weight:500;color:#4A5568;margin-bottom:5px;">Password</label>
-        <input id="authPass" type="password" autocomplete="current-password"
-          style="width:100%;box-sizing:border-box;padding:11px 14px;margin-bottom:16px;border:1px solid #cbd5e0;border-radius:8px;font-size:14px;outline:none;transition:border-color .2s;"
-          onfocus="this.style.borderColor='#00c6d9'" onblur="this.style.borderColor='#cbd5e0'">
+        <input id="authPass" type="password" autocomplete="current-password" style="width:100%;box-sizing:border-box;padding:11px 14px;margin-bottom:16px;border:1px solid #cbd5e0;border-radius:8px;font-size:14px;outline:none;transition:border-color .2s;" onfocus="this.style.borderColor='#00c6d9'" onblur="this.style.borderColor='#cbd5e0'">
         <div id="authError" style="display:none;color:#c0392b;font-size:13px;margin-bottom:14px;">Incorrect username or password.</div>
-        <button type="submit"
-          style="display:inline-flex;align-items:center;justify-content:center;padding:12px 32px;border:0;border-radius:50px;background:#071018;color:#fff;font-weight:600;font-size:14px;cursor:pointer;letter-spacing:0.2px;transition:background .2s;"
-          onmouseover="this.style.background='#00c6d9';this.style.color='#071018'"
-          onmouseout="this.style.background='#071018';this.style.color='#fff'">
-          Sign In
-        </button>
+        <button type="submit" style="display:inline-flex;align-items:center;justify-content:center;padding:12px 32px;border:0;border-radius:50px;background:#071018;color:#fff;font-weight:600;font-size:14px;cursor:pointer;letter-spacing:0.2px;transition:background .2s;" onmouseover="this.style.background='#00c6d9';this.style.color='#071018'" onmouseout="this.style.background='#071018';this.style.color='#fff'">Sign In</button>
       </form>
     </div>
-
-    <!-- Right panel: video -->
     <div style="flex:1;background:#071018;overflow:hidden;display:flex;align-items:center;justify-content:center;">
       <video muted playsinline style="width:100%;height:100%;object-fit:cover;">
         <source src="https://www.datavant.com/wp-content/uploads/2025/12/Datavant-circles-animation-white-transcode.mp4" type="video/mp4">
       </video>
     </div>
-
-  </div><!-- /card wrapper -->
-
+  </div>
 </div>
+
 <div class="progress-bar"><div class="progress-bar__fill" id="progressBar"></div></div>
-<nav class="nav">
+<nav class="nav" id="mainNav">
   <div class="nav__inner">
     <div class="nav__brand"><img src="logo-datavant.svg" alt="Datavant - Coupa 101" class="nav__logo"></div>
     <div class="nav__links">
-      <a href="#homepage" class="nav-link">Homepage</a>
-      <a href="#profile" class="nav-link">Profile</a>
-      <a href="#delegates" class="nav-link">Delegates</a>
-      <a href="#guided-buying" class="nav-link">Guided Buying</a>
-      <a href="#final" class="nav-link">Assessment</a>
+      <a href="#homepage" class="nav-link">🏠 Homepage</a>
+      <a href="#profile" class="nav-link">👤 Profile</a>
+      <a href="#delegates" class="nav-link">🤝 Delegates</a>
+      <a href="#guided-buying" class="nav-link">🛒 Guided Buying</a>
+      <a href="#final" class="nav-link">🎓 Assessment</a>
     </div>
   </div>
 </nav>
 <img src="https://www.datavant.com/wp-content/themes/datavant/zen-blocks/platform-diagram/footer_line.png" alt="" style="width:100%;display:block;transform:scaleY(0.75);transform-origin:top center;">
+
 <section class="hero">
   <div class="wrap">
     <div class="hero__inner">
       <div>
-        <div class="hero__eyebrow">Coupa 101</div>
+        <div class="hero__eyebrow">🚀 Coupa 101</div>
         <h1 class="hero__title">An introduction to your Coupa Instance</h1>
-        <p class="hero__lead">Familiarize yourself with the core aspects of Coupa.</p>
-        <button class="hero__cta" onclick="document.getElementById('homepage').scrollIntoView({behavior:'smooth'})">Start learning</button>
+        <p class="hero__lead">Familiarize yourself with the core dashboard operations and request configurations inside Datavant's global procurement framework.</p>
+        <button class="hero__cta" onclick="document.getElementById('homepage').scrollIntoView({behavior:'smooth'})">Start Learning 🎯</button>
         <div class="hero__meta">
           <div class="hero__meta-item">
             <div class="hero__meta-num">4</div>
-            <div class="hero__meta-label">Sections</div>
+            <div class="hero__meta-label">📚 Sections</div>
           </div>
           <div class="hero__meta-item">
             <div class="hero__meta-num">15m</div>
-            <div class="hero__meta-label">Estimated time</div>
+            <div class="hero__meta-label">⏱️ Time Frame</div>
           </div>
           <div class="hero__meta-item">
-            <div class="hero__meta-num">3</div>
-            <div class="hero__meta-label">Questions</div>
+            <div class="hero__meta-num">4</div>
+            <div class="hero__meta-label">📝 Checkpoints</div>
           </div>
         </div>
       </div>
       <div class="hero__panel">
         <h2>What you will learn</h2>
-        <p>How to navigate the homepage, access profile settings, assign delegates, and access guided buying features.</p>
+        <p>How to comfortably navigate the system homepage, modify internal settings parameters, safely assign transactional data delegates, and process procurement requirements through Guided Buying portals.</p>
       </div>
     </div>
   </div>
 </section>
-<section id="homepage">
+
+<!-- SECTION 1: HOMEPAGE -->
+<section id="homepage" class="reveal">
   <div class="wrap">
     <div class="section-head">
       <div class="section-head__num">01</div>
       <div class="section-head__content">
-        <div class="section-head__eyebrow">Homepage</div>
-        <h2 class="section-head__title">Navigation and understanding of your Hompage</h2>
+        <div class="section-head__eyebrow">🏠 Platform Core</div>
+        <h2 class="section-head__title">Navigation and understanding of your Homepage</h2>
         <p class="section-head__lead">The Coupa homepage is your central hub for accessing all features and information within the platform.</p>
       </div>
     </div>
-    <div class="content-block content-block--media reveal">
+    <div class="content-block content-block--media">
       <div class="media-copy">
         <p>The Coupa homepage is used for accessing all the features and information within the platform. It serves as your main dashboard for navigating your Coupa experience.</p>
         <ul>
@@ -272,48 +328,100 @@
         </div>
       </div>
     </div>
+    
+    <div class="quiz" data-quiz="q1">
+      <div class="quiz__head">
+        <div>
+          <div class="quiz__label">🔍 Knowledge Check 01</div>
+          <h3 class="quiz__title">Verify your homepage structural knowledge</h3>
+        </div>
+      </div>
+      <div class="question" data-correct="3">
+        <div class="question__num">Question 01</div>
+        <h4 class="question__text">How can the guided buying options be accessed in Coupa outside of the "Let us guide you" section?</h4>
+        <div class="question__options">
+          <button class="option"><span class="option__letter">A</span>Within the user profile settings configuration matrix.</button>
+          <button class="option"><span class="option__letter">B</span>By searching for it in the localized system index search bar.</button>
+          <button class="option"><span class="option__letter">C</span>Via the primary Homepage dropdown menu interface.</button>
+        </div>
+        <div class="feedback"></div>
+      </div>
+      <button class="quiz__restart" type="button" title="Restart question">↻</button>
+    </div>
   </div>
 </section>
-<section id="profile" class="section--ice">
+
+<!-- SECTION 2: PROFILE -->
+<section id="profile" class="section--ice locked-section reveal">
+  <div class="locked-overlay">
+    <div class="locked-overlay__msg">
+      <h3>🔒 Section Locked</h3>
+      <p>Correctly answer the question in Section 01: Homepage to unlock this module.</p>
+    </div>
+  </div>
   <div class="wrap">
     <div class="section-head">
       <div class="section-head__num">02</div>
       <div class="section-head__content">
-        <div class="section-head__eyebrow">Profile</div>
+        <div class="section-head__eyebrow">👤 User Space</div>
         <h2 class="section-head__title">All things profile!</h2>
         <p class="section-head__lead">Navigate & configure your profile settings to manage your Coupa experience.</p>
       </div>
     </div>
-    <div class="content-block content-block--media reveal">
+    <div class="content-block content-block--media">
       <div class="media-copy">
         <p>Accessing the profile options is straightforward. Follow these steps to learn how navigate and configure your profile:</p>
         <ul>
-          <li>Select your initials in the top right.</li>
-             <div class="image-embed">
-              <img src="dv_image_profile_settings_general.png"  style="float: right" width="50%" />
-            </div>
-          <li>Select "Settings".</li>
-          <li>That's it!
-            <div class="image-embed">
-              <img src="dv_image_coupa101_homepage_profile.png"  style= "float: top" width="25%"/>
-            </div>
+          <li>Select your initials in the top right window frame.</li>
+          <div class="image-embed"><img src="dv_image_profile_settings_general.png" style="float: right; border-radius: 8px; box-shadow: var(--shadow-sm);" width="50%" alt="Profile overview" /></div>
+          <li>Select the secondary "Settings" link option.</li>
+          <li>That's it! Your dashboard parameters are now configurable.
+            <div class="image-embed"><img src="dv_image_coupa101_homepage_profile.png" style="float: top; border-radius: 8px; box-shadow: var(--shadow-sm); margin-top: 8px;" width="25%" alt="Profile drop configuration" /></div>
           </li>
         </ul>
       </div>
     </div>
+
+    <div class="quiz" data-quiz="q2">
+      <div class="quiz__head">
+        <div>
+          <div class="quiz__label">🔍 Knowledge Check 02</div>
+          <h3 class="quiz__title">Verify your profile navigational knowledge</h3>
+        </div>
+      </div>
+      <div class="question" data-correct="1">
+        <div class="question__num">Question 02</div>
+        <h4 class="question__text">How would a user access their profile settings?</h4>
+        <div class="question__options">
+          <button class="option"><span class="option__letter">A</span>By selecting their initials in the top right and clicking "Settings".</button>
+          <button class="option"><span class="option__letter">B</span>By selecting the "?" utility icon in the top-right corner of the screen.</button>
+          <button class="option"><span class="option__letter">C</span>By selecting "datavant" text asset in the top-left corner of the screen.</button>
+        </div>
+        <div class="feedback"></div>
+      </div>
+      <button class="quiz__restart" type="button" title="Restart question">↻</button>
+    </div>
   </div>
 </section>
-<section id="delegates" class="section--ice">
+
+<!-- SECTION 3: DELEGATES -->
+<section id="delegates" class="section--ice locked-section reveal">
+  <div class="locked-overlay">
+    <div class="locked-overlay__msg">
+      <h3>🔒 Section Locked</h3>
+      <p>Correctly answer the question in Section 02: Profile to unlock this module.</p>
+    </div>
+  </div>
   <div class="wrap">
     <div class="section-head">
       <div class="section-head__num">03</div>
       <div class="section-head__content">
-        <div class="section-head__eyebrow">Delegates</div>
+        <div class="section-head__eyebrow">🤝 Team Synergy</div>
         <h2 class="section-head__title">Creating delegates in Coupa</h2>
-        <p class="section-head__lead">Understand how to create a delegate and the requirements to do so.</p>
+        <p class="section-head__lead">Understand how to create a delegate and the requirements to do so safely.</p>
       </div>
     </div>
-    <div class="content-block content-block--media reveal">
+    <div class="content-block content-block--media">
       <div class="media-copy">
         <p>Delegates allow trusted colleagues to act on your behalf when you are unavailable. This ensures approvals and purchasing actions continue without interruption.</p>
         <ul>
@@ -328,118 +436,140 @@
         </div>
       </div>
     </div>
-  </div>
-</section>
-<section id="guided-buying">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="section-head__num">04</div>
-      <div class="section-head__content">
-        <div class="section-head__eyebrow">Guided Buying</div>
-        <h2 class="section-head__title">Navigate guided buying in Coupa</h2>
-        <p class="section-head__lead">Learn how guided buying helps users in a variety of form submissions!</p>
-      </div>
-    </div>
-    <div class="content-block reveal">
-      <p>Guided buying in Coupa gives users a curated experience. See below for more information on datavant's guided options:</p>
-      <ul>
-        <li>Request an NDA (For supplier evaluation) / Datavant Contract Templates</li>
-        <li>New Sourcing Request</li>
-        <li>Datavant Contract Templates / Initiate Contract Request (NDA/MSA/SOW/BAA/DPA/Amendment, etc.)</li>
-        <li>Submit a Purchase Requisition</li>
-        <li>Submit a PO Change Request</li>
-        <li>Invoice / Payments</li>
-        <li>FAQs & Training Materials</li>
-      </ul>
-    </div>
-  </div>
-</section>
-<section id="final">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="section-head__num">05</div>
-      <div class="section-head__content">
-        <div class="section-head__eyebrow">Final assessment</div>
-        <h2 class="section-head__title">Verify your knowledge</h2>
-        <p class="section-head__lead">Answer all three questions correctly to unlock your credential and download your certificate.</p>
-      </div>
-    </div>
-    <div class="quiz reveal" data-quiz="qfinal">
+
+    <div class="quiz" data-quiz="q3">
       <div class="quiz__head">
         <div>
-          <div class="quiz__label">Final assessment</div>
-          <h3 class="quiz__title">Answer all questions</h3>
+          <div class="quiz__label">🔍 Knowledge Check 03</div>
+          <h3 class="quiz__title">Verify delegation protocol parameters</h3>
         </div>
-        <div class="quiz__score">Score: <strong><span class="score-val">0</span> / 3</strong></div>
-      </div>
-      <div class="question" data-correct="1">
-        <div class="question__num">Question 01</div>
-        <h4 class="question__text">How would a user access their profile settings?</h4>
-        <div class="question__options">
-          <button class="option"><span class="option__letter">A</span>By selecting their profile icon in the top-right corner of the screen.</button>
-          <button class="option"><span class="option__letter">B</span>By selecting the "?" icon in the top-right corner of the screen.</button>
-          <button class="option"><span class="option__letter">C</span>By selecting "datavant" in the top-left corner of the screen.</button>
-        </div>
-        <div class="feedback"></div>
-      </div>
-      <div class="question" data-correct="3">
-        <div class="question__num">Question 02</div>
-        <h4 class="question__text">How can the guided buying options be accessed in Coupa out side of the "Let us guide you"?</h4>
-        <div class="question__options">
-          <button class="option"><span class="option__letter">A</span>Within the user profile settings.</button>
-          <button class="option"><span class="option__letter">B</span>By searching for it in the search bar.</button>
-          <button class="option"><span class="option__letter">C</span>Via the Homepage dropdown</button>
-        </div>
-        <div class="feedback"></div>
       </div>
       <div class="question" data-correct="1">
         <div class="question__num">Question 03</div>
         <h4 class="question__text">Why should a delegate be assigned before someone goes on leave?</h4>
         <div class="question__options">
-          <button class="option"><span class="option__letter">A</span>So approvals and purchasing actions can continue without delay.</button>
-          <button class="option"><span class="option__letter">B</span>So the delegate can see all of the original user's passwords.</button>
-          <button class="option"><span class="option__letter">C</span>To ensure the delegate temporarily has all of the permissions as the assigner within the system.</button>
+          <button class="option"><span class="option__letter">A</span>So operational approvals and purchasing actions can continue without delay.</button>
+          <button class="option"><span class="option__letter">B</span>So the delegate can see all of the original user's profile system passwords.</button>
+          <button class="option"><span class="option__letter">C</span>To ensure the delegate permanently inherits full global root permissions inside the system.</button>
         </div>
         <div class="feedback"></div>
       </div>
-      <button class="quiz__restart" type="button" title="Restart quiz">↻</button>
-      <div class="final__result" id="finalResult">
-        <div class="final__result-score" id="finalScoreNum">0 / 3</div>
-        <div class="final__result-label">Final result</div>
-        <p class="final__result-msg" id="finalMessage"></p>
+      <button class="quiz__restart" type="button" title="Restart question">↻</button>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: GUIDED BUYING -->
+<section id="guided-buying" class="locked-section reveal">
+  <div class="locked-overlay">
+    <div class="locked-overlay__msg">
+      <h3>🔒 Section Locked</h3>
+      <p>Correctly answer the question in Section 03: Delegates to unlock this module.</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-head__num">04</div>
+      <div class="section-head__content">
+        <div class="section-head__eyebrow">🛒 Procurement Engine</div>
+        <h2 class="section-head__title">Navigate guided buying in Coupa</h2>
+        <p class="section-head__lead">Learn how guided buying helps users in a variety of automated workflow submissions.</p>
+      </div>
+    </div>
+    <div class="content-block">
+      <p>Guided buying in Coupa gives users a curated experience. See below for more information on Datavant's system routes:</p>
+      <ul>
+        <li>Request an NDA (For supplier evaluation processes) & Datavant Contract Templates.</li>
+        <li>Initiate New Sourcing Requests and vendor evaluations.</li>
+        <li>Instantiate Contract Requests (NDA / MSA / SOW / BAA / DPA / Amendments).</li>
+        <li>Submit structural Purchase Requisitions for management validation.</li>
+        <li>Submit valid PO Change Requests for existing contracts.</li>
+        <li>Direct Invoice and Payment lifecycle verification steps.</li>
+        <li>Access localized FAQs & system Training Materials.</li>
+      </ul>
+    </div>
+
+    <div class="quiz" data-quiz="q4">
+      <div class="quiz__head">
+        <div>
+          <div class="quiz__label">🔍 Knowledge Check 04</div>
+          <h3 class="quiz__title">Verify guided buying pipeline operations</h3>
+        </div>
+      </div>
+      <div class="question" data-correct="2">
+        <div class="question__num">Question 04</div>
+        <h4 class="question__text">Which workflows or request paths are managed under Datavant's Guided Buying framework?</h4>
+        <div class="question__options">
+          <button class="option"><span class="option__letter">A</span>Direct database administration and cloud infrastructure deployment operations.</button>
+          <button class="option"><span class="option__letter">B</span>NDAs, Sourcing requests, Purchase Requisitions, and PO Change requests.</button>
+          <button class="option"><span class="option__letter">C</span>Personal payroll modifications and HR health insurance enrollment forms.</button>
+        </div>
+        <div class="feedback"></div>
+      </div>
+      <button class="quiz__restart" type="button" title="Restart question">↻</button>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: FINAL DASHBOARD -->
+<section id="final" class="locked-section reveal">
+  <div class="locked-overlay">
+    <div class="locked-overlay__msg">
+      <h3>🔒 Credentials Locked</h3>
+      <p>Finish all modular quizzes above with correct answers to unlock your completion metrics and download tokens.</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-head__num">05</div>
+      <div class="section-head__content">
+        <div class="section-head__eyebrow">🏆 Completion Terminal</div>
+        <h2 class="section-head__title">Knowledge Verified</h2>
+        <p class="section-head__lead">Your progressive mastery of the Coupa 101 curriculum is complete.</p>
+      </div>
+    </div>
+    
+    <div class="quiz" style="border-color: var(--correct); background: rgba(30,138,107,0.02);">
+      <div class="final__result is-shown" id="finalResult" style="display: block;">
+        <div class="final__result-score">✨ 100%</div>
+        <div class="final__result-label">Course Completed Successfully</div>
+        <p class="final__result-msg">Excellent work! All modular milestones have been attained. Your secure localized certificate package is ready for extraction below.</p>
         <div class="final__result-actions">
-          <button class="button button--secondary" id="reopenCredentialsBtn" type="button">View credential & PDF</button>
+          <button class="button button--secondary" id="reopenCredentialsBtn" type="button" style="border-color: var(--correct); background: var(--ice); font-weight: 700;">Claim Award Credentials 🎓</button>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- Personalization Modal -->
 <div class="pdf-modal" id="credentialsModal" role="dialog" aria-modal="true" aria-labelledby="credentialsModalTitle">
   <div class="pdf-modal__panel">
     <div class="pdf-modal__header">
       <button class="pdf-modal__close" id="credentialsModalClose" type="button" aria-label="Close">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
-      <div class="pdf-modal__eyebrow">Congratulations!</div>
-      <h2 class="pdf-modal__title" id="credentialsModalTitle">Your award credentials are ready</h2>
+      <div class="pdf-modal__eyebrow">🎉 Congratulations!</div>
+      <h2 class="pdf-modal__title" id="credentialsModalTitle">Your awards are ready</h2>
       <p class="pdf-modal__lead">Enter your name to personalize your credential award and access the full course guide PDF.</p>
     </div>
     <div class="pdf-modal__body">
-      <label class="pdf-modal__label" for="credentialName">Your name</label>
+      <label class="pdf-modal__label" for="credentialName">Your Full Name</label>
       <input class="pdf-modal__input" id="credentialName" type="text" placeholder="First Last" autocomplete="name" />
-      <p class="pdf-modal__note">This name will appear on your award certificate and credential PDF.</p>
+      <p class="pdf-modal__note">This identifier will be inscribed onto your official localized PDF documentation.</p>
       <div class="pdf-modal__action-group">
-        <button class="pdf-modal__btn pdf-modal__btn--secondary" id="credentialDownload" type="button">Download award certificate</button>
-        <button class="pdf-modal__btn pdf-modal__btn--secondary" id="downloadGuidePdf" type="button">Download full course guide</button>
+        <button class="pdf-modal__btn pdf-modal__btn--primary" id="credentialDownload" type="button">Download Certificate 📜</button>
+        <button class="pdf-modal__btn pdf-modal__btn--secondary" id="downloadGuidePdf" type="button">Course Manual 📄</button>
       </div>
       <div class="pdf-modal__error" id="credentialError"></div>
     </div>
   </div>
 </div>
+
 <script>
   const progressFill = document.getElementById('progressBar');
   const navLinks = document.querySelectorAll('.nav-link');
-  const orderedSections = ['conceptual', 'process', 'delegates', 'guided-buying', 'final'];
+  const orderedSections = ['homepage', 'profile', 'delegates', 'guided-buying', 'final'];
   let finalQuizPassed = false;
 
   function updateProgressBar() {
@@ -447,6 +577,14 @@
     const max = document.documentElement.scrollHeight - window.innerHeight;
     const pct = max > 0 ? (scrolled / max) * 100 : 0;
     progressFill.style.width = Math.min(pct, 100) + '%';
+    
+    // Add visual depth to navbar on initial page scroll
+    const nav = document.getElementById('mainNav');
+    if (window.scrollY > 20) {
+      nav.style.boxShadow = '0 4px 20px rgba(0,0,0,0.06)';
+    } else {
+      nav.style.boxShadow = 'none';
+    }
   }
 
   function highlightNav() {
@@ -457,8 +595,31 @@
       if (window.scrollY >= sec.offsetTop - 120) current = id;
     });
     navLinks.forEach((link) => {
-      link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+      const targetHash = link.getAttribute('href').substring(1);
+      link.classList.toggle('active', targetHash === current);
     });
+  }
+
+  function unlockNextSection(currentSectionId) {
+    const currentIndex = orderedSections.indexOf(currentSectionId);
+    if (currentIndex !== -1 && currentIndex < orderedSections.length - 1) {
+      const nextSectionId = orderedSections[currentIndex + 1];
+      const nextSection = document.getElementById(nextSectionId);
+      if (nextSection) {
+        // Remove blur wrapper styles smoothly
+        nextSection.classList.remove('locked-section');
+        const overlay = nextSection.querySelector('.locked-overlay');
+        if (overlay) {
+          overlay.style.opacity = '0';
+          setTimeout(() => { overlay.style.display = 'none'; }, 400);
+        }
+        // Force evaluation check for final threshold trigger
+        if (nextSectionId === 'final' && !finalQuizPassed) {
+          finalQuizPassed = true;
+          setTimeout(openCredentialsModal, 600);
+        }
+      }
+    }
   }
 
   function initQuiz(quiz) {
@@ -466,14 +627,12 @@
     quiz.dataset.initialized = 'true';
 
     const questions = quiz.querySelectorAll('.question');
-    const scoreEl = quiz.querySelector('.score-val');
     const restart = quiz.querySelector('.quiz__restart');
     const state = { answered: new Set(), score: 0, total: questions.length };
 
     function resetQuiz() {
       state.answered.clear();
       state.score = 0;
-      if (scoreEl) scoreEl.textContent = '0';
       questions.forEach((q) => {
         q.querySelectorAll('.option').forEach((opt) => {
           opt.disabled = false;
@@ -485,8 +644,6 @@
           feedback.innerHTML = '';
         }
       });
-      const finalResult = document.getElementById('finalResult');
-      if (finalResult) finalResult.classList.remove('is-shown');
     }
 
     questions.forEach((q, qIdx) => {
@@ -497,33 +654,31 @@
       options.forEach((opt, oIdx) => {
         opt.addEventListener('click', () => {
           if (state.answered.has(qIdx)) return;
-          state.answered.add(qIdx);
           const chosen = oIdx + 1;
           const isCorrect = chosen === correctAnswer;
 
           if (isCorrect) {
+            state.answered.add(qIdx);
             state.score += 1;
-            scoreEl.textContent = state.score;
             opt.classList.add('is-correct');
             if (feedback) {
               feedback.className = 'feedback feedback--correct is-shown';
-              feedback.innerHTML = '<strong>Correct.</strong> That is the right answer.';
+              feedback.innerHTML = '<strong>✨ Correct!</strong> Entry section lock resolved. Scroll down to proceed.';
+            }
+            options.forEach((o) => o.disabled = true);
+            
+            const currentSection = quiz.closest('section');
+            if (currentSection) {
+              unlockNextSection(currentSection.id);
             }
           } else {
             opt.classList.add('is-wrong');
             if (options[correctAnswer - 1]) options[correctAnswer - 1].classList.add('is-correct');
             if (feedback) {
               feedback.className = 'feedback feedback--wrong is-shown';
-              feedback.innerHTML = '<strong>Not quite.</strong> The correct answer is highlighted in green.';
+              feedback.innerHTML = '<strong>❌ Not quite.</strong> Review highlighted option parameters and reset utilizing the ↻ hook.';
             }
-          }
-
-          options.forEach((o) => o.disabled = true);
-
-          if (state.answered.size === state.total) {
-            if (quiz.dataset.quiz === 'qfinal') {
-              showFinalResult(state.score, state.total);
-            }
+            options.forEach((o) => o.disabled = true);
           }
         });
       });
@@ -534,31 +689,6 @@
     }
   }
 
-  function showFinalResult(score, total) {
-    const result = document.getElementById('finalResult');
-    const numEl = document.getElementById('finalScoreNum');
-    const msgEl = document.getElementById('finalMessage');
-    if (!result || !numEl || !msgEl) return;
-    numEl.textContent = `${score} / ${total}`;
-    if (score === total) {
-      msgEl.textContent = 'Excellent work! You passed the final assessment and can now claim your credential.';
-      result.classList.add('is-shown');
-      onFinalAssessmentPassed();
-    } else if (score >= total * 0.75) {
-      msgEl.textContent = 'Good job. Review the earlier sections and try again to earn your credential.';
-      result.classList.add('is-shown');
-    } else {
-      msgEl.textContent = 'A refresher is recommended. Review the guide and retake the final assessment.';
-      result.classList.add('is-shown');
-    }
-  }
-
-  function onFinalAssessmentPassed() {
-    if (finalQuizPassed) return;
-    finalQuizPassed = true;
-    openCredentialsModal();
-  }
-
   const credentialsModal = document.getElementById('credentialsModal');
   const credentialNameInput = document.getElementById('credentialName');
   const credentialError = document.getElementById('credentialError');
@@ -567,7 +697,9 @@
 
   function openCredentialsModal() {
     if (!credentialsModal) return;
-    credentialsModal.classList.add('is-open');
+    credentialsModal.style.display = 'flex';
+    // Small forced reflow trick for transitional visibility properties
+    setTimeout(() => { credentialsModal.classList.add('is-open'); }, 10);
     document.body.style.overflow = 'hidden';
     credentialError.textContent = '';
     credentialNameInput.value = '';
@@ -577,6 +709,7 @@
   function closeCredentialsModal() {
     if (!credentialsModal) return;
     credentialsModal.classList.remove('is-open');
+    setTimeout(() => { credentialsModal.style.display = 'none'; }, 300);
     document.body.style.overflow = '';
     credentialError.textContent = '';
   }
@@ -618,7 +751,6 @@
   }
 
   const downloadGuidePdf = document.getElementById('downloadGuidePdf');
-
   if (downloadGuidePdf) {
     downloadGuidePdf.addEventListener('click', () => {
       createGuidePdf();
@@ -644,57 +776,50 @@
     reopenCredentialsBtn.addEventListener('click', openCredentialsModal);
   }
 
-function createGuidePdf() {
-  const { jsPDF } = window.jspdf;
-  const pdf = new jsPDF({ unit: 'pt', format: 'a4' });
-  const margin = 50;
-  const maxWidth = pdf.internal.pageSize.getWidth() - margin * 2;
-  let y = 60;
+  function createGuidePdf() {
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF({ unit: 'pt', format: 'a4' });
+    const margin = 50;
+    const maxWidth = pdf.internal.pageSize.getWidth() - margin * 2;
+    let y = 60;
 
-  // Helper to add styled text
-  const addText = (text, fontSize, isBold = false, color = [0, 0, 0]) => {
-    pdf.setFont('helvetica', isBold ? 'bold' : 'normal');
-    pdf.setFontSize(fontSize);
-    pdf.setTextColor(...color);
-    const lines = pdf.splitTextToSize(text, maxWidth);
-    
-    // Check for page break
-    if (y + (lines.length * (fontSize * 1.5)) > pdf.internal.pageSize.getHeight() - margin) {
-      pdf.addPage();
-      y = margin;
-    }
-    
-    pdf.text(lines, margin, y);
-    y += lines.length * (fontSize * 1.5);
-  };
+    const addText = (text, fontSize, isBold = false, color = [0, 0, 0]) => {
+      pdf.setFont('helvetica', isBold ? 'bold' : 'normal');
+      pdf.setFontSize(fontSize);
+      pdf.setTextColor(...color);
+      const lines = pdf.splitTextToSize(text, maxWidth);
+      if (y + (lines.length * (fontSize * 1.5)) > pdf.internal.pageSize.getHeight() - margin) {
+        pdf.addPage();
+        y = margin;
+      }
+      pdf.text(lines, margin, y);
+      y += lines.length * (fontSize * 1.5);
+    };
 
-  // Title
-  addText('Coupa 101: Course Guide', 24, true);
-  y += 20;
+    addText('Coupa 101: Course Manual', 24, true);
+    y += 20;
 
-  // Iterate sections
-  const sections = document.querySelectorAll('section:not(.hero)');
-  sections.forEach((section) => {
-    const eyebrow = section.querySelector('.section-head__eyebrow')?.innerText.trim();
-    const title = section.querySelector('.section-head__title')?.innerText.trim();
-    const lead = section.querySelector('.section-head__lead')?.innerText.trim();
-    const content = section.querySelectorAll('.content-block p, .content-block li');
+    const sections = document.querySelectorAll('section:not(.hero):not(#final)');
+    sections.forEach((section) => {
+      const eyebrow = section.querySelector('.section-head__eyebrow')?.innerText.trim();
+      const title = section.querySelector('.section-head__title')?.innerText.trim();
+      const lead = section.querySelector('.section-head__lead')?.innerText.trim();
+      const content = section.querySelectorAll('.content-block p, .content-block li');
 
-    if (eyebrow) addText(eyebrow.toUpperCase(), 10, true, [0, 198, 217]);
-    if (title) addText(title, 20, true);
-    if (lead) { addText(lead, 12); y += 10; }
+      if (eyebrow) addText(eyebrow.toUpperCase(), 10, true, [0, 198, 217]);
+      if (title) addText(title, 20, true);
+      if (lead) { addText(lead, 12); y += 10; }
 
-    content.forEach(el => {
-      const text = el.innerText.trim();
-      if (el.tagName === 'LI') addText('• ' + text, 11);
-      else addText(text, 12);
+      content.forEach(el => {
+        const text = el.innerText.trim();
+        if (el.tagName === 'LI') addText('• ' + text, 11);
+        else addText(text, 12);
+      });
+      y += 20;
     });
-    
-    y += 20; // Section spacing
-  });
 
-  pdf.save('Datavant_Coupa_101_Guide.pdf');
-}
+    pdf.save('Datavant_Coupa_101_Guide.pdf');
+  }
 
   function initRevealAnimations() {
     const revealElements = document.querySelectorAll('.reveal');
@@ -708,17 +833,16 @@ function createGuidePdf() {
         }
       });
     }, {
-      threshold: 0.18,
-      rootMargin: '0px 0px -90px 0px',
+      threshold: 0.05,
+      rootMargin: '0px 0px -30px 0px',
     });
 
     revealElements.forEach((element) => observer.observe(element));
   }
 
   function initPage() {
-    orderedSections.forEach((id) => {
-      const quizSection = document.querySelector(`#${id} .quiz`);
-      if (quizSection) initQuiz(quizSection);
+    document.querySelectorAll('.quiz').forEach((quiz) => {
+      initQuiz(quiz);
     });
     initRevealAnimations();
     highlightNav();
@@ -737,7 +861,6 @@ function createGuidePdf() {
   var GATE_KEY = 'dv_guide_auth';
   var USER = 'datavant', PASS = 'training';
   var gate = document.getElementById('authGate');
-  // Already authenticated this session? hide gate, restore scroll.
   if (sessionStorage.getItem(GATE_KEY) === 'ok') {
     gate.parentNode.removeChild(gate);
   } else {
