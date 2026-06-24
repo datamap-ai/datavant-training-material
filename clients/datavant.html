@@ -122,12 +122,14 @@
   .section-head__lead { max-width: 720px; color: rgba(0,0,0,0.72); line-height: 1.7; }
   
   /* Content Blocks with interactive hover elevations */
-  .content-block { background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 28px 32px; box-shadow: 0 10px 30px rgba(0,0,0,0.02); transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease; }
+  .content-block { background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 28px 32px; box-shadow: 0 10px 30px rgba(0,0,0,0.02); transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease; margin-bottom: 24px; }
+  .content-block:last-of-type { margin-bottom: 0; }
   .content-block:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
   .content-block p { line-height: 1.8; margin-top: 14px; color: inherit; }
   .content-block ul { margin-top: 16px; list-style: none; padding-left: 4px; color: inherit; line-height: 1.7; }
   .content-block li { position: relative; padding-left: 24px; margin-bottom: 8px; }
   .content-block li::before { content: "🔹"; position: absolute; left: 0; top: 1px; font-size: 12px; }
+  .content-block li[data-emoji]::before { content: attr(data-emoji); font-size: 14px; top: -1px; }
   
   .content-block--media { display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: start; }
   .content-block--media .media-copy { display: flex; flex-direction: column; gap: 4px; }
@@ -337,9 +339,9 @@
       <div class="media-copy">
         <p>The Coupa homepage is used for accessing all the features and information within the platform. It serves as your main dashboard for navigating your Coupa experience.</p>
         <ul>
-          <li>Showcases custom dropdown menus, shortcuts, punchouts, announcements, activity, and more!</li>
-          <li>Familiarize yourself with the layout and key features of the homepage.</li>
-          <li>Explore the different ways to initiate guided buying.</li>
+          <li data-emoji="🖥️">Showcases custom dropdown menus, shortcuts, punchouts, announcements, activity, and more!</li>
+          <li data-emoji="🔍">Familiarize yourself with the layout and key features of the homepage.</li>
+          <li data-emoji="🛒">Explore the different ways to initiate guided buying.</li>
         </ul>
       </div>
       <div class="video-embed">
@@ -358,7 +360,7 @@
       </div>
       <div class="question" data-correct="3">
         <div class="question__num">Question 01</div>
-        <h4 class="question__text">How can the guided buying options be accessed in Coupa outside of the "Let us guide you" section?</h4>
+        <div class="question__text">How can the guided buying options be accessed in Coupa outside of the "Let us guide you" section?</div>
         <div class="question__options">
           <button class="option"><span class="option__letter">A</span>Within the user profile settings configuration matrix.</button>
           <button class="option"><span class="option__letter">B</span>By searching for it in the localized system index search bar.</button>
@@ -393,27 +395,29 @@
         <ul>
           <li>Select your initials in the top right window frame.</li>
           <li>Select the secondary "Settings" link option.</li>
-          <li>That's it! Your dashboard parameters are now configurable.</li>
+          <li>That's it! You should now see your profile settings page.</li>
         </ul>
       </div>
-      <div style="display: flex; flex-direction: column; gap: 16px; width: 360px; max-width: 100%; justify-self: end;">
-        <div class="image-embed"><img src="dv_image_coupa101_homepage_profile.png" alt="Profile drop configuration" /></div>
-        <div class="image-embed"><img src="dv_image_profile_settings_general.png" alt="Profile overview" /></div>
+      <div class="image-embed">
+        <img src="dv_image_coupa101_homepage_profile.png" alt="Profile drop configuration" />
       </div>
     </div>
     <div class="content-block content-block--media">
       <div class="media-copy">
         <p>The Profile settings within Coupa houses a variety of functional tabs! Lets take a brief look at what each entails.</p>
         <ul>
-          <li>General - User forms, Profile Photo, and Password resetting.</li>
-          <li>Address Book - Set your Address.</li>
-          <li>Content - View Tagged Object & manage your Product Reviews.</li>
-          <li>Delegates - Assign & manage your Delegates.</li>
-          <li>Billing Accounts - Configure & view your accounts.</li>
-          <li>Reports - Manage your Scheduled Reports, and view your report log. </li>
-          <li>Notifications - Configure your Email, System/Mobile Notifications.</li>
-          <li>Multi Factor Authentication: - Setup and manage your MFA tied to the account.</li>
+          <li data-emoji="⚙️">General - User forms, Profile Photo, and Password resetting.</li>
+          <li data-emoji="📍">Address Book - Set your Address.</li>
+          <li data-emoji="📦">Content - View Tagged Object & manage your Product Reviews.</li>
+          <li data-emoji="🤝">Delegates - Assign & manage your Delegates.</li>
+          <li data-emoji="💳">Billing Accounts - Configure & view your accounts.</li>
+          <li data-emoji="📊">Reports - Manage your Scheduled Reports, and view your report log. </li>
+          <li data-emoji="🔔">Notifications - Configure your Email, System/Mobile Notifications.</li>
+          <li data-emoji="🔒">Multi Factor Authentication: - Setup and manage your MFA tied to the account.</li>
         </ul>
+      </div>
+      <div class="image-embed">
+        <img src="dv_image_profile_settings_general.png" alt="Profile overview" />
       </div>
     </div>
 
@@ -426,7 +430,7 @@
       </div>
       <div class="question" data-correct="1">
         <div class="question__num">Question 02</div>
-        <h4 class="question__text">How would a user access their profile settings?</h4>
+        <div class="question__text">How would a user access their profile settings?</div>
         <div class="question__options">
           <button class="option"><span class="option__letter">A</span>By selecting their initials in the top right and clicking "Settings".</button>
           <button class="option"><span class="option__letter">B</span>By selecting the "?" utility icon in the top-right corner of the screen.</button>
@@ -459,9 +463,9 @@
       <div class="media-copy">
         <p>Delegates allow trusted colleagues to act on your behalf when you are unavailable. This ensures approvals and purchasing actions continue without interruption.</p>
         <ul>
-          <li>Delegates should have the right level of authority for the tasks they will perform.</li>
-          <li>Type settings determine the scope of actions a delegate can perform.</li>
-          <li>Delegation stays in place until the specified end date or until the primary user removes it.</li>
+          <li data-emoji="🛡️">Delegates should have the right level of authority for the tasks they will perform.</li>
+          <li data-emoji="📋">Type settings determine the scope of actions a delegate can perform.</li>
+          <li data-emoji="⏳">Delegation stays in place until the specified end date or until the primary user removes it.</li>
         </ul>
       </div>
       <div class="video-embed">
@@ -480,7 +484,7 @@
       </div>
       <div class="question" data-correct="1">
         <div class="question__num">Question 03</div>
-        <h4 class="question__text">Why should a delegate be assigned before someone goes on leave?</h4>
+        <div class="question__text">Why should a delegate be assigned before someone goes on leave?</div>
         <div class="question__options">
           <button class="option"><span class="option__letter">A</span>So operational approvals and purchasing actions can continue without delay.</button>
           <button class="option"><span class="option__letter">B</span>So the delegate can see all of the original user's profile system passwords.</button>
@@ -509,14 +513,15 @@
         <p class="section-head__lead">Monitor and manage your procurement lifecycle with comprehensive visibility.</p>
       </div>
     </div>
-    <div class="content-block">
-      <p>Coupa's Activity dashboard empowers users with comprehensive operational visibility, making document management clean and accessible:</p>
-      <ul>
-        <li><strong>Central Hub Management:</strong> View, review, and organize all your active or historical requisitions, invoices, purchase orders, and more in one unified layout.</li>
-        <li><strong>Real-Time Status Indicators:</strong> Instantly verify exactly where a document sits in the processing lifecycle (e.g., Draft, Pending Approval, or Fully Approved).</li>
-        <li><strong>Bottleneck Visibility:</strong> Pinpoint precisely which management personnel currently holds an approval request to ensure timely follow-ups.</li>
-      </ul>
-      <p>Check out the video below for a visual look at the Activity section:</p>
+    <div class="content-block content-block--media">
+      <div class="media-copy">
+        <p>Coupa's Activity dashboard empowers users with comprehensive operational visibility, making document management clean and accessible:</p>
+        <ul>
+          <li data-emoji="🗂️"><strong>Central Hub Management:</strong> View, review, and organize all your active or historical requisitions, invoices, purchase orders, and more in one unified layout.</li>
+          <li data-emoji="🟢"><strong>Real-Time Status Indicators:</strong> Instantly verify exactly where a document sits in the processing lifecycle (e.g., Draft, Pending Approval, or Fully Approved).</li>
+          <li data-emoji="🎯"><strong>Bottleneck Visibility:</strong> Pinpoint precisely which management personnel currently holds an approval request to ensure timely follow-ups.</li>
+        </ul>
+      </div>
       <div class="video-embed">
         <div style="position: relative; padding-bottom: 56.25%; height: 0;">
           <iframe src="https://www.loom.com/embed/b1dd5665d58a442c930937ff21665f01" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
@@ -532,7 +537,7 @@
       </div>
       <div class="question" data-correct="2">
         <div class="question__num">Question 04</div>
-        <h4 class="question__text">What can a user manage and verify within the designated "Activity" section of Coupa?</h4>
+        <div class="question__text">What can a user manage and verify within the designated "Activity" section of Coupa?</div>
         <div class="question__options">
           <button class="option"><span class="option__letter">A</span>Internal payroll modifiers and team healthcare insurance selection profiles.</button>
           <button class="option"><span class="option__letter">B</span>Coupa documents assigned to, or created by the user.</button>
@@ -565,13 +570,13 @@
       <div class="media-copy">
         <p>Guided buying in Coupa gives users a curated experience. See below for more information on Datavant's system routes:</p>
         <ul>
-          <li>Request an NDA (For supplier evaluation processes) & Datavant Contract Templates.</li>
-          <li>Initiate New Sourcing Requests and vendor evaluations.</li>
-          <li>Instantiate Contract Requests (NDA / MSA / SOW / BAA / DPA / Amendments).</li>
-          <li>Submit structural Purchase Requisitions for management validation.</li>
-          <li>Submit valid PO Change Requests for existing contracts.</li>
-          <li>Direct Invoice and Payment lifecycle verification steps.</li>
-          <li>Access localized FAQs & system Training Materials.</li>
+          <li data-emoji="📝">Request an NDA (For supplier evaluation processes) & Datavant Contract Templates.</li>
+          <li data-emoji="🔍">Initiate New Sourcing Requests and vendor evaluations.</li>
+          <li data-emoji="💼">Instantiate Contract Requests (NDA / MSA / SOW / BAA / DPA / Amendments).</li>
+          <li data-emoji="📥">Submit structural Purchase Requisitions for management validation.</li>
+          <li data-emoji="🔄">Submit valid PO Change Requests for existing contracts.</li>
+          <li data-emoji="💳">Direct Invoice and Payment lifecycle verification steps.</li>
+          <li data-emoji="📚">Access localized FAQs & system Training Materials.</li>
         </ul>
       </div>
       <div class="image-embed">
@@ -588,7 +593,7 @@
       </div>
       <div class="question" data-correct="2">
         <div class="question__num">Question 05</div>
-        <h4 class="question__text">Which workflows or request paths are managed under Datavant's Guided Buying framework?</h4>
+        <div class="question__text">Which workflows or request paths are managed under Datavant's Guided Buying framework?</div>
         <div class="question__options">
           <button class="option"><span class="option__letter">A</span>Direct database administration and cloud infrastructure deployment operations.</button>
           <button class="option"><span class="option__letter">B</span>NDAs, Sourcing requests, Purchase Requisitions, and PO Change requests.</button>
