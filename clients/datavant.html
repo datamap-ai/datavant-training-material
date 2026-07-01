@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Coupa 101 · Datavant</title>
+<title>Supplier Onboarding for Coupa · Datavant</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
   :root {
@@ -86,17 +86,108 @@
   .hero__meta-num { font-family: var(--serif); font-size: 32px; font-weight: 600; color: #000; line-height: 1; margin-bottom: 6px; }
   .hero__meta-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em; color: rgba(0,0,0,0.55); font-weight: 700; }
   
-  .hero__panel { background: #00eeff; border: 1px solid rgba(255,255,255,0.25); border-radius: 28px; padding: 28px; box-shadow: var(--shadow-md); transition: transform 0.3s ease; }
+  .hero__panel { background: #00eeff; border: 1px solid rgba(255,255,255,0.25); border-radius: 28px; padding: 28px; box-shadow: var(--shadow-md); transition: transform 0.3s ease; color: #000000; }
   .hero__panel:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
   .hero__panel h2 { font-family: var(--serif); font-size: 26px; margin-bottom: 14px; }
   .hero__panel p { line-height: 1.75; }
+
+  /* Creative Grid Cards */
+  .visual-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-top: 24px; }
+  .visual-card { background: #ffffff; border: 1.5px solid var(--line); border-radius: var(--radius-md); padding: 24px; position: relative; transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); box-shadow: var(--shadow-sm); display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; }
+  .visual-card:hover { transform: translateY(-4px); border-color: var(--brand-cyan); box-shadow: var(--shadow-md); }
+  .visual-card__badge { position: absolute; top: -10px; right: -10px; width: 45px; height: 45px; background: rgba(0, 198, 217, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-weight: 700; font-size: 14px; color: var(--brand-cyan); }
+  .visual-card__title { font-family: var(--serif); font-size: 18px; font-weight: 600; margin-bottom: 10px; padding-right: 24px; }
+  .visual-card__body { font-size: 13.5px; line-height: 1.6; color: var(--text-muted); }
+
+  /* Vertical Pipeline Flow Engine */
+  .pipeline-track { position: relative; padding-left: 36px; margin: 28px 0; }
+  .pipeline-track::before { content: ''; position: absolute; left: 11px; top: 12px; bottom: 12px; width: 3px; background: linear-gradient(180deg, var(--brand-cyan), var(--line)); }
+  .pipeline-step { position: relative; margin-bottom: 24px; transition: transform 0.2s ease; }
+  .pipeline-step:last-child { margin-bottom: 0; }
+  .pipeline-step:hover { transform: translateX(4px); }
+  .pipeline-indicator { position: absolute; left: -36px; top: 2px; width: 25px; height: 25px; border-radius: 50%; background: #ffffff; border: 3px solid var(--brand-cyan); display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 11px; font-weight: 700; z-index: 2; box-shadow: var(--shadow-sm); }
+  .pipeline-box { background: #ffffff; border: 1px solid var(--line); border-radius: 16px; padding: 18px 24px; display: flex; flex-direction: column; gap: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.01); }
+  .pipeline-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; font-family: var(--serif); font-size: 16px; font-weight: 700; }
+  .pipeline-sla { font-family: var(--mono); font-size: 11px; text-transform: uppercase; background: var(--ice-bg); color: #007887; padding: 2px 8px; border-radius: 4px; }
+  .pipeline-desc { font-size: 13.5px; line-height: 1.5; color: var(--text-muted); }
+
+  /* Layered Hierarchy Visual Stack (NDA -> MSA -> SOW -> BAA) */
+  .hierarchy-blueprint { display: flex; flex-direction: column; gap: 12px; margin: 28px 0; }
+  .hierarchy-layer { border-radius: var(--radius-md); border: 1.5px solid var(--line); background: #ffffff; padding: 18px 24px; display: grid; grid-template-columns: 100px 1fr; gap: 20px; align-items: center; transition: all 0.25s ease; box-shadow: var(--shadow-sm); position: relative; }
+  .hierarchy-layer:hover { transform: scale(1.01); border-color: var(--brand-cyan); box-shadow: var(--shadow-md); }
+  .hierarchy-layer::after { content: '↓'; position: absolute; bottom: -16px; left: 45px; font-size: 16px; color: var(--brand-cyan); font-weight: 700; z-index: 5; }
+  .hierarchy-layer:last-child::after { display: none; }
+  .hierarchy-tag { font-family: var(--mono); font-size: 13px; font-weight: 700; text-transform: uppercase; text-align: center; background: #000000; color: #00f2ff; padding: 6px 0; border-radius: 8px; box-shadow: inset 0 -2px 0 rgba(0,0,0,0.2); }
+  .hierarchy-meta h4 { font-family: var(--serif); font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+  .hierarchy-meta p { font-size: 13.5px; line-height: 1.5; color: var(--text-muted); margin-top: 0 !important; }
+
+  /* Interactive Dashboard Metrics Grid */
+  .dashboard-cluster { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 24px 0; }
+  .dashboard-tile { background: #ffffff; border: 1px solid var(--line); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 8px; box-shadow: var(--shadow-sm); transition: transform 0.2s ease; }
+  .dashboard-tile:hover { transform: translateY(-2px); }
+  .dashboard-tile__label { font-family: var(--mono); font-size: 10px; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em; }
+  .dashboard-tile__value { font-family: var(--serif); font-size: 18px; font-weight: 700; color: #000000; }
+  .dashboard-tile__status { font-size: 12px; color: var(--correct); display: flex; align-items: center; gap: 4px; font-weight: 600; margin-top: auto; }
+
+  /* Split Comparison Battle Cards View */
+  .battle-ring { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 28px 0; }
+  .battle-card { border-radius: var(--radius-lg); border: 2px solid var(--line); background: #ffffff; overflow: hidden; box-shadow: var(--shadow-md); display: flex; flex-direction: column; }
+  .battle-card--preferred { border-color: var(--brand-cyan); }
+  .battle-card__header { padding: 20px 24px; font-family: var(--serif); font-size: 18px; font-weight: 700; color: #000; background: rgba(0,0,0,0.02); border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; }
+  .battle-card--preferred .battle-card__header { background: var(--soft-cyan); color: #00606b; }
+  .battle-card__body { padding: 24px; display: flex; flex-direction: column; gap: 16px; flex: 1; }
+  .battle-row { display: flex; flex-direction: column; gap: 4px; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 12px; }
+  .battle-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .battle-row__metric { font-family: var(--mono); font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 600; }
+  .battle-row__content { font-size: 13.5px; line-height: 1.5; color: var(--text); }
+
+  /* Risk Scale Thermometer System */
+  .thermometer-grid { display: flex; flex-direction: column; gap: 14px; margin: 28px 0; }
+  .thermometer-bar { display: flex; align-items: center; background: #ffffff; border: 1px solid var(--line); border-radius: 14px; padding: 14px 20px; gap: 20px; transition: transform 0.2s ease; box-shadow: var(--shadow-sm); }
+  .thermometer-bar:hover { transform: scale(1.005); }
+  .thermometer-label { font-family: var(--mono); font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 6px; width: 80px; text-align: center; flex-shrink: 0; color: #fff; }
+  .thermometer-label--t0 { background: #991B1B; }
+  .thermometer-label--t1 { background: #C2410C; }
+  .thermometer-label--t2 { background: #D97706; }
+  .thermometer-label--t3 { background: #2563EB; }
+  .thermometer-label--t4 { background: #059669; }
+  .thermometer-desc { font-size: 13.5px; line-height: 1.5; color: var(--text); }
+
+  /* Standard Base Operational Banners */
+  .callout-banner { padding: 20px; border-radius: 20px; margin-top: 20px; font-size: 14.5px; line-height: 1.7; display: flex; gap: 16px; align-items: flex-start; border: 1px solid var(--line); }
+  .callout-banner--warning { background: #FFFBF0; border-left: 5px solid #F59E0B; color: #78350F; }
+  .callout-banner--danger { background: #FFF5F5; border-left: 5px solid #EF4444; color: #991B1B; }
+  .callout-banner .emoji { font-size: 20px; line-height: 1; }
   
-  /* Dark Section Alternation Theme */
+  /* Dark Section Alternation Theme Variations */
   .section--dark { background: var(--black); color: #ffffff; }
   .section--dark .section-head__num { color: var(--bright-cyan); }
   .section--dark .section-head__eyebrow { color: rgba(255, 255, 255, 0.6); }
   .section--dark .section-head__lead { color: rgba(255, 255, 255, 0.8); }
   .section--dark .content-block { background: var(--black); border-color: var(--brand-cyan); color: #ffffff; }
+  
+  /* Alternative Components Theme Adjustments for Dark Mode */
+  .section--dark .visual-card,
+  .section--dark .pipeline-box,
+  .section--dark .hierarchy-layer,
+  .section--dark .dashboard-tile,
+  .section--dark .battle-card { background: #0b1119; border-color: var(--brand-cyan); color: #ffffff; }
+  .section--dark .visual-card__title,
+  .section--dark .pipeline-header,
+  .section--dark .hierarchy-meta h4,
+  .section--dark .dashboard-tile__value,
+  .section--dark .battle-card__header,
+  .section--dark .thermometer-bar { color: #ffffff; }
+  .section--dark .thermometer-bar { background: #0b1119; border-color: var(--brand-cyan); }
+  .section--dark .battle-card__header { background: rgba(255,255,255,0.02); border-bottom-color: var(--brand-cyan); }
+  .section--dark .battle-card--preferred .battle-card__header { background: rgba(0, 198, 217, 0.15); color: var(--bright-cyan); }
+  .section--dark .visual-card__body,
+  .section--dark .pipeline-desc,
+  .section--dark .hierarchy-meta p,
+  .section--dark .dashboard-tile__label,
+  .section--dark .battle-row__content { color: rgba(255,255,255,0.75); }
+  .section--dark .battle-row { border-bottom-color: rgba(255,255,255,0.1); }
+
   .section--dark .quiz { background: var(--black); border-color: var(--brand-cyan); color: #ffffff; }
   .section--dark .option { background: #141414; border-color: var(--brand-cyan); color: #ffffff; }
   .section--dark .option:hover:not(:disabled) { border-color: var(--bright-cyan); background: #222222; }
@@ -106,15 +197,6 @@
   .section--dark .quiz__restart:hover { border-color: var(--bright-cyan); color: #fff; }
   .section--dark .locked-overlay { background: rgba(0, 0, 0, 0.92); }
   
-  /* High contrast quiz state variants for dark background */
-  .section--dark .option.is-correct { color: #2ecc71; border-color: #2ecc71; background: rgba(46, 204, 113, 0.1); }
-  .section--dark .option.is-wrong { color: #e74c3c; border-color: #e74c3c; background: rgba(231, 76, 60, 0.1); }
-  .section--dark .feedback--correct { color: #2ecc71; border-color: #2ecc71; background: rgba(46, 204, 113, 0.1); }
-  .section--dark .feedback--wrong { color: #e74c3c; border-color: #e74c3c; background: rgba(231, 76, 60, 0.1); }
-  .section--dark .final__result-score { color: var(--bright-cyan); }
-  .section--dark .final__result-label { color: #ffffff; }
-  .section--dark .final__result-msg { color: rgba(255, 255, 255, 0.85); }
-
   .section-head { display: grid; grid-template-columns: auto 1fr; gap: 44px; align-items: end; margin-bottom: 42px; }
   .section-head__num { font-family: var(--serif); font-style: italic; font-size: 64px; font-weight: 300; color: var(--brand-cyan); line-height: 0.9; letter-spacing: -0.02em; }
   .section-head__eyebrow { text-transform: uppercase; letter-spacing: 0.22em; font-size: 11px; color: var(--text-muted); margin-bottom: 12px; font-weight: 700; }
@@ -122,7 +204,7 @@
   .section-head__lead { max-width: 720px; color: rgba(0,0,0,0.72); line-height: 1.7; }
   
   /* Content Blocks with interactive hover elevations */
-  .content-block { background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 28px 32px; box-shadow: 0 10px 30px rgba(0,0,0,0.02); transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease; margin-bottom: 24px; }
+  .content-block { background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 28px 32px; box-shadow: 0 10px 30px rgba(0,0,0,0.02); transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease; margin-bottom: 24px; color: inherit; }
   .content-block:last-of-type { margin-bottom: 0; }
   .content-block:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
   .content-block p { line-height: 1.8; margin-top: 14px; color: inherit; }
@@ -131,23 +213,7 @@
   .content-block li::before { content: "🔹"; position: absolute; left: 0; top: 1px; font-size: 12px; }
   .content-block li[data-emoji]::before { content: attr(data-emoji); font-size: 14px; top: -1px; }
   
-  .content-block--media { display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: start; }
-  .content-block--media .media-copy { display: flex; flex-direction: column; gap: 4px; }
-  .content-block--media .media-copy p { margin-top: 0; }
-  
-  /* Media Elements with smooth scaling overrides */
-  .video-embed { border-radius: 22px; overflow: hidden; box-shadow: var(--shadow-md); width: 360px; max-width: 100%; justify-self: end; transition: transform 0.3s ease, box-shadow 0.3s ease; }
-  .video-embed:hover { transform: scale(1.02); box-shadow: var(--shadow-lg); }
-  .video-embed iframe { width: 100%; height: 100%; display: block; border: 0; }
-  
-  .image-embed { width: 360px; max-width: 100%; justify-self: end; border-radius: 22px; overflow: hidden; box-shadow: var(--shadow-md); transition: transform 0.3s ease, box-shadow 0.3s ease; display: block; }
-  .image-embed img { width: 100%; height: auto; display: block; transition: transform 0.3s ease; }
-  .image-embed:hover { transform: scale(1.02); box-shadow: var(--shadow-lg); }
-  .image-embed img:hover { transform: scale(1.04); }
-  
-  @media (max-width: 920px) { .content-block--media { grid-template-columns: 1fr; } .video-embed { width: 100%; justify-self: stretch; } .image-embed { width: 100%; justify-self: stretch; } }
-  
-  .quiz { margin-top: 42px; background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-sm); }
+  .quiz { margin-top: 42px; background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-sm); color: inherit; }
   .quiz__head { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 18px; margin-bottom: 24px; }
   .quiz__label { display: inline-flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: var(--text-muted); }
   .quiz__title { font-family: var(--serif); font-size: 24px; line-height: 1.2; color: inherit; }
@@ -157,7 +223,6 @@
   .question__text { font-family: var(--serif); font-size: 20px; line-height: 1.4; margin-bottom: 16px; color: inherit; }
   .question__options { display: grid; gap: 12px; }
   
-  /* Quiz options horizontal shift micro-interaction */
   .option { display: flex; align-items: center; gap: 12px; background: #fff; border: 1.5px solid var(--line); border-radius: 16px; padding: 16px 18px; cursor: pointer; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); color: inherit; width: 100%; text-align: left; }
   .option:hover:not(:disabled) { border-color: var(--black); background: var(--ice-bg); transform: translateX(6px); }
   .option__letter { width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid var(--line); display: grid; place-items: center; font-family: var(--mono); font-weight: 700; color: var(--text-muted); flex-shrink: 0; transition: transform 0.2s ease; }
@@ -168,17 +233,8 @@
   .option.is-correct .option__letter, .option.is-wrong .option__letter { background: currentColor; color: inherit; border-color: currentColor; }
   .option:disabled { cursor: default; opacity: 0.9; }
   
-  /* Fluid Intersection-Observer driven scroll animations */
-  .reveal { 
-    opacity: 0; 
-    transform: translateY(35px); 
-    transition: opacity 0.95s cubic-bezier(0.215, 0.610, 0.355, 1), transform 0.95s cubic-bezier(0.215, 0.610, 0.355, 1); 
-    will-change: opacity, transform; 
-  }
-  .reveal.is-visible { 
-    opacity: 1; 
-    transform: translateY(0); 
-  }
+  .reveal { opacity: 0; transform: translateY(35px); transition: opacity 0.95s cubic-bezier(0.215, 0.610, 0.355, 1), transform 0.95s cubic-bezier(0.215, 0.610, 0.355, 1); will-change: opacity, transform; }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
   
   .feedback { margin-top: 16px; padding: 16px 18px; border-radius: 14px; display: none; font-size: 14px; line-height: 1.6; animation: slideDown 0.3s ease-out; }
   .feedback.is-shown { display: block; }
@@ -198,17 +254,14 @@
   .button--secondary { background: #fff; color: #000; border: 1px solid var(--line); }
   .button--secondary:hover { background: #f7f9fa; transform: translateY(-1px); }
   
-  /* Locking and Blur states */
   .locked-section { position: relative; min-height: 380px; pointer-events: none; }
   .locked-section > .wrap { opacity: 0.12; filter: blur(4px); transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
   .locked-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 24px; background: rgba(255,255,255,0.88); text-align: center; color: var(--text); z-index: 20; pointer-events: auto; animation: fadeIn 0.4s ease; }
   
-  /* Floating lock message card animation */
   .locked-overlay__msg { max-width: 500px; background: #fff; padding: 36px; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); border: 1px solid var(--line); animation: floatCard 4s infinite ease-in-out; color: var(--text); }
   .locked-overlay__msg h3 { font-family: var(--serif); font-size: 22px; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; }
   .locked-overlay__msg p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
   
-  /* Award Modal Structural Elements */
   .pdf-modal { position: fixed; inset: 0; background: rgba(7, 16, 24, 0.6); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; padding: 20px; z-index: 1100; opacity: 0; transition: opacity 0.3s ease; }
   .pdf-modal.is-open { display: flex; opacity: 1; }
   .pdf-modal__panel { width: 100%; max-width: 520px; border-radius: 28px; background: #fff; box-shadow: var(--shadow-lg); overflow: hidden; transform: scale(0.92); transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
@@ -232,7 +285,6 @@
   .pdf-modal__btn--secondary:hover { background: var(--ice-hover); transform: translateY(-1px); }
   .pdf-modal__error { color: #b91c1c; font-size: 13px; margin-top: 10px; font-weight: 500; }
 
-  /* Professional Core CSS Keyframes Animations */
   @keyframes ctaPulse {
     0% { box-shadow: 0 0 0 0 rgba(0, 242, 255, 0.5); }
     70% { box-shadow: 0 0 0 12px rgba(0, 242, 255, 0); }
@@ -251,11 +303,12 @@
     to { opacity: 1; }
   }
 
-  @media (max-width: 920px) { .hero__inner { grid-template-columns: 1fr; } .nav__inner { padding: 16px 20px; } }
+  @media (max-width: 920px) { .hero__inner { grid-template-columns: 1fr; } .nav__inner { padding: 16px 20px; } .battle-ring { grid-template-columns: 1fr; } }
   @media (max-width: 720px) { .wrap { padding: 0 20px; } .section-head { grid-template-columns: 1fr; gap: 12px; } .nav__links { display: none; } }
 </style>
 </head>
 <body>
+
 <div id="authGate" style="position:fixed;inset:0;z-index:99999;background:#071018;display:flex;align-items:center;justify-content:center;font-family:Inter,system-ui,sans-serif;">
   <div style="display:flex;width:min(900px,92vw);height:min(540px,88vh);border-radius:18px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.6);">
     <div style="flex:0 0 50%;display:flex;flex-direction:column;justify-content:center;padding:52px 56px;box-sizing:border-box;background:#fff;">
@@ -282,13 +335,13 @@
 <div class="progress-bar"><div class="progress-bar__fill" id="progressBar"></div></div>
 <nav class="nav" id="mainNav">
   <div class="nav__inner">
-    <div class="nav__brand"><img src="logo-datavant.svg" alt="Datavant - Coupa 101" class="nav__logo"></div>
+    <div class="nav__brand"><img src="Assets\logo-datavant.png" alt="Datavant - Supplier Onboarding" class="nav__logo"></div>
     <div class="nav__links">
-      <a href="#homepage" class="nav-link">🏠 Homepage</a>
-      <a href="#profile" class="nav-link">👤 Profile</a>
-      <a href="#delegates" class="nav-link">🤝 Delegates</a>
-      <a href="#activity" class="nav-link">📊 Activity</a>
-      <a href="#guided-buying" class="nav-link">🛒 Guided Buying</a>
+      <a href="#module-1" class="nav-link">🏢 1. Supplier Onboarding</a>
+      <a href="#module-2" class="nav-link">📝 2. Contract Requests</a>
+      <a href="#module-3" class="nav-link">🛒 3. PR, PO & Payment</a>
+      <a href="#module-4" class="nav-link">⚖️ 4. Approvals & DOA</a>
+      <a href="#module-5" class="nav-link">📄 5. Approved Templates</a>
     </div>
   </div>
 </nav>
@@ -298,17 +351,17 @@
   <div class="wrap">
     <div class="hero__inner">
       <div>
-        <div class="hero__eyebrow">🚀 Coupa 101</div>
-        <h1 class="hero__title">An introduction to your Coupa Instance</h1>
-        <p class="hero__lead">Familiarize yourself with the core dashboard operations and request configurations inside Datavant's global procurement framework.</p>
-        <button class="hero__cta" onclick="document.getElementById('homepage').scrollIntoView({behavior:'smooth'})">Start Learning 🎯</button>
+        <div class="hero__eyebrow">🚀 Coupa Procurement Framework</div>
+        <h1 class="hero__title">Supplier Onboarding & Contract Management</h1>
+        <p class="hero__lead">This guide is the single reference for onboarding suppliers and managing contracts at Datavant, from the first request through to payment. Every step runs through Coupa.</p>
+        <button class="hero__cta" onclick="document.getElementById('module-1').scrollIntoView({behavior:'smooth'})">Start Learning 🎯</button>
         <div class="hero__meta">
           <div class="hero__meta-item">
             <div class="hero__meta-num">5</div>
-            <div class="hero__meta-label">📚 Sections</div>
+            <div class="hero__meta-label">📚 Core Modules</div>
           </div>
           <div class="hero__meta-item">
-            <div class="hero__meta-num">15m</div>
+            <div class="hero__meta-num">30m-45m</div>
             <div class="hero__meta-label">⏱️ Time Frame</div>
           </div>
           <div class="hero__meta-item">
@@ -318,53 +371,216 @@
         </div>
       </div>
       <div class="hero__panel">
-        <h2>What you will learn</h2>
-        <p>How to comfortably navigate the system homepage, configure your profile, assign delegates, submit documents through Guided Buying, and track/manage your documents using the "Activity" page.</p>
+        <h2>Audience</h2>
+        <p>Requestors and business owners who initiate supplier onboarding, contracts, and purchase requisitions, together with the Procurement, Finance, and Legal partners who support them. After this training, a viewer should be able to onboard a supplier at the right risk tier, request the right agreement in the right sequence, raise a purchase requisition and purchase order, route an approval to the correct authority, and recognize the actions that violate policy.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section id="homepage" class="reveal">
+<div class="wrap" style="margin-top: -20px; margin-bottom: 40px;">
+  <div class="content-block" style="border-color: var(--brand-cyan); background: rgba(233, 254, 255, 0.45);">
+    <h3 style="font-family: var(--serif); font-size: 22px; font-weight: 700;">⚠️ Please commit to memory the below rules:</h3>
+    <h3 style="font-family: var(--serif); font-size: 22px; font-weight: 700;">🔍More information and a second review of these rules will be provided throughout the course.</h3>
+    <div class="visual-grid">
+      <div class="visual-card">
+        <div class="visual-card__badge">01</div>
+        <div class="visual-card__title">Unified System</div>
+        <div class="visual-card__body">Everything runs through Coupa. No onboarding, contract, PR, or PO happens outside Coupa, and DocuSign is initiated from Coupa.</div>
+      </div>
+      <div class="visual-card">
+        <div class="visual-card__badge">02</div>
+        <div class="visual-card__title">No PO, No Pay</div>
+        <div class="visual-card__body">The purchase requisition and resulting PO must exist before a supplier can invoice or be paid.</div>
+      </div>
+      <div class="visual-card">
+        <div class="visual-card__badge">03</div>
+        <div class="visual-card__title">Sequence First</div>
+        <div class="visual-card__body">NDA first – only if we are sharing confidential info ahead of signing. Submit NDA before any other agreement, then MSA, then SOW, then BAA/DPA.</div>
+      </div>
+      <div class="visual-card">
+        <div class="visual-card__badge">04</div>
+        <div class="visual-card__title">Default Paper</div>
+        <div class="visual-card__body">Datavant paper by default. Use the latest approved template from Coupa. Supplier paper requires Legal and Procurement sign-off.</div>
+      </div>
+      <div class="visual-card">
+        <div class="visual-card__badge">05</div>
+        <div class="visual-card__title">Standard Terms</div>
+        <div class="visual-card__body">Standard commercial terms hold: NET 60, no auto-renewal, and no late-payment fees. Any deviation needs separate written approval.</div>
+      </div>
+      <div class="visual-card">
+        <div class="visual-card__badge">06</div>
+        <div class="visual-card__title">Zero Self-Sign</div>
+        <div class="visual-card__body">No self-approval, ever. No one approves their own request, and no one signs an agreement outside the Delegation of Authority.</div>
+      </div>
+      <div class="visual-card">
+        <div class="visual-card__badge">07</div>
+        <div class="visual-card__title">TCV Aggregation</div>
+        <div class="visual-card__body">Approve by Total Contract Value. Route to authority based on TCV across all years, amendments, and out-of-pockets. Escalate up, never sideways.</div>
+      </div>
+      <div class="visual-card">
+        <div class="visual-card__badge">08</div>
+        <div class="visual-card__title">Form Guardrails</div>
+        <div class="visual-card__body">Low-Risk Form is Tier 4 only. Never use it for a supplier with any structural system or data access.</div>
+      </div>
+      <div class="visual-card">
+        <div class="visual-card__badge">09</div>
+        <div class="visual-card__title">Cross-Border Tax</div>
+        <div class="visual-card__body">Foreign suppliers paid by a US entity always need the right W-8 (W-8BEN or W-8BEN-E), in addition to local documents.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="module-1" class="reveal">
   <div class="wrap">
     <div class="section-head">
       <div class="section-head__num">01</div>
       <div class="section-head__content">
-        <div class="section-head__eyebrow">🏠 Platform Core</div>
-        <h2 class="section-head__title">Navigation and understanding of your Homepage</h2>
-        <p class="section-head__lead">The Coupa homepage is your central hub for accessing all features and information within the platform.</p>
-      </div>
-    </div>
-    <div class="content-block content-block--media">
-      <div class="media-copy">
-        <p>The Coupa homepage is used for accessing all the features and information within the platform. It serves as your main dashboard for navigating your Coupa experience.</p>
-        <ul>
-          <li data-emoji="🖥️">Showcases custom dropdown menus, shortcuts, punchouts, announcements, activity, and more!</li>
-          <li data-emoji="🔍">Familiarize yourself with the layout and key features of the homepage.</li>
-          <li data-emoji="🛒">Explore the different ways to initiate guided buying.</li>
-        </ul>
-      </div>
-      <div class="video-embed">
-        <div style="position: relative; padding-bottom: 56.25%; height: 0;">
-          <iframe src="https://www.loom.com/embed/0eb2cd58b5c24a23b1d12919baf95b2f" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
-        </div>
+        <div class="section-head__eyebrow">🏢 Module One</div>
+        <h2 class="section-head__title">Onboarding a New Supplier</h2>
+        <p class="section-head__lead">Match the form to the risk tier, Low-Risk is Tier 4 only, and collect the correct tax and banking documents.</p>
       </div>
     </div>
     
+    <div class="content-block">
+      <h3>1.1 Onboarding Process Flow</h3>
+      <p class="visual-desc">Track the required lifecycle of a new supplier activation pipeline through Coupa:</p>
+      
+      <div class="pipeline-track">
+        <div class="pipeline-step">
+          <div class="pipeline-indicator">1</div>
+          <div class="pipeline-box">
+            <div class="pipeline-header">Initialization Request</div>
+            <div class="pipeline-desc">Requestor submits the New Supplier Request Form inside the Coupa environment.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="pipeline-indicator">2</div>
+          <div class="pipeline-box">
+            <div class="pipeline-header">Internal Gateway Review</div>
+            <div class="pipeline-desc">Internal database checkpoints processed and compliance approval obtained.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="pipeline-indicator">3</div>
+          <div class="pipeline-box">
+            <div class="pipeline-header">External Verification Distribution</div>
+            <div class="pipeline-desc">Supplier receives and fully completes the detailed External Onboarding Form.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="pipeline-indicator">4</div>
+          <div class="pipeline-box">
+            <div class="pipeline-header">Infosec Screening Clearance <span class="pipeline-sla">SLA: 10 Business Days</span></div>
+            <div class="pipeline-desc">IT Security Review conducted post-submission; actual duration depends strictly on supplier's responses to the IT Assessment Questionnaire.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="pipeline-indicator">5</div>
+          <div class="pipeline-box">
+            <div class="pipeline-header">Commercial Term Alignment</div>
+            <div class="pipeline-desc">Vendor Management Terms comprehensively reviewed, validated, and approved.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="pipeline-indicator">6</div>
+          <div class="pipeline-box" style="border-color: var(--correct); background: rgba(30,138,107,0.02);">
+            <div class="pipeline-header" style="color: var(--correct);">Active Ledger Synchronization ✓</div>
+            <div class="pipeline-desc">Supplier marked Active in Coupa, unlocking downstream transaction pipelines.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-block">
+      <h3>1.2 Low-Risk Onboarding Form</h3>
+      <p>The Low-Risk Form is exclusively reserved for Tier 4 suppliers, defined as suppliers with no system access and no data access of any kind (No PII, PHI, system or any other data access).</p>
+      <p>Mandatory requirements to submit the Low-Risk Form:</p>
+      <ul>
+        <li>Tax Documentation (see Section 1.4)</li>
+        <li>Banking Details (Bank Letterhead or Voided or Canceled Check, see Section 1.3)</li>
+      </ul>
+      <div class="callout-banner callout-banner--danger">
+        <div class="emoji">⚠️</div>
+        <div>Do NOT use the Low-Risk Form to onboard a supplier that does not qualify as Tier 4. Using this form for suppliers with system or data access creates downstream security and compliance risks. When in doubt, follow the standard onboarding process in Section 1.1.</div>
+      </div>
+    </div>
+
+    <div class="content-block">
+      <h3>1.3 Banking Details Requirements</h3>
+      <p>Suppliers must provide one of the following for ACH payment setup:</p>
+      <ul>
+        <li>Bank Letterhead confirming ACH / banking details, OR</li>
+        <li>Voided or Canceled Check copy</li>
+      </ul>
+    </div>
+
+    <div class="content-block">
+      <h3>1.4 Mandatory Tax Documentation</h3>
+      <p class="visual-desc">System profiles must contain the correct verified filing attachments based on jurisdiction rules:</p>
+      
+      <div class="visual-grid">
+        <div class="visual-card" style="border-left: 4px solid #3b57b4;">
+          <div class="visual-card__title">🇺🇸 US Entity / Individual</div>
+          <div class="visual-card__body">
+            <p><strong>Required asset:</strong> Form W-9</p>
+            <p style="margin-top:6px;">Confirms formal internal taxpayer registration status and tracking indexes.</p>
+          </div>
+        </div>
+        <div class="visual-card" style="border-left: 4px solid #d97706;">
+          <div class="visual-card__title">🌍 Foreign Individual</div>
+          <div class="visual-card__body">
+            <p><strong>Required asset:</strong> Form W-8BEN</p>
+            <p style="margin-top:6px;">Certifies foreign individual status and determines applicable US withholding tax when paid by a US entity.</p>
+          </div>
+        </div>
+        <div class="visual-card" style="border-left: 4px solid #b91c1c;">
+          <div class="visual-card__title">🏢 Foreign Company / Entity</div>
+          <div class="visual-card__body">
+            <p><strong>Required asset:</strong> Form W-8BEN-E</p>
+            <p style="margin-top:6px;">Certifies global corporate operational status and validates appropriate tax withholdings under a US entity payment track.</p>
+          </div>
+        </div>
+        <div class="visual-card" style="border-left: 4px solid #059669;">
+          <div class="visual-card__title">📍 Local Cross-Border Orgs</div>
+          <div class="visual-card__body">
+            <p><strong>Required asset:</strong> Regional Registry File</p>
+            <p style="margin-top:6px;">At least one required document: VAT Cert, COI, GSTIN, Proof of Business Address, or UTR. VAT or COI is strongly preferred.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="callout-banner callout-banner--warning">
+        <div class="emoji">⚠️</div>
+        <div>Note: For foreign suppliers receiving payments from a Datavant US entity, the applicable W-8BEN or W-8BEN-E is always required in addition to any local country-specific document.</div>
+      </div>
+    </div>
+
     <div class="quiz" data-quiz="q1">
       <div class="quiz__head">
         <div>
           <div class="quiz__label">🔍 Knowledge Check 01</div>
-          <h3 class="quiz__title">Verify your homepage structural knowledge</h3>
+          <h3 class="quiz__title">Verify Module 1 Onboarding Guidelines</h3>
         </div>
       </div>
-      <div class="question" data-correct="3">
+      <div class="question" data-correct="2">
         <div class="question__num">Question 01</div>
-        <div class="question__text">How can the guided buying options be accessed in Coupa outside of the "Let us guide you" section?</div>
+        <div class="question__text">For which specific operational category is the streamlined Low-Risk Form exclusively reserved?</div>
         <div class="question__options">
-          <button class="option"><span class="option__letter">A</span>Within the user profile settings configuration matrix.</button>
-          <button class="option"><span class="option__letter">B</span>By searching for it in the localized system index search bar.</button>
-          <button class="option"><span class="option__letter">C</span>Via the primary Homepage dropdown menu interface.</button>
+          <button class="option"><span class="option__letter">A</span>Any regional provider with an active master service contract.</button>
+          <button class="option"><span class="option__letter">B</span>Tier 4 suppliers with absolutely no system access and no data access of any kind.</button>
+          <button class="option"><span class="option__letter">C</span>Suppliers who require expedited onboarding validation under 48 hours.</button>
+        </div>
+        <div class="feedback"></div>
+      </div>
+      <div class="question" data-correct="3">
+        <div class="question__num">Question 02</div>
+        <div class="question__text">What is required for foreign suppliers receiving direct financial payments from a Datavant US entity?</div>
+        <div class="question__options">
+          <button class="option"><span class="option__letter">A</span>Only a standard US corporate W-9 taxonomy document.</button>
+          <button class="option"><span class="option__letter">B</span>A localized business license without separate federal filing records.</button>
+          <button class="option"><span class="option__letter">C</span>The applicable Form W-8 (W-8BEN or W-8BEN-E) in addition to any local country-specific documentation.</button>
         </div>
         <div class="feedback"></div>
       </div>
@@ -373,51 +589,147 @@
   </div>
 </section>
 
-<section id="profile" class="section--dark locked-section reveal">
+<section id="module-2" class="locked-section reveal">
   <div class="locked-overlay">
     <div class="locked-overlay__msg">
-      <h3>🔒 Section Locked</h3>
-      <p>Correctly answer the question in Section 01: Homepage to unlock this module.</p>
+      <h3>🔒 Credentials Locked</h3>
+      <p>Finish the modular quiz above with correct parameters to unlock your certificate and download tokens.</p>
     </div>
   </div>
   <div class="wrap">
     <div class="section-head">
       <div class="section-head__num">02</div>
       <div class="section-head__content">
-        <div class="section-head__eyebrow">👤 User Space</div>
-        <h2 class="section-head__title">All things profile!</h2>
-        <p class="section-head__lead">Navigate & configure your profile settings to manage your Coupa experience.</p>
+        <div class="section-head__eyebrow">📝 Module Two</div>
+        <h2 class="section-head__title">Requesting a Contract</h2>
+        <p class="section-head__lead">Submit in sequence (NDA, MSA, SOW, BAA or DPA) on Datavant paper, with standard commercial terms.</p>
       </div>
     </div>
-    <div class="content-block content-block--media">
-      <div class="media-copy">
-        <p>Accessing the profile options is straightforward. Follow these steps to learn how navigate and configure your profile:</p>
-        <ul>
-          <li>Select your initials in the top right window frame.</li>
-          <li>Select the secondary "Settings" link option.</li>
-          <li>That's it! You should now see your profile settings page.</li>
-        </ul>
+
+    <div class="content-block">
+      <h3>2.1 Contract Request Submission</h3>
+      <p style="margin-bottom:20px;">Chronological sequence matters profoundly. Submit contract requests in Coupa using this specific structural blueprint:</p>
+      
+      <div class="hierarchy-blueprint">
+        <div class="hierarchy-layer">
+          <div class="hierarchy-tag">Phase 1</div>
+          <div class="hierarchy-meta">
+            <h4>NDA (Non-Disclosure Agreement)</h4>
+            <p>Submit FIRST, before any other agreement ONLY if applicable i.e. we are sharing confidential information ahead of signing the broader agreement.</p>
+          </div>
+        </div>
+        <div class="hierarchy-layer">
+          <div class="hierarchy-tag">Phase 2</div>
+          <div class="hierarchy-meta">
+            <h4>MSA (Master Service Agreement)</h4>
+            <p>Governs the overall core legal framework and commercial relationship rules.</p>
+          </div>
+        </div>
+        <div class="hierarchy-layer">
+          <div class="hierarchy-tag">Phase 3</div>
+          <div class="hierarchy-meta">
+            <h4>SOW (Statement of Work)</h4>
+            <p>Defines exact contextual project scope, specific localized deliverables, and itemized execution timelines.</p>
+          </div>
+        </div>
+        <div class="hierarchy-layer">
+          <div class="hierarchy-tag">Phase 4</div>
+          <div class="hierarchy-meta">
+            <h4>BAA / DPA (Data Protection Addendums)</h4>
+            <p><strong>BAA:</strong> Required when PHI is involved (either direct access or inadvertent risk). <br><strong>DPA:</strong> Mandatory when PII metadata is touched across any system boundary.</p>
+          </div>
+        </div>
+        <div class="hierarchy-layer" style="border-style: dashed; background: rgba(0,0,0,0.01);">
+          <div class="hierarchy-tag" style="background:#4A5568;">Life Cycle</div>
+          <div class="hierarchy-meta">
+            <h4>Amendments & Terminations</h4>
+            <p><strong>Amendment:</strong> Document modifications that require explicit contextual reference to the original executed agreement. <br><strong>Termination:</strong> Formally ends the active contractual framework safely.</p>
+          </div>
+        </div>
       </div>
-      <div class="image-embed">
-        <img src="dv_image_coupa101_homepage_profile.png" alt="Profile drop configuration" />
+      
+      <div class="callout-banner callout-banner--warning">
+        <div class="emoji">⚠️</div>
+        <div>Important: If a supplier has a separate MSA and a separate SOW, each agreement requires its own individual contract request in Coupa.</div>
       </div>
     </div>
-    <div class="content-block content-block--media">
-      <div class="media-copy">
-        <p>The Profile settings within Coupa houses a variety of functional tabs! Lets take a brief look at what each entails.</p>
-        <ul>
-          <li data-emoji="⚙️">General - User forms, Profile Photo, and Password resetting.</li>
-          <li data-emoji="📍">Address Book - Set your Address.</li>
-          <li data-emoji="📦">Content - View Tagged Object & manage your Product Reviews.</li>
-          <li data-emoji="🤝">Delegates - Assign & manage your Delegates.</li>
-          <li data-emoji="💳">Billing Accounts - Configure & view your accounts.</li>
-          <li data-emoji="📊">Reports - Manage your Scheduled Reports, and view your report log. </li>
-          <li data-emoji="🔔">Notifications - Configure your Email, System/Mobile Notifications.</li>
-          <li data-emoji="🔒">Multi Factor Authentication: - Setup and manage your MFA tied to the account.</li>
-        </ul>
+
+    <div class="content-block">
+      <h3>2.2 Contract Best Practices & Vendor Tiers</h3>
+      <ul>
+        <li><strong>Sequence matters:</strong> Always submit an NDA first, followed by MSA → SOW → BAA / DPA as applicable, especially when PHI or PII is involved.</li>
+        <li><strong>Use Datavant Paper:</strong> Wherever possible, use Datavant's standard contract templates rather than counterparty / supplier paper to reduce review loops and speed up turnaround time (TAT).</li>
+        <li><strong>Disclose AI Usage:</strong> Be aware if the vendor is providing an artificial intelligence based service to Datavant and ensure that you disclose that on the Coupa ticket.</li>
+      </ul>
+
+      <p style="margin-top:24px; font-weight:700;">Standard Commercial Terms Matrix Dashboard:</p>
+      
+      <div class="dashboard-cluster">
+        <div class="dashboard-tile">
+          <div class="dashboard-tile__label">Payment Cycle</div>
+          <div class="dashboard-tile__value">NET 60 Days</div>
+          <div class="dashboard-tile__status">🔹 Default Baseline</div>
+        </div>
+        <div class="dashboard-tile">
+          <div class="dashboard-tile__label">Invoice Frequency</div>
+          <div class="dashboard-tile__value">Monthly / Quarterly</div>
+          <div class="dashboard-tile__status">🔹 Regulated Interval</div>
+        </div>
+        <div class="dashboard-tile">
+          <div class="dashboard-tile__label">Auto-Renewal Clause</div>
+          <div class="dashboard-tile__value">Not Permitted</div>
+          <div class="dashboard-tile__status" style="color:var(--wrong);">🚫 Blocked Entry</div>
+        </div>
+        <div class="dashboard-tile">
+          <div class="dashboard-tile__label">Late Payment Penalty</div>
+          <div class="dashboard-tile__value">Not Permitted</div>
+          <div class="dashboard-tile__status" style="color:var(--wrong);">🚫 Blocked Entry</div>
+        </div>
+        <div class="dashboard-tile">
+          <div class="dashboard-tile__label">Multi-Year Requirement</div>
+          <div class="dashboard-tile__value">Convenience Clause</div>
+          <div class="dashboard-tile__status">🔹 Mandatory Out</div>
+        </div>
+        <div class="dashboard-tile">
+          <div class="dashboard-tile__label">Out of Pocket Costs</div>
+          <div class="dashboard-tile__value">Prior Approval</div>
+          <div class="dashboard-tile__status">🔹 Sign-off Required</div>
+        </div>
       </div>
-      <div class="image-embed">
-        <img src="dv_image_profile_settings_general.png" alt="Profile overview" />
+      
+      <div class="callout-banner callout-banner--warning">
+        <div class="emoji">⚠️</div>
+        <div>Any deviation from the above standard commercial terms requires separate written approval before execution.</div>
+      </div>
+
+      <p style="margin-top:28px; font-weight:700;">Be aware of the tier of your vendor before you put in the request:</p>
+      
+      <div class="thermometer-grid">
+        <div class="thermometer-bar">
+          <div class="thermometer-label thermometer-label--t0">Tier 0</div>
+          <div class="thermometer-desc"><strong>Critical Infrastructure:</strong> Downtime directly impairs our capability to deliver core services to customers or causes immediate broad client impacts.</div>
+        </div>
+        <div class="thermometer-bar">
+          <div class="thermometer-label thermometer-label--t1">Tier 1</div>
+          <div class="thermometer-desc"><strong>Data Processing Access:</strong> Direct system connectivity to, or active processing pipelines involving, customer PHI or PII.</div>
+        </div>
+        <div class="thermometer-bar">
+          <div class="thermometer-label thermometer-label--t2">Tier 2</div>
+          <div class="thermometer-desc"><strong>Inadvertent Exposure Risk:</strong> No technical software guardrails prevent the vendor from accidentally viewing customer PHI or PII records.</div>
+        </div>
+        <div class="thermometer-bar">
+          <div class="thermometer-label thermometer-label--t3">Tier 3</div>
+          <div class="thermometer-desc"><strong>Standard Confidential Track:</strong> Only accesses standard internal Datavant business information. Zero customer or personnel records exposed.</div>
+        </div>
+        <div class="thermometer-bar">
+          <div class="thermometer-label thermometer-label--t4">Tier 4</div>
+          <div class="thermometer-desc"><strong>Insulated Perimeter:</strong> Absolutely no internal system data, network access, or tracking footprints.</div>
+        </div>
+      </div>
+      
+      <div class="callout-banner callout-banner--warning">
+        <div class="emoji">⚠️</div>
+        <div>Please be aware if you are putting in a request for a vendor that falls into Tiers 0-2 there will be a stringent review from legal, compliance, and security. Plan ahead for making these requests as they may take more time to negotiate/process.</div>
       </div>
     </div>
 
@@ -425,53 +737,113 @@
       <div class="quiz__head">
         <div>
           <div class="quiz__label">🔍 Knowledge Check 02</div>
-          <h3 class="quiz__title">Verify your profile navigational knowledge</h3>
+          <h3 class="quiz__title">Verify Module 2 Request Guidelines</h3>
         </div>
       </div>
-      <div class="question" data-correct="1">
-        <div class="question__num">Question 02</div>
-        <div class="question__text">How would a user access their profile settings?</div>
-        <div class="question__options">
-          <button class="option"><span class="option__letter">A</span>By selecting their initials in the top right and clicking "Settings".</button>
-          <button class="option"><span class="option__letter">B</span>By selecting the "?" utility icon in the top-right corner of the screen.</button>
-          <button class="option"><span class="option__letter">C</span>By selecting "datavant" text asset in the top-left corner of the screen.</button>
+      <div class="option-group-wrapper">
+        <div class="question" data-correct="1">
+          <div class="question__num">Question 01</div>
+          <div class="question__text">If a vendor utilizes a completely separate MSA and a completely separate SOW, how must the request be submitted?</div>
+          <div class="question__options">
+            <button class="option"><span class="option__letter">A</span>Each agreement requires its own individual contract request ticket in Coupa.</button>
+            <button class="option"><span class="option__letter">B</span>They must be merged together into a single master request artifact.</button>
+            <button class="option"><span class="option__letter">C</span>The SOW is held back until the MSA is fully active across financial systems.</button>
+          </div>
+          <div class="feedback"></div>
         </div>
-        <div class="feedback"></div>
+        <div class="question" data-correct="3">
+          <div class="question__num">Question 02</div>
+          <div class="question__text">What is Datavant's standard baseline policy position regarding auto-renewal clauses on supplier contracts?</div>
+          <div class="question__options">
+            <button class="option"><span class="option__letter">A</span>They are acceptable only if capped below standard consumer index baselines.</button>
+            <button class="option"><span class="option__letter">B</span>They are accepted for multi-year agreements without separate approvals.</button>
+            <button class="option"><span class="option__letter">C</span>They are strictly not permitted; any deviation requires separate written approval.</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
       </div>
       <button class="quiz__restart" type="button" title="Restart question">↻</button>
     </div>
   </div>
 </section>
 
-<section id="delegates" class="locked-section reveal">
+<section id="module-3" class="locked-section reveal">
   <div class="locked-overlay">
     <div class="locked-overlay__msg">
-      <h3>🔒 Section Locked</h3>
-      <p>Correctly answer the question in Section 02: Profile to unlock this module.</p>
+      <h3>🔒 Credentials Locked</h3>
+      <p>Finish the modular quiz above with correct parameters to unlock your certificate and download tokens.</p>
     </div>
   </div>
   <div class="wrap">
     <div class="section-head">
       <div class="section-head__num">03</div>
       <div class="section-head__content">
-        <div class="section-head__eyebrow">🤝 Team Synergy</div>
-        <h2 class="section-head__title">Creating delegates in Coupa</h2>
-        <p class="section-head__lead">Understand how to create a delegate and the requirements to do so safely.</p>
+        <div class="section-head__eyebrow">🛒 Module Three</div>
+        <h2 class="section-head__title">PR, PO, and Payment</h2>
+        <p class="section-head__lead">No PO, No Pay. Link the executed contract, and keep everything in Coupa and DocuSign.</p>
       </div>
     </div>
-    <div class="content-block content-block--media">
-      <div class="media-copy">
-        <p>Delegates allow trusted colleagues to act on your behalf when you are unavailable. This ensures approvals and purchasing actions continue without interruption.</p>
-        <ul>
-          <li data-emoji="🛡️">Delegates should have the right level of authority for the tasks they will perform.</li>
-          <li data-emoji="📋">Type settings determine the scope of actions a delegate can perform.</li>
-          <li data-emoji="⏳">Delegation stays in place until the specified end date or until the primary user removes it.</li>
-        </ul>
-      </div>
-      <div class="video-embed">
-        <div style="position: relative; padding-bottom: 56.25%; height: 0;">
-          <iframe src="https://www.loom.com/embed/c649fb3eabeb4878acd4b0800b824079" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+
+    <div class="content-block">
+      <h3>2.3 Purchase Requisition & Purchase Order</h3>
+      <p>After a contract is fully executed, the business owner / requestor must submit a Purchase Requisition (PR) in Coupa to generate a Purchase Order (PO), which the supplier will invoice against. Always link the executed contract to the PR at time of submission.</p>
+      
+      <p style="margin-top:24px; font-weight:700;">PR Line Setup and Billing Frequency Guide:</p>
+      
+      <div class="dashboard-cluster" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+        <div class="dashboard-tile" style="border-top: 4px solid var(--line);">
+          <div class="dashboard-tile__label">1 Year Lifespan</div>
+          <div class="dashboard-tile__value">Monthly Invoices</div>
+          <div class="dashboard-tile__status" style="color:var(--text);">📊 12 PR Lines Required</div>
         </div>
+        <div class="dashboard-tile" style="border-top: 4px solid var(--line);">
+          <div class="dashboard-tile__label">1 Year Lifespan</div>
+          <div class="dashboard-tile__value">Quarterly Invoices</div>
+          <div class="dashboard-tile__status" style="color:var(--text);">📊 4 PR Lines Required</div>
+        </div>
+        <div class="dashboard-tile" style="border-top: 4px solid var(--line);">
+          <div class="dashboard-tile__label">2 Year Lifespan</div>
+          <div class="dashboard-tile__value">Monthly Invoices</div>
+          <div class="dashboard-tile__status" style="color:var(--text);">📊 24 PR Lines Required</div>
+        </div>
+        <div class="dashboard-tile" style="border-top: 4px solid var(--line);">
+          <div class="dashboard-tile__label">2 Year Lifespan</div>
+          <div class="dashboard-tile__value">Quarterly Invoices</div>
+          <div class="dashboard-tile__status" style="color:var(--text);">📊 8 PR Lines Required</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-block">
+      <h3>2.4 No PO, No Pay Policy</h3>
+      <div class="callout-banner callout-banner--danger">
+        <div class="emoji">🚫</div>
+        <div>Datavant enforces a strict NO PO, NO PAY policy. Business owners and requestors must submit the Purchase Requisition in Coupa immediately after contract execution. The PO ensures the supplier can invoice correctly and enables timely payment, preventing last-minute escalations.</div>
+      </div>
+    </div>
+
+    <div class="content-block">
+      <h3>2.5 Contract Execution & DocuSign Protocol</h3>
+      <p>All vendor contracts must be processed exclusively through Coupa. Datavant initiates DocuSign on all agreements after approval.</p>
+      
+      <div class="visual-grid" style="grid-template-columns: 1fr 1fr; gap:20px;">
+        <div class="visual-card" style="border-left: 4px solid var(--correct);">
+          <div class="visual-card__title">Standard Execution Path</div>
+          <div class="visual-card__body">Datavant initiates the official DocuSign routing pipeline directly via Coupa immediately following contract approval checkpoints.</div>
+        </div>
+        <div class="visual-card" style="border-left: 4px solid var(--line);">
+          <div class="visual-card__title">Supplier Declines DocuSign</div>
+          <div class="visual-card__body">
+            1. Sign the Coupa-approved clean copy internally first.<br>
+            2. Send the partially signed PDF to the supplier for counter-signature.<br>
+            3. Supplier returns the countersigned copy to Datavant for compliance archiving.
+          </div>
+        </div>
+      </div>
+      
+      <div class="callout-banner callout-banner--danger">
+        <div class="emoji">🚫</div>
+        <div>Processing contracts outside of Coupa is a Datavant policy violation. All agreements, without exception, must go through Coupa.</div>
       </div>
     </div>
 
@@ -479,16 +851,26 @@
       <div class="quiz__head">
         <div>
           <div class="quiz__label">🔍 Knowledge Check 03</div>
-          <h3 class="quiz__title">Verify delegation protocol parameters</h3>
+          <h3 class="quiz__title">Verify Module 3 Processing Controls</h3>
         </div>
       </div>
       <div class="question" data-correct="1">
-        <div class="question__num">Question 03</div>
-        <div class="question__text">Why should a delegate be assigned before someone goes on leave?</div>
+        <div class="question__num">Question 01</div>
+        <div class="question__text">What layout constraint governs a 2-Year contract architecture billed on a Monthly cycle?</div>
         <div class="question__options">
-          <button class="option"><span class="option__letter">A</span>So operational approvals and purchasing actions can continue without delay.</button>
-          <button class="option"><span class="option__letter">B</span>So the delegate can see all of the original user's profile system passwords.</button>
-          <button class="option"><span class="option__letter">C</span>To ensure the delegate permanently inherits full global root permissions inside the system.</button>
+          <button class="option"><span class="option__letter">A</span>The requestor must configure exactly 24 individual PR lines in the system.</button>
+          <button class="option"><span class="option__letter">B</span>The contract requires a single unified block value linked via spreadsheet imports.</button>
+          <button class="option"><span class="option__letter">C</span>The pipeline allows lateral tracking across peer ledger entries without distinct itemization.</button>
+        </div>
+        <div class="feedback"></div>
+      </div>
+      <div class="question" data-correct="2">
+        <div class="question__num">Question 02</div>
+        <div class="question__text">What must occur immediately after a contract has been fully executed under internal policy mandates?</div>
+        <div class="question__options">
+          <button class="option"><span class="option__letter">A</span>The vendor begins work immediately while the tracking entries are back-filled next month.</button>
+          <button class="option"><span class="option__letter">B</span>The business owner must submit a Purchase Requisition in Coupa to ensure a valid PO is active.</button>
+          <button class="option"><span class="option__letter">C</span>The invoice metrics are approved via standard cross-functional verbal communication routes.</button>
         </div>
         <div class="feedback"></div>
       </div>
@@ -497,51 +879,105 @@
   </div>
 </section>
 
-<section id="activity" class="section--dark locked-section reveal">
+<section id="module-4" class="locked-section reveal">
   <div class="locked-overlay">
     <div class="locked-overlay__msg">
-      <h3>🔒 Section Locked</h3>
-      <p>Correctly answer the question in Section 03: Delegates to unlock this module.</p>
+      <h3>🔒 Credentials Locked</h3>
+      <p>Finish the modular quiz above with correct parameters to unlock your certificate and download tokens.</p>
     </div>
   </div>
   <div class="wrap">
     <div class="section-head">
       <div class="section-head__num">04</div>
       <div class="section-head__content">
-        <div class="section-head__eyebrow">📊 Activity</div>
-        <h2 class="section-head__title">Lifecycle tracking and management</h2>
-        <p class="section-head__lead">Monitor and manage your procurement lifecycle with comprehensive visibility.</p>
+        <div class="section-head__eyebrow">⚖️ Module Four</div>
+        <h2 class="section-head__title">Approvals and the DOA</h2>
+        <p class="section-head__lead">Approve by Total Contract Value, never self-approve, and escalate up rather than to a peer.</p>
       </div>
     </div>
-    <div class="content-block content-block--media">
-      <div class="media-copy">
-        <p>Coupa's Activity dashboard empowers users with comprehensive operational visibility, making document management clean and accessible:</p>
-        <ul>
-          <li data-emoji="🗂️"><strong>Central Hub Management:</strong> View, review, and organize all your active or historical requisitions, invoices, purchase orders, and more in one unified layout.</li>
-          <li data-emoji="🟢"><strong>Real-Time Status Indicators:</strong> Instantly verify exactly where a document sits in the processing lifecycle (e.g., Draft, Pending Approval, or Fully Approved).</li>
-          <li data-emoji="🎯"><strong>Bottleneck Visibility:</strong> Pinpoint precisely which management personnel currently holds an approval request to ensure timely follow-ups.</li>
-        </ul>
+
+    <div class="content-block">
+      <h3>3.1 Overview & Core Principles</h3>
+      <p>The Delegation of Authority defines the approval thresholds and authorized signatories for contract execution, and purchase requisition approvals. All approvals must be obtained prior to execution in Coupa.</p>
+      <ul>
+        <li><strong>No Self-Delegation:</strong> Authority cannot be self-delegated. A requestor cannot be their own approver at any threshold level.</li>
+        <li><strong>No Verbal Sign-offs:</strong> Verbal approvals are not valid. All approvals must be documented within Coupa or via official written communication (email chain attached to the Coupa record).</li>
+        <li><strong>Vertical Escalation Track:</strong> In the absence of the designated approver, authority escalates to the next level up. It does not pass laterally to a peer.</li>
+        <li><strong>Governance Schedule:</strong> The DoA matrix is reviewed and updated annually by the Finance and Procurement teams. The most current version governs at all times.</li>
+      </ul>
+      <div class="callout-banner callout-banner--warning">
+        <div class="emoji">⚠️</div>
+        <div>No individual may approve a transaction for which they are also the requestor. Self-approval is not permitted at any threshold level. Likewise, no individual may sign an agreement outside the authority set in this DOA.</div>
       </div>
-      <div class="video-embed">
-        <div style="position: relative; padding-bottom: 56.25%; height: 0;">
-          <iframe src="https://www.loom.com/embed/b1dd5665d58a442c930937ff21665f01" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+    </div>
+
+    <div class="content-block">
+      <h3>3.2 Contract Approval Thresholds Through Coupa</h3>
+      <p>Approval authority is based strictly on the Total Contract Value (TCV), inclusive of all years, amendments, and out-of-pocket expenses.</p>
+      
+      <div class="visual-grid">
+        <div class="visual-card" style="border-top: 4px solid var(--line);">
+          <div class="visual-card__title">Up to $150K</div>
+          <div class="visual-card__body">
+            <p><strong>Required Signatory Profile:</strong></p>
+            <p style="color:#000; font-weight:600; margin-top:4px;">Director, Procurement / Sr. Director, Strategic Sourcing</p>
+          </div>
+        </div>
+        <div class="visual-card" style="border-top: 4px solid var(--line);">
+          <div class="visual-card__title">$150K to $750K</div>
+          <div class="visual-card__body">
+            <p><strong>Required Signatory Profile:</strong></p>
+            <p style="color:#000; font-weight:600; margin-top:4px;">Business Unit CFO (per respective department assignment)</p>
+          </div>
+        </div>
+        <div class="visual-card" style="border-top: 4px solid var(--brand-cyan);">
+          <div class="visual-card__title">$750K to $3.00M</div>
+          <div class="visual-card__body">
+            <p><strong>Required Signatory Profile:</strong></p>
+            <p style="color:#000; font-weight:600; margin-top:4px;">Chief Financial Officer (CFO)</p>
+            <p style="margin-top:6px; font-weight:700; color:var(--wrong);">⚠️ Executive Summary Mandatory</p>
+          </div>
+        </div>
+        <div class="visual-card" style="border-top: 4px solid #000;">
+          <div class="visual-card__title">Above $3.00M</div>
+          <div class="visual-card__body">
+            <p><strong>Required Signatory Profile:</strong></p>
+            <p style="color:#000; font-weight:600; margin-top:4px;">Chief Executive Officer (CEO) / CFE Level</p>
+            <p style="margin-top:6px; font-weight:700; color:var(--wrong);">⚠️ Executive Summary Mandatory</p>
+          </div>
         </div>
       </div>
+      
+      <div class="callout-banner callout-banner--warning">
+        <div class="emoji">⚠️</div>
+        <div>Note: Amendments that increase TCV above the original approval threshold must be re-escalated to the appropriate authority level.</div>
+      </div>
     </div>
+
     <div class="quiz" data-quiz="q4">
       <div class="quiz__head">
         <div>
           <div class="quiz__label">🔍 Knowledge Check 04</div>
-          <h3 class="quiz__title">Verify Activity interface functionality</h3>
+          <h3 class="quiz__title">Verify Module 4 Authority Routing</h3>
         </div>
       </div>
       <div class="question" data-correct="2">
-        <div class="question__num">Question 04</div>
-        <div class="question__text">What can a user manage and verify within the designated "Activity" section of Coupa?</div>
+        <div class="question__num">Question 01</div>
+        <div class="question__text">Who is the required authorized approver inside Coupa if the aggregate Total Contract Value is $450,000?</div>
         <div class="question__options">
-          <button class="option"><span class="option__letter">A</span>Internal payroll modifiers and team healthcare insurance selection profiles.</button>
-          <button class="option"><span class="option__letter">B</span>Coupa documents assigned to, or created by the user.</button>
-          <button class="option"><span class="option__letter">C</span>External database architecture queries and cloud infrastructure deployments.</button>
+          <button class="option"><span class="option__letter">A</span>The local Procurement Director handles final approval independently.</button>
+          <button class="option"><span class="option__letter">B</span>The respective Business Unit CFO mapped to that department footprint.</button>
+          <button class="option"><span class="option__letter">C</span>The overarching Chief Financial Officer with an executive summary override.</button>
+        </div>
+        <div class="feedback"></div>
+      </div>
+      <div class="question" data-correct="1">
+        <div class="question__num">Question 02</div>
+        <div class="question__text">What trajectory occurs if a specific designated operational approver is absent or unavailable?</div>
+        <div class="question__options">
+          <button class="option"><span class="option__letter">A</span>The approval authority escalates to the next level up, never laterally to a peer.</button>
+          <button class="option"><span class="option__letter">B</span>The system enables the initialization requestor to self-approve.</button>
+          <button class="option"><span class="option__letter">C</span>The request parameter passes horizontally to a parallel line manager.</button>
         </div>
         <div class="feedback"></div>
       </div>
@@ -550,37 +986,158 @@
   </div>
 </section>
 
-<section id="guided-buying" class="locked-section reveal">
+<section id="module-5" class="locked-section reveal">
   <div class="locked-overlay">
     <div class="locked-overlay__msg">
-      <h3>🔒 Section Locked</h3>
-      <p>Correctly answer the question in Section 04: Activity to unlock this module.</p>
+      <h3>🔒 Credentials Locked</h3>
+      <p>Finish the modular quiz above with correct parameters to unlock your certificate and download tokens.</p>
     </div>
   </div>
   <div class="wrap">
     <div class="section-head">
       <div class="section-head__num">05</div>
       <div class="section-head__content">
-        <div class="section-head__eyebrow">🛒 Procurement Engine</div>
-        <h2 class="section-head__title">Navigate guided buying in Coupa</h2>
-        <p class="section-head__lead">Learn how guided buying helps users in a variety of automated workflow submissions.</p>
+        <div class="section-head__eyebrow">📄 Module Five</div>
+        <h2 class="section-head__title">Datavant-Approved Templates</h2>
+        <p class="section-head__lead">Always pull the latest template from Coupa. Supplier paper only with Legal and Procurement sign-off.</p>
       </div>
     </div>
-    <div class="content-block content-block--media">
-      <div class="media-copy">
-        <p>Guided buying in Coupa gives users a curated experience. See below for more information on Datavant's system routes:</p>
-        <ul>
-          <li data-emoji="📝">Request an NDA (For supplier evaluation processes) & Datavant Contract Templates.</li>
-          <li data-emoji="🔍">Initiate New Sourcing Requests and vendor evaluations.</li>
-          <li data-emoji="💼">Instantiate Contract Requests (NDA / MSA / SOW / BAA / DPA / Amendments).</li>
-          <li data-emoji="📥">Submit structural Purchase Requisitions for management validation.</li>
-          <li data-emoji="🔄">Submit valid PO Change Requests for existing contracts.</li>
-          <li data-emoji="💳">Direct Invoice and Payment lifecycle verification steps.</li>
-          <li data-emoji="📚">Access localized FAQs & system Training Materials.</li>
-        </ul>
+
+    <div class="content-block">
+      <h3>4.1 Overview & Use Case</h3>
+      <p>Datavant maintains a library of pre-approved, legally vetted contract templates for all standard agreement types. These templates represent Datavant's preferred contractual positions and have been reviewed and approved by Legal, Compliance, Finance, and Procurement. Using these templates is the default requirement for all supplier engagements, not optional.</p>
+    </div>
+
+    <div class="content-block">
+      <h3>4.2 Why Approved Templates Matter</h3>
+      <p style="margin-bottom:20px;">Mitigate risk vectors across internal ecosystems using structured base profiles:</p>
+      
+      <div class="visual-grid" style="grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));">
+        <div class="visual-card">
+          <div class="visual-card__title">⚖️ Legal & Compliance</div>
+          <div class="visual-card__body">
+            <p style="color:var(--wrong);"><strong>Without Template:</strong> Supplier paper may contain unfavorable liability, indemnity, or IP clauses that expose Datavant.</p>
+            <p style="color:var(--correct); margin-top:8px;"><strong>With Approved Template:</strong> Pre-negotiated, legally sound positions protect Datavant's interests natively.</p>
+          </div>
+        </div>
+        <div class="visual-card">
+          <div class="visual-card__title">🔒 Data Privacy (PHI / PII)</div>
+          <div class="visual-card__body">
+            <p style="color:var(--wrong);"><strong>Without Template:</strong> Non-standard DPA / BAA language may not meet HIPAA or applicable data privacy requirements.</p>
+            <p style="color:var(--correct); margin-top:8px;"><strong>With Approved Template:</strong> Compliant language perfectly aligned to Datavant's explicit regulatory obligations.</p>
+          </div>
+        </div>
+        <div class="visual-card">
+          <div class="visual-card__title">⏱️ Turnaround Time (TAT)</div>
+          <div class="visual-card__body">
+            <p style="color:var(--wrong);"><strong>Without Template:</strong> Supplier paper requires full legal redline review, significantly increasing cycles.</p>
+            <p style="color:var(--correct); margin-top:8px;"><strong>With Approved Template:</strong> Datavant paper is pre-vetted, so Legal review is faster and focused only on commercial terms.</p>
+          </div>
+        </div>
+        <div class="visual-card">
+          <div class="visual-card__title">💰 Commercial Terms</div>
+          <div class="visual-card__body">
+            <p style="color:var(--wrong);"><strong>Without Template:</strong> Supplier templates often default to supplier-friendly payment, auto-renewal, and liability terms.</p>
+            <p style="color:var(--correct); margin-top:8px;"><strong>With Approved Template:</strong> Datavant standard terms (NET 60, no auto-renew, no late fee) are pre-embedded.</p>
+          </div>
+        </div>
+        <div class="visual-card">
+          <div class="visual-card__title">⚙️ Coupa Processing</div>
+          <div class="visual-card__body">
+            <p style="color:var(--wrong);"><strong>Without Template:</strong> Non-standard documents require additional reviews and delay supplier activation.</p>
+            <p style="color:var(--correct); margin-top:8px;"><strong>With Approved Template:</strong> Pre-approved templates flow through Coupa smoothly with fewer exception flags.</p>
+          </div>
+        </div>
+        <div class="visual-card">
+          <div class="visual-card__title">📊 Audit & Compliance</div>
+          <div class="visual-card__body">
+            <p style="color:var(--wrong);"><strong>Without Template:</strong> Custom or ad-hoc agreements are significantly harder to track, audit, and enforce.</p>
+            <p style="color:var(--correct); margin-top:8px;"><strong>With Approved Template:</strong> Standardized templates make structural audits, renewals, and amendments straightforward.</p>
+          </div>
+        </div>
       </div>
-      <div class="image-embed">
-        <img src="datavant_image_gb1.png" alt="Guided Buying Overview" />
+      
+      <div class="callout-banner callout-banner--warning">
+        <div class="emoji">⚠️</div>
+        <div>Always use the latest template version available in Coupa. Do not reuse a previously downloaded copy, since templates are updated periodically by Legal.</div>
+      </div>
+    </div>
+
+    <div class="content-block">
+      <h3>4.3 Datavant Paper vs. Supplier / Counterparty Paper</h3>
+      <p>Understand the procedural variances when deploying procurement documents:</p>
+      
+      <div class="battle-ring">
+        <div class="battle-card battle-card--preferred">
+          <div class="battle-card__header">
+            <span>Datavant Paper</span>
+            <span style="font-size:11px; font-family:var(--mono); background:#007680; color:#fff; padding:2px 8px; border-radius:4px;">Strongly Preferred</span>
+          </div>
+          <div class="battle-card__body">
+            <div class="battle-row">
+              <span class="battle-row__metric">Legal Review Effort</span>
+              <span class="battle-row__content">Minimal, focused exclusively on specific business terms.</span>
+            </div>
+            <div class="battle-row">
+              <span class="battle-row__metric">Turnaround Time (TAT)</span>
+              <span class="battle-row__content" style="color:var(--correct); font-weight:600;">⚡ Significantly Faster.</span>
+            </div>
+            <div class="battle-row">
+              <span class="battle-row__metric">Commercial Term Risk</span>
+              <span class="battle-row__content">Low; standard company protection clauses are pre-embedded.</span>
+            </div>
+            <div class="battle-row">
+              <span class="battle-row__metric">Approvals Required</span>
+              <span class="battle-row__content">Follows standard automated DoA threshold parameters.</span>
+            </div>
+            <div class="battle-row">
+              <span class="battle-row__metric">When Permitted</span>
+              <span class="battle-row__content">Default requirement for all active corporate supplier engagements.</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="battle-card">
+          <div class="battle-card__header">
+            <span>Supplier / Counterparty Paper</span>
+            <span style="font-size:11px; font-family:var(--mono); background:#cbd5e0; color:#4a5568; padding:2px 8px; border-radius:4px;">Exception Track</span>
+          </div>
+          <div class="battle-card__body">
+            <div class="battle-row">
+              <span class="battle-row__metric">Legal Review Effort</span>
+              <span class="battle-row__content">Full, exhaustive line-by-line legal redline review required.</span>
+            </div>
+            <div class="battle-row">
+              <span class="battle-row__metric">Turnaround Time (TAT)</span>
+              <span class="battle-row__content" style="color:var(--wrong);">⏳ Significantly Longer Reviews.</span>
+            </div>
+            <div class="battle-row">
+              <span class="battle-row__metric">Commercial Term Risk</span>
+              <span class="battle-row__content">High; counterparty layouts likely favor external vendor parameters.</span>
+            </div>
+            <div class="battle-row">
+              <span class="battle-row__metric">Approvals Required</span>
+              <span class="battle-row__content">Demands separate, explicit Legal + Sourcing sign-offs.</span>
+            </div>
+            <div class="battle-row">
+              <span class="battle-row__metric">When Permitted</span>
+              <span class="battle-row__content">Only where supplier has a non-negotiable requirement AND Legal explicitly approves.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-block">
+      <h3>4.4 Policy Violations: What You Must Not Do</h3>
+      <ul>
+        <li data-emoji="🚫">Do NOT execute or sign any agreement outside of the Coupa workflow.</li>
+        <li data-emoji="🚫">Do NOT verbally agree to non-standard terms with a supplier and attempt to back-fill documentation afterward.</li>
+        <li data-emoji="🚫">Do not allow a supplier to begin services or work until the contract is fully executed.</li>
+      </ul>
+      <div class="callout-banner callout-banner--danger">
+        <div class="emoji">🚫</div>
+        <div>The following actions are policy violations and may result in the agreement being voided, delayed, or escalated for compliance review.</div>
       </div>
     </div>
 
@@ -588,16 +1145,16 @@
       <div class="quiz__head">
         <div>
           <div class="quiz__label">🔍 Knowledge Check 05</div>
-          <h3 class="quiz__title">Verify guided buying pipeline operations</h3>
+          <h3 class="quiz__title">Verify Module 5 System Protections</h3>
         </div>
       </div>
-      <div class="question" data-correct="2">
-        <div class="question__num">Question 05</div>
-        <div class="question__text">Which workflows or request paths are managed under Datavant's Guided Buying framework?</div>
+      <div class="question" data-correct="3">
+        <div class="question__num">Question 01</div>
+        <div class="question__text">Why is reusing a contract template that was previously saved to your local desktop folder prohibited?</div>
         <div class="question__options">
-          <button class="option"><span class="option__letter">A</span>Direct database administration and cloud infrastructure deployment operations.</button>
-          <button class="option"><span class="option__letter">B</span>NDAs, Sourcing requests, Purchase Requisitions, and PO Change requests.</button>
-          <button class="option"><span class="option__letter">C</span>Personal payroll modifications and HR health insurance enrollment forms.</button>
+          <button class="option"><span class="option__letter">A</span>Old templates cause visual stylesheet presentation script errors inside DocuSign portals.</button>
+          <button class="option"><span class="option__letter">B</span>Coupa database tracking indexes require distinct randomized document strings.</button>
+          <button class="option"><span class="option__letter">C</span>Templates are updated periodically by Legal; requestors must always pull the latest copy from Coupa.</button>
         </div>
         <div class="feedback"></div>
       </div>
@@ -610,7 +1167,7 @@
   <div class="locked-overlay">
     <div class="locked-overlay__msg">
       <h3>🔒 Credentials Locked</h3>
-      <p>Finish all modular quizzes above with correct answers to unlock your completion metrics and download tokens.</p>
+      <p>Finish the modular quiz above with correct parameters to unlock your certificate and download tokens.</p>
     </div>
   </div>
   <div class="wrap">
@@ -619,7 +1176,7 @@
       <div class="section-head__content">
         <div class="section-head__eyebrow">🏆 Completion Terminal</div>
         <h2 class="section-head__title">Knowledge Verified</h2>
-        <p class="section-head__lead">Your progressive mastery of the Coupa 101 curriculum is complete.</p>
+        <p class="section-head__lead">Your progressive mastery of the Supplier Onboarding curriculum is complete.</p>
       </div>
     </div>
     
@@ -627,7 +1184,7 @@
       <div class="final__result is-shown" id="finalResult" style="display: block;">
         <div class="final__result-score">✨ 100%</div>
         <div class="final__result-label">Course Completed Successfully</div>
-        <p class="final__result-msg">Excellent work! All modular milestones have been attained. Your secure localized certificate package is ready for extraction below.</p>
+        <p class="final__result-msg">Excellent work! All verification metrics match tracking expectations. Your custom certificate credentials are ready for generation.</p>
         <div class="final__result-actions">
           <button class="button button--secondary" id="reopenCredentialsBtn" type="button" style="border-color: var(--correct); background: var(--ice-bg); font-weight: 700;">Claim Award Credentials 🎓</button>
         </div>
@@ -662,7 +1219,7 @@
 <script>
   const progressFill = document.getElementById('progressBar');
   const navLinks = document.querySelectorAll('.nav-link');
-  const orderedSections = ['homepage', 'profile', 'delegates', 'activity', 'guided-buying', 'final'];
+  const orderedSections = ['module-1', 'module-2', 'module-3', 'module-4', 'module-5', 'final'];
   let finalQuizPassed = false;
 
   function updateProgressBar() {
@@ -751,20 +1308,22 @@
             opt.classList.add('is-correct');
             if (feedback) {
               feedback.className = 'feedback feedback--correct is-shown';
-              feedback.innerHTML = '<strong>✨ Correct!</strong> Entry section lock resolved. Scroll down to proceed.';
+              feedback.innerHTML = '<strong>✨ Correct!</strong> Verification completed successfully.';
             }
             options.forEach((o) => o.disabled = true);
             
-            const currentSection = quiz.closest('section');
-            if (currentSection) {
-              unlockNextSection(currentSection.id);
+            if (state.answered.size === questions.length) {
+              const currentSection = quiz.closest('section');
+              if (currentSection) {
+                unlockNextSection(currentSection.id);
+              }
             }
           } else {
             opt.classList.add('is-wrong');
             if (options[correctAnswer - 1]) options[correctAnswer - 1].classList.add('is-correct');
             if (feedback) {
               feedback.className = 'feedback feedback--wrong is-shown';
-              feedback.innerHTML = '<strong>❌ Not quite.</strong> Review highlighted option parameters and reset utilizing the ↻ hook.';
+              feedback.innerHTML = '<strong>❌ Not quite.</strong> Review baseline verification parameters and reset using the ↻ hook.';
             }
             options.forEach((o) => o.disabled = true);
           }
@@ -809,7 +1368,7 @@
   }
 
   function sanitizeFileName(value) {
-    return value.replace(/[^\x00-\x7F]/g, '').replace(/[^a-zA-Z0-9\- ]/g, '').trim().replace(/\s+/g, '_') || 'Delegate_Credential';
+    return value.replace(/[^\x00-\x7F]/g, '').replace(/[^a-zA-Z0-9\- ]/g, '').trim().replace(/\s+/g, '_') || 'Onboarding_Credential';
   }
 
   function createCredentialPdf(name) {
@@ -822,7 +1381,7 @@
     pdf.setFont('helvetica', 'bold');
     pdf.setFontSize(22);
     pdf.setTextColor(13, 217, 184);
-    pdf.text('Coupa Delegate Credential', width / 2, 120, { align: 'center' });
+    pdf.text('Datavant Supplier Onboarding Credential', width / 2, 120, { align: 'center' });
     pdf.setFont('times', 'italic');
     pdf.setFontSize(46);
     pdf.setTextColor(255, 255, 255);
@@ -830,11 +1389,11 @@
     pdf.setFont('helvetica', 'normal');
     pdf.setFontSize(14);
     pdf.setTextColor(255, 255, 255);
-    pdf.text('Has successfully completed the final delegate assessment and is ready to act as an authorized Coupa delegate.', width / 2, 270, { align: 'center', maxWidth: width - 120 });
+    pdf.text('Has successfully completed Supplier Onboarding for Coupa!', width / 2, 270, { align: 'center', maxWidth: width - 120 });
     pdf.setFontSize(11);
     pdf.setTextColor(200, 210, 230);
     pdf.text(`Issued ${new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}`, width / 2, height - 72, { align: 'center' });
-    pdf.save(`Coupa_Delegate_Credential_${sanitizeFileName(name)}.pdf`);
+    pdf.save(`Coupa_Supplier_Onboarding_Credential_${sanitizeFileName(name)}.pdf`);
   }
 
   const downloadGuidePdf = document.getElementById('downloadGuidePdf');
@@ -866,46 +1425,153 @@
   function createGuidePdf() {
     const { jsPDF } = window.jspdf;
     const pdf = new jsPDF({ unit: 'pt', format: 'a4' });
-    const margin = 50;
-    const maxWidth = pdf.internal.pageSize.getWidth() - margin * 2;
-    let y = 60;
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const pageHeight = pdf.internal.pageSize.getHeight();
+    
+    const margin = 54; 
+    const maxWidth = pageWidth - (margin * 2);
+    let y = 80; 
 
-    const addText = (text, fontSize, isBold = false, color = [0, 0, 0]) => {
-      pdf.setFont('helvetica', isBold ? 'bold' : 'normal');
-      pdf.setFontSize(fontSize);
-      pdf.setTextColor(...color);
-      const lines = pdf.splitTextToSize(text, maxWidth);
-      if (y + (lines.length * (fontSize * 1.5)) > pdf.internal.pageSize.getHeight() - margin) {
-        pdf.addPage();
-        y = margin;
-      }
-      pdf.text(lines, margin, y);
-      y += lines.length * (fontSize * 1.5);
+    const cPrimary = [7, 16, 24];     
+    const cAccent = [0, 198, 217];    
+    const cMuted = [74, 85, 104];     
+    const cLine = [218, 226, 233];     
+
+    const cleanText = (str) => {
+      if (!str) return '';
+      return str.replace(/[^\x00-\x7F]/g, '').trim();
     };
 
-    addText('Coupa 101: Course Manual', 24, true);
-    y += 20;
+    const checkPageBreak = (neededHeight) => {
+      if (y + neededHeight > pageHeight - 60) {
+        pdf.addPage();
+        y = 75; 
+        return true;
+      }
+      return false;
+    };
+
+    pdf.setFillColor(7, 16, 24);
+    pdf.rect(0, 0, pageWidth, 115, 'F');
+    
+    pdf.setFont('helvetica', 'bold');
+    pdf.setFontSize(22);
+    pdf.setTextColor(255, 255, 255);
+    pdf.text('SUPPLIER ONBOARDING & CONTRACT MANUAL', margin, 62);
+    
+    pdf.setFont('helvetica', 'bold');
+    pdf.setFontSize(9);
+    pdf.setTextColor(0, 242, 255); 
+    pdf.text('DATAVANT GLOBAL PROCUREMENT TRAINING SYSTEM', margin, 86);
+    
+    y = 155; 
 
     const sections = document.querySelectorAll('section:not(.hero):not(#final)');
-    sections.forEach((section) => {
-      const eyebrow = section.querySelector('.section-head__eyebrow')?.innerText.trim();
-      const title = section.querySelector('.section-head__title')?.innerText.trim();
-      const lead = section.querySelector('.section-head__lead')?.innerText.trim();
-      const content = section.querySelectorAll('.content-block p, .content-block li');
+    sections.forEach((section, sIdx) => {
+      const eyebrow = cleanText(section.querySelector('.section-head__eyebrow')?.innerText);
+      const title = cleanText(section.querySelector('.section-head__title')?.innerText);
+      const lead = cleanText(section.querySelector('.section-head__lead')?.innerText);
+      const content = section.querySelectorAll('.content-block p, .content-block li, .visual-card__title, .visual-card__body, .pipeline-header, .pipeline-desc, .hierarchy-meta h4, .hierarchy-meta p, .dashboard-tile__value, .battle-row__content, .thermometer-desc');
 
-      if (eyebrow) addText(eyebrow.toUpperCase(), 10, true, [0, 198, 217]);
-      if (title) addText(title, 20, true);
-      if (lead) { addText(lead, 12); y += 10; }
+      if (sIdx > 0) {
+        checkPageBreak(130);
+        y += 15;
+      }
+
+      pdf.setDrawColor(...cAccent);
+      pdf.setLineWidth(2.5);
+      pdf.line(margin, y - 4, margin, y + 32);
+
+      if (eyebrow) {
+        pdf.setFont('helvetica', 'bold');
+        pdf.setFontSize(8.5);
+        pdf.setTextColor(...cAccent);
+        pdf.text(eyebrow.toUpperCase(), margin + 12, y + 6);
+        y += 14;
+      }
+
+      if (title) {
+        pdf.setFont('helvetica', 'bold');
+        pdf.setFontSize(15);
+        pdf.setTextColor(...cPrimary);
+        const titleLines = pdf.splitTextToSize(title, maxWidth - 15);
+        pdf.text(titleLines, margin + 12, y + 10);
+        y += (titleLines.length * 19) + 6;
+      }
+      y += 8;
+
+      if (lead) {
+        pdf.setFont('helvetica', 'oblique');
+        pdf.setFontSize(10.5);
+        pdf.setTextColor(...cMuted);
+        const leadLines = pdf.splitTextToSize(lead, maxWidth);
+        checkPageBreak(leadLines.length * 15);
+        pdf.text(leadLines, margin, y);
+        y += (leadLines.length * 15) + 14;
+      }
+
+      pdf.setDrawColor(...cLine);
+      pdf.setLineWidth(0.5);
+      pdf.line(margin, y - 4, pageWidth - margin, y - 4);
+      y += 14;
 
       content.forEach(el => {
-        const text = el.innerText.trim();
-        if (el.tagName === 'LI') addText('• ' + text, 11);
-        else addText(text, 12);
+        const text = cleanText(el.innerText);
+        const isLi = el.tagName === 'LI';
+        
+        pdf.setFont('helvetica', 'normal');
+        pdf.setFontSize(10);
+        pdf.setTextColor(...cPrimary);
+
+        if (isLi) {
+          const cleanedText = text.replace(/^[🔹|•|\s\-]+/g, '').trim();
+          const liLines = pdf.splitTextToSize(cleanedText, maxWidth - 18);
+          
+          checkPageBreak((liLines.length * 15) + 4);
+          pdf.setFillColor(...cAccent);
+          pdf.circle(margin + 5, y - 3, 2, 'F');
+          
+          pdf.setTextColor(...cPrimary);
+          pdf.text(liLines, margin + 16, y);
+          y += (liLines.length * 15) + 6;
+        } else {
+          const pLines = pdf.splitTextToSize(text, maxWidth);
+          checkPageBreak((pLines.length * 15) + 10);
+          pdf.text(pLines, margin, y);
+          y += (pLines.length * 15) + 10;
+        }
       });
-      y += 20;
+      y += 10; 
     });
 
-    pdf.save('Datavant_Coupa_101_Guide.pdf');
+    const totalPages = pdf.internal.getNumberOfPages();
+    for (let i = 1; i <= totalPages; i++) {
+      pdf.setPage(i);
+      if (i > 1) {
+        pdf.setFont('helvetica', 'normal');
+        pdf.setFontSize(8);
+        pdf.setTextColor(...cMuted);
+        pdf.text('Datavant Procurement Framework  |  Supplier Onboarding Guide', margin, 35);
+        
+        pdf.setDrawColor(...cLine);
+        pdf.setLineWidth(0.5);
+        pdf.line(margin, 42, pageWidth - margin, 42);
+      }
+
+      pdf.setDrawColor(...cLine);
+      pdf.setLineWidth(0.5);
+      pdf.line(margin, pageHeight - 42, pageWidth - margin, pageHeight - 42);
+
+      pdf.setFont('helvetica', 'normal');
+      pdf.setFontSize(8);
+      pdf.setTextColor(...cMuted);
+      pdf.text('Confidential - Internal Corporate Training Reference Manual', margin, pageHeight - 28);
+      
+      const pageString = `Page ${i} of ${totalPages}`;
+      pdf.text(pageString, pageWidth - margin - pdf.getTextWidth(pageString), pageHeight - 28);
+    }
+
+    pdf.save('Datavant_Supplier_Onboarding_And_Contract_Guide.pdf');
   }
 
   function initRevealAnimations() {
