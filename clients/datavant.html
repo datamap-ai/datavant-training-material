@@ -419,6 +419,48 @@
   .pdf-modal__btn--primary:hover { background: #1b2631; transform: translateY(-1px); }
   .pdf-modal__error { color: #b91c1c; font-size: 13px; margin-top: 10px; font-weight: 500; }
 
+  /* IMAGE ZOOM / LIGHTBOX STYLES */
+  .zoomable-img {
+    cursor: zoom-in;
+    transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), filter 0.25s ease;
+  }
+  .zoomable-img:hover {
+    transform: scale(1.02);
+    filter: brightness(1.03);
+  }
+  .img-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(7, 16, 24, 0.88);
+    backdrop-filter: blur(6px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    z-index: 2000;
+    cursor: zoom-out;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+  .img-modal.is-open {
+    display: flex;
+    opacity: 1;
+  }
+  .img-modal__content {
+    max-width: 92vw;
+    max-height: 88vh;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
+    border: 1.5px solid rgba(0, 242, 255, 0.3);
+    background: #ffffff;
+    transform: scale(0.92);
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .img-modal.is-open .img-modal__content {
+    transform: scale(1);
+  }
+
   @keyframes ctaPulse {
     0% { box-shadow: 0 0 0 0 rgba(0, 242, 255, 0.5); }
     70% { box-shadow: 0 0 0 12px rgba(0, 242, 255, 0); }
@@ -480,7 +522,7 @@
       <a href="#module-5" class="nav-link">🛒 5. PR, PO & Payment</a>
     </div>
   </div>
-  <img src="datavant_screenshot_top_right_decal.png" alt="Navbar Decal" class="nav__decal" />
+  <img src="Assets/datavant_screenshot_top_right_decal.png" alt="Navbar Decal" class="nav__decal" />
 </nav>
 
 <img src="https://www.datavant.com/wp-content/themes/datavant/zen-blocks/platform-diagram/footer_line.png" alt="" style="width:100%;display:block;transform:scaleY(0.75);transform-origin:top center;">
@@ -510,7 +552,7 @@
       </div>
       <div class="hero__panel">
         <h2>Audience</h2>
-        <p>Requestors and business owners who initiate supplier onboarding, contracts, and purchase requisitions, together with the Procurement, Finance, and Legal partners who support them. After this training, a viewer should be able to onboard a supplier at the right risk tier, request the right agreement in the right sequence, route an approval to the correct authority, recognize the actions that violate policy, and raise a purchase requisition and purchase order.</p>
+        <p>Requestors and business owners who initiate supplier onboarding, contracts, and purchase requisitions, together with the Procurement, Finance, and Legal partners who support them. After this training, a viewer should be able to onboard a supplier at the right risk tier, request the right agreement in the right sequence, route an approval to the correct authority, and recognize the actions that violate policy.</p>
       </div>
     </div>
   </div>
@@ -518,8 +560,8 @@
 
 <div class="wrap" style="margin-top: -20px; margin-bottom: 40px;">
   <div class="content-block" style="border-color: var(--brand-cyan); background: rgba(233, 254, 255, 0.45);">
-    <h3 style="font-family: var(--serif); font-size: 22px; font-weight: 700;">⚠️ Please commit to memory the below rules:</h3>
-    <h3 style="font-family: var(--serif); font-size: 22px; font-weight: 700;">🔍 More information and a second review of these rules will be provided throughout the course.</h3>
+    <h3 style="font-family: var(--serif); font-size: 22px; font-weight: 700;">⚠️ Please review the critical information and video below before continuing on to the course:</h3>
+    <h3 style="font-family: var(--serif); font-size: 22px; font-weight: 700;">🔍 This information is crucial for understanding the supplier onboarding & contract management processes.</h3>
     <p style="font-size: 14px; color: var(--text-muted); margin-top: 8px;">Click through cards 01 to 09 sequentially to reveal each process rule. Then watch the Supplier Tier Video below and check the acknowledgment box to unlock Module 01.</p>
     
     <div id="rules-status-banner" style="display:none; margin-top: 14px; padding: 14px 18px; background: rgba(30,138,107,0.12); border-left: 4px solid var(--correct); color: var(--correct); border-radius: 10px; font-weight: 600; font-size: 14.5px;"></div>
@@ -552,7 +594,7 @@
         </div>
         <div class="visual-card__badge">03</div>
         <div class="visual-card__title">Sequence First</div>
-        <div class="visual-card__body">NDA first – only if we are sharing confidential info ahead of signing. Submit NDA before any other agreement, then MSA, then SOW, then BAA/DPA.</div>
+        <div class="visual-card__body">NDA first – only if we are sharing confidential info ahead of signing. Submit NDA before any other agreement, then MSA, then SOW, then BAA/DPA. NDA is not required if a signed MSA is already in place</div>
       </div>
 
       <div class="visual-card rule-card locked">
@@ -622,7 +664,7 @@
     <h3>📹 Prerequisite Video: Supplier Risk Tier Overview</h3>
     <p>Watch this detailed overview explaining how vendor risk tiers (Tier 0 through Tier 4) are determined and how they govern security, compliance, and legal review workflows across all procurement activities.</p>
     <div class="video-container">
-      <iframe src="https://www.loom.com/embed/09dc7dba947b43eaaa7bf01098fb0739" allowfullscreen></iframe>
+      <iframe src="https://www.loom.com/embed/1a302a07fdf44ccd82cae23c4ef51ec7" allowfullscreen></iframe>
     </div>
     
     <div style="margin-top: 20px; padding: 16px 20px; background: rgba(0, 198, 217, 0.08); border-radius: 14px; border: 1.5px solid var(--brand-cyan); display: flex; align-items: center; gap: 14px;">
@@ -661,7 +703,8 @@
           <div class="pipeline-indicator">1</div>
           <div class="pipeline-box">
             <div class="pipeline-header">Initialization Request</div>
-            <div class="pipeline-desc">Requestor submits the New Supplier Request Form inside the Coupa environment.</div>
+            <div class="pipeline-desc">Requestor submits the New Supplier Request Form inside the Coupa environment. Important: Owners submitting high-risk vendors are responsible for being proactive, involving stakeholders early, and not rushing procurement or legal.
+</div>
           </div>
         </div>
         <div class="pipeline-step">
@@ -835,8 +878,8 @@
 <section id="module-2" class="locked-section reveal">
   <div class="locked-overlay">
     <div class="locked-overlay__msg">
-      <h3>🔒 Credentials Locked</h3>
-      <p>Finish the modular quiz above with correct parameters to unlock your certificate and download tokens.</p>
+      <h3>🔒 Module Locked</h3>
+      <p>Finish the modular quiz above with correct parameters to unlock the next section.</p>
     </div>
   </div>
   <div class="wrap">
@@ -991,6 +1034,15 @@
       </div>
     </div>
 
+    <!-- VIDEO BLOCK: How to Submit an NDA for DocuSign -->
+    <div class="content-block">
+      <h3>📹 Video Guide: How to Submit an NDA for DocuSign</h3>
+      <p>A detailed walkthrough explaining how to route an approved NDA through Coupa’s automated DocuSign execution pipeline.</p>
+      <div class="video-container">
+        <iframe src="https://www.loom.com/embed/70b60fd2a04848e5bd99846c271f4bfb" allowfullscreen></iframe>
+      </div>
+    </div>
+
     <!-- VIDEO BLOCK: How to Request an MSA or SOW Contract -->
     <div class="content-block">
       <h3>📹 Video Guide: How to Request an MSA or SOW Contract</h3>
@@ -1009,12 +1061,12 @@
       </div>
     </div>
 
-    <!-- VIDEO BLOCK: How to Submit an NDA for DocuSign -->
+    <!-- VIDEO BLOCK: How to Request Contract Termination -->
     <div class="content-block">
-      <h3>📹 Video Guide: How to Submit an NDA for DocuSign</h3>
-      <p>A detailed walkthrough explaining how to route an approved NDA through Coupa’s automated DocuSign execution pipeline.</p>
+      <h3>📹 Video Guide: How to Request Contract Termination</h3>
+      <p>Learn the step-by-step procedure for initiating contract termination processes in Coupa.</p>
       <div class="video-container">
-        <iframe src="https://www.loom.com/embed/70b60fd2a04848e5bd99846c271f4bfb" allowfullscreen></iframe>
+        <iframe src="https://www.loom.com/embed/47a07efe91734958bf96351363867dfd" allowfullscreen></iframe>
       </div>
     </div>
 
@@ -1056,8 +1108,8 @@
 <section id="module-3" class="section--dark locked-section reveal">
   <div class="locked-overlay">
     <div class="locked-overlay__msg">
-      <h3>🔒 Credentials Locked</h3>
-      <p>Finish the modular quiz above with correct parameters to unlock your certificate and download tokens.</p>
+      <h3>🔒 Module Locked</h3>
+      <p>Finish the modular quiz above with correct parameters to unlock the next section.</p>
     </div>
   </div>
   <div class="wrap">
@@ -1164,8 +1216,8 @@
 <section id="module-4" class="locked-section reveal">
   <div class="locked-overlay">
     <div class="locked-overlay__msg">
-      <h3>🔒 Credentials Locked</h3>
-      <p>Finish the modular quiz above with correct parameters to unlock your certificate and download tokens.</p>
+      <h3>🔒 Module Locked</h3>
+      <p>Finish the modular quiz above with correct parameters to unlock the next section.</p>
     </div>
   </div>
   <div class="wrap">
@@ -1178,9 +1230,59 @@
       </div>
     </div>
 
+    <!-- MODULE 4.1: OVERVIEW & LOCATING TEMPLATES WITH SCREENSHOTS -->
     <div class="content-block">
       <h3>4.1 Overview & Use Case</h3>
       <p>Datavant maintains a library of pre-approved, legally vetted contract templates for all standard agreement types. These templates represent Datavant's preferred contractual positions and have been reviewed and approved by Legal, Compliance, Finance, and Procurement. Using these templates is the default requirement for all supplier engagements, not optional.</p>
+
+      <!-- STEP-BY-STEP TEMPLATE LOCATION GUIDE -->
+      <h4 style="font-family: var(--serif); font-size: 18px; margin-top: 28px; margin-bottom: 6px; color: var(--text);">📍 How to Locate Approved Templates in Coupa</h4>
+      <p style="margin-top: 0; color: var(--text-muted); font-size: 14px;">Follow the guided request workflow in Coupa to locate and download the latest approved Datavant paper templates.</p>
+      <p style="margin-top: 6px; color: #007887; font-size: 13.5px; font-weight: 600;">💡 <em>Tip: Click on any screenshot below to enlarge it. Click anywhere on the image or background to minimize it back to its original spot.</em></p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 20px;">
+        
+        <!-- Step 1 Card -->
+        <div style="background: rgba(0,0,0,0.02); border: 1.5px solid var(--line); border-radius: 16px; padding: 18px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--brand-cyan); text-transform: uppercase; margin-bottom: 6px;">Step 01</div>
+            <div style="font-weight: 700; font-size: 14.5px; margin-bottom: 8px; color: var(--text);">Access Guided Request</div>
+            <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-top: 0; margin-bottom: 14px;">From the Coupa home dashboard, click the <strong>"Not sure? Let us guide you"</strong> button or click the <strong>Guided Request</strong> compass icon.</p>
+          </div>
+          <img src="Assets/datavant_screenshot_guided_buying.png" alt="Step 1: Access Guided Request" class="zoomable-img" style="width: 100%; max-height: 200px; object-fit: contain; border-radius: 10px; border: 1px solid var(--line); background: #ffffff; padding: 4px;" />
+        </div>
+
+        <!-- Step 2 Card -->
+        <div style="background: rgba(0,0,0,0.02); border: 1.5px solid var(--line); border-radius: 16px; padding: 18px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--brand-cyan); text-transform: uppercase; margin-bottom: 6px;">Step 02</div>
+            <div style="font-weight: 700; font-size: 14.5px; margin-bottom: 8px; color: var(--text);">Select Request Category</div>
+            <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-top: 0; margin-bottom: 14px;">Under <em>"What do you need today?"</em>, select either the <strong>NDA Request</strong> or <strong>Datavant Contract Templates / Initiate Contract Request</strong> option.</p>
+          </div>
+          <img src="Assets/datavant_screenshot_contract_template_types.png" alt="Step 2: Select Category" class="zoomable-img" style="width: 100%; max-height: 200px; object-fit: contain; border-radius: 10px; border: 1px solid var(--line); background: #ffffff; padding: 4px;" />
+        </div>
+
+        <!-- Step 3A Card -->
+        <div style="background: rgba(0,0,0,0.02); border: 1.5px solid var(--line); border-radius: 16px; padding: 18px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--brand-cyan); text-transform: uppercase; margin-bottom: 6px;">Step 03A</div>
+            <div style="font-weight: 700; font-size: 14.5px; margin-bottom: 8px; color: var(--text);">NDA Template Path</div>
+            <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-top: 0; margin-bottom: 14px;">If requesting an NDA template, select <strong>"I need a Contract Template - Our paper"</strong> and click <strong>Open a link</strong>.</p>
+          </div>
+          <img src="Assets/datavant_screenshot_contract_template_NDA.png" alt="Step 3A: NDA Template Path" class="zoomable-img" style="width: 100%; max-height: 200px; object-fit: contain; border-radius: 10px; border: 1px solid var(--line); background: #ffffff; padding: 4px;" />
+        </div>
+
+        <!-- Step 3B Card -->
+        <div style="background: rgba(0,0,0,0.02); border: 1.5px solid var(--line); border-radius: 16px; padding: 18px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--brand-cyan); text-transform: uppercase; margin-bottom: 6px;">Step 03B</div>
+            <div style="font-weight: 700; font-size: 14.5px; margin-bottom: 8px; color: var(--text);">General Contract Path</div>
+            <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-top: 0; margin-bottom: 14px;">For MSA, SOW, BAA, or DPA templates, select <strong>"I need a contract template, our paper"</strong> and click <strong>Open a link</strong>.</p>
+          </div>
+          <img src="Assets/datavant_screenshot_contract_template_BAA_others.png" alt="Step 3B: General Contract Path" class="zoomable-img" style="width: 100%; max-height: 200px; object-fit: contain; border-radius: 10px; border: 1px solid var(--line); background: #ffffff; padding: 4px;" />
+        </div>
+
+      </div>
     </div>
 
     <div class="content-block">
@@ -1342,8 +1444,8 @@
 <section id="module-5" class="section--dark locked-section reveal">
   <div class="locked-overlay">
     <div class="locked-overlay__msg">
-      <h3>🔒 Credentials Locked</h3>
-      <p>Finish the modular quiz above with correct parameters to unlock your certificate and download tokens.</p>
+      <h3>🔒 Module Locked</h3>
+      <p>Finish the modular quiz above with correct parameters to unlock the next section.</p>
     </div>
   </div>
   <div class="wrap">
@@ -1482,6 +1584,7 @@
   </div>
 </section>
 
+<!-- CREDENTIALS MODAL -->
 <div class="pdf-modal" id="credentialsModal" role="dialog" aria-modal="true" aria-labelledby="credentialsModalTitle">
   <div class="pdf-modal__panel">
     <div class="pdf-modal__header">
@@ -1502,6 +1605,11 @@
       <div class="pdf-modal__error" id="credentialError"></div>
     </div>
   </div>
+</div>
+
+<!-- IMAGE LIGHTBOX / ZOOM MODAL -->
+<div class="img-modal" id="imageModal" role="dialog" aria-hidden="true">
+  <img class="img-modal__content" id="imageModalImg" src="" alt="Enlarged screenshot view">
 </div>
 
 <script>
@@ -1775,6 +1883,41 @@
     reopenCredentialsBtn.addEventListener('click', openCredentialsModal);
   }
 
+  /* IMAGE ZOOM LIGHTBOX LOGIC */
+  function initImageZoom() {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('imageModalImg');
+    const zoomableImgs = document.querySelectorAll('.zoomable-img');
+
+    if (!modal || !modalImg) return;
+
+    zoomableImgs.forEach((img) => {
+      img.addEventListener('click', () => {
+        modalImg.src = img.src;
+        modalImg.alt = img.alt || 'Enlarged view';
+        modal.style.display = 'flex';
+        setTimeout(() => modal.classList.add('is-open'), 10);
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeModal() {
+      modal.classList.remove('is-open');
+      setTimeout(() => {
+        modal.style.display = 'none';
+        modalImg.src = '';
+      }, 250);
+      document.body.style.overflow = '';
+    }
+
+    modal.addEventListener('click', closeModal);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+        closeModal();
+      }
+    });
+  }
+
   function initRevealAnimations() {
     const revealElements = document.querySelectorAll('.reveal');
     if (!revealElements.length) return;
@@ -1808,6 +1951,7 @@
       });
     }
 
+    initImageZoom();
     initRevealAnimations();
     highlightNav();
     updateProgressBar();
